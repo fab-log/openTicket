@@ -1,1 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>openTicket</title>
+        <link rel="stylesheet" type="text/css" href="index.css" />
+        <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.png" />
+    </head>
 
+    <body>
+        <div class="header">
+            <img
+                src="pix/logoStacked.webp"
+                alt="openTicket logo"
+                id="logoStacked"
+            />
+            <img
+                src="pix/bubbles.webp"
+                alt="start screen"
+                id="btnStartBubbles"
+                title="start screen"
+            />
+            <img
+                src="pix/list.webp"
+                alt="start screen"
+                id="btnStartTable"
+                title="start screen"
+            />
+            <img
+                src="pix/cancel.webp"
+                alt=" reset search"
+                id="btnResetSearch"
+                title="reset search"
+            />
+            <img
+                src="pix/search.webp"
+                alt="search"
+                id="btnSearch"
+                title="search"
+            />
+            <img
+                src="pix/settings.webp"
+                alt="settings"
+                id="btnSettings"
+                title="settings"
+            />
+            <img
+                src="pix/plus.webp"
+                alt="new ticket"
+                id="btnNewTicket"
+                title="new ticket"
+            />
+            <img src="pix/logoStacked.webp" alt="openTicket logo" id="logo" />
+        </div>
+        <!-- header -->
+
+        <div class="main">
+            <div class="modalWelcome modal">
+                <img
+                    src="pix/logoImage.webp"
+                    alt="open ticket logo"
+                    width="200px"
+                    class="otLogo"
+                    style="box-shadow: none"
+                />
+                <hr />
+                <h2>Welcome to openTicket</h2>
+                <p>
+                    openTicket helps you organize complex tasks or projects. It
+                    can also be used as a help desk manager with multiple people
+                    working on the same task.
+                </p>
+                <p>
+                    Start by clicking the plus icon and add your first ticket.
+                    Each time you or one of your workmates comes back to this
+                    topic you can add an entry providing new information or a
+                    new status.
+                </p>
+
+                <hr />
+                <h3>Styles</h3>
+                <p>
+                    Pick from different colors to get an individual accent for
+                    each task
+                </p>
+                <img
+                    src="pix/coloredBubbles.webp"
+                    alt="colored bubbles"
+                    class="otLogo"
+                />
+                <p>
+                    The default style displays a table offering sorting and
+                    filtering options.
+                </p>
+                <img
+                    src="pix/screenshotTableDark.png"
+                    alt="screenshot"
+                    width="100%"
+                />
+                <p>
+                    You can opt for an alternative, more intuitive style showing
+                    the tickets as colored bubbles.
+                </p>
+                <img
+                    src="pix/screenshotBubblesDark.png"
+                    alt="screenshot"
+                    width="100%"
+                />
+                <hr />
+                <h3>Dark or light</h3>
+                Switch to the light mode if you feel more comfortable with that.
+                <img
+                    src="pix/screenshotTableLight.png"
+                    id="imgDarkLight"
+                    alt="screenshot"
+                    width="100%"
+                />
+                <hr />
+            </div>
+
+            <div class="list modal">
+                <table class="ticketList">
+                    <tr>
+                        <th>
+                            date
+                            <img
+                                src="pix/arrowUp.webp"
+                                alt="sort descending"
+                                title="sort descending"
+                                id="btnSortUpByDate"
+                                class="btnSortUp grpArrows"
+                            /><img
+                                src="pix/arrowDown.webp"
+                                alt="sort ascending"
+                                title="sort ascending"
+                                id="btnSortDownByDate"
+                                class="btnSortDown grpArrows"
+                            /><img
+                                src="pix/arrows.webp"
+                                alt="sort"
+                                title="sort by date"
+                                id="btnSortByDate"
+                                class="btnSort grpArrows"
+                            /><img
+                                src="pix/filter.webp"
+                                alt="filter"
+                                title="filter by date"
+                                id="btnFilterByDate"
+                                class="btnFilter grpArrows"
+                            /><img
+                                src="pix/cancel.webp"
+                                alt="delete filter"
+                                title="delete filter"
+                                id="btnUndoFilterByDate"
+                                class="btnUndoFilter grpArrows"
+                            />
+                        </th>
+                        <th
+                            style="
+                                border-left: 6px solid var(--background-color2);
+                            "
+                        >
+                            title
+                            <img
+                                src="pix/arrowUp.webp"
+                                alt="sort descending"
+                                title="sort descending"
+                                id="btnSortUpByTitle"
+                                class="btnSortUp grpArrows"
+                            /><img
+                                src="pix/arrowDown.webp"
+                                alt="sort ascending"
+                                title="sort ascending"
+                                id="btnSortDownByTitle"
+                                class="btnSortDown grpArrows"
+                            /><img
+                                src="pix/arrows.webp"
+                                alt="sort"
+                                title="sort by title"
+                                id="btnSortByTitle"
+                                class="btnSort grpArrows"
+                            /><img
+                                src="pix/filter.webp"
+                                alt="filter"
+                                title="filter by title"
+                                id="btnFilterByTitle"
+                                class="btnFilter grpArrows"
+                            /><img
+                                src="pix/cancel.webp"
+                                alt="delete filter"
+                                title="delete filter"
+                                id="btnUndoFilterByTitle"
+                                class="btnUndoFilter grpArrows"
+                            />
+                        </th>
+                        <th>
+                            description
+                            <img
+                                src="pix/arrowUp.webp"
+                                alt="sort descending"
+                                title="sort descending"
+                                id="btnSortUpByDescription"
+                                class="btnSortUp grpArrows"
+                            /><img
+                                src="pix/arrowDown.webp"
+                                alt="sort ascending"
+                                title="sort ascending"
+                                id="btnSortDownByDescription"
+                                class="btnSortDown grpArrows"
+                            /><img
+                                src="pix/arrows.webp"
+                                alt="sort"
+                                title="sort by description"
+                                id="btnSortByDescription"
+                                class="btnSort grpArrows"
+                            /><img
+                                src="pix/filter.webp"
+                                alt="filter"
+                                title="filter by description"
+                                id="btnFilterByDescription"
+                                class="btnFilter grpArrows"
+                            /><img
+                                src="pix/cancel.webp"
+                                alt="delete filter"
+                                title="delete filter"
+                                id="btnUndoFilterByDescription"
+                                class="btnUndoFilter grpArrows"
+                            />
+                        </th>
+                        <th>
+                            due date
+                            <img
+                                src="pix/arrowUp.webp"
+                                alt="sort descending"
+                                title="sort descending"
+                                id="btnSortUpByDueDate"
+                                class="btnSortUp grpArrows"
+                            /><img
+                                src="pix/arrowDown.webp"
+                                alt="sort ascending"
+                                title="sort ascending"
+                                id="btnSortDownByDueDate"
+                                class="btnSortDown grpArrows"
+                            /><img
+                                src="pix/arrows.webp"
+                                alt="sort"
+                                title="sort by due date"
+                                id="btnSortByDueDate"
+                                class="btnSort grpArrows"
+                            /><img
+                                src="pix/filter.webp"
+                                alt="filter"
+                                title="filter by due date"
+                                id="btnFilterByDueDate"
+                                class="btnFilter grpArrows"
+                            /><img
+                                src="pix/cancel.webp"
+                                alt="delete filter"
+                                title="delete filter"
+                                id="btnUndoFilterByDueDate"
+                                class="btnUndoFilter grpArrows"
+                            />
+                        </th>
+                        <th>
+                            by
+                            <img
+                                src="pix/arrowUp.webp"
+                                alt="sort descending"
+                                title="sort descending"
+                                id="btnSortUpByOwner"
+                                class="btnSortUp grpArrows"
+                            /><img
+                                src="pix/arrowDown.webp"
+                                alt="sort ascending"
+                                title="sort ascending"
+                                id="btnSortDownByOwner"
+                                class="btnSortDown grpArrows"
+                            /><img
+                                src="pix/arrows.webp"
+                                alt="sort"
+                                title="sort by initiator"
+                                id="btnSortByOwner"
+                                class="btnSort grpArrows"
+                            /><img
+                                src="pix/filter.webp"
+                                alt="filter"
+                                title="filter by initiator"
+                                id="btnFilterByOwner"
+                                class="btnFilter grpArrows"
+                            /><img
+                                src="pix/cancel.webp"
+                                alt="delete filter"
+                                title="delete filter"
+                                id="btnUndoFilterByOwner"
+                                class="btnUndoFilter grpArrows"
+                            />
+                        </th>
+                        <th>
+                            prio
+                            <img
+                                src="pix/arrowUp.webp"
+                                alt="sort descending"
+                                title="sort descending"
+                                id="btnSortUpByPriority"
+                                class="btnSortUp grpArrows"
+                            /><img
+                                src="pix/arrowDown.webp"
+                                alt="sort ascending"
+                                title="sort ascending"
+                                id="btnSortDownByPriority"
+                                class="btnSortDown grpArrows"
+                            /><img
+                                src="pix/arrows.webp"
+                                alt="sort"
+                                title="sort by priority"
+                                id="btnSortByPriority"
+                                class="btnSort grpArrows"
+                            /><img
+                                src="pix/filter.webp"
+                                alt="filter"
+                                title="filter by priority"
+                                id="btnFilterByPriority"
+                                class="btnFilter grpArrows"
+                            /><img
+                                src="pix/cancel.webp"
+                                alt="delete filter"
+                                title="delete filter"
+                                id="btnUndoFilterByPriority"
+                                class="btnUndoFilter grpArrows"
+                            />
+                        </th>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="modalBubbles modal"></div>
+
+            <div class="modalTicket modal">
+                <p class="dimmedFont small">
+                    <br /><span id="mdDate"></span> | <span id="mdOwner"></span>
+                </p>
+
+                <div id="mdDivDisplay">
+                    <figure id="mdBtnDone" class="mdBtn">
+                        <img
+                            src="pix/check.webp"
+                            alt="mark as done"
+                            title="mark ticket as done"
+                        />
+                        <figcaption>done</figcaption>
+                    </figure>
+                    <figure id="mdBtnEdit" class="mdBtn">
+                        <img
+                            src="pix/pencil.webp"
+                            alt="edit"
+                            title="edit ticket"
+                        />
+                        <figcaption>edit</figcaption>
+                    </figure>
+
+                    <h2 class="green" id="mdTitle">Title</h2>
+
+                    <p>
+                        <span class="dimmedFont">description</span><br />
+                        <span class="green" id="mdSpanDescription"></span>
+                    </p>
+
+                    <table class="small">
+                        <tr>
+                            <td class="dimmedFont">due date</td>
+                            <td class="green" id="mdTdDueDate"></td>
+                        </tr>
+                        <tr>
+                            <td class="dimmedFont">priority</td>
+                            <td class="green" id="mdTdPrio"></td>
+                        </tr>
+                    </table>
+
+                    <hr class="hrHighlight" id="mdHr" />
+
+                    <div class="mdDivDisplaySubtasks"></div>
+                </div>
+
+                <div id="mdDivEdit">
+                    <form id="frmTicket">
+                        <table>
+                            <tr>
+                                <td class="dimmedFont">title</td>
+                                <td><input type="text" id="mdInpTitle" /></td>
+                            </tr>
+                            <tr>
+                                <td class="dimmedFont">due date</td>
+                                <td><input type="date" id="mdInpDueDate" /></td>
+                            </tr>
+                            <tr>
+                                <td class="dimmedFont">priority</td>
+                                <td>
+                                    <select id="mdSelPrio">
+                                        <option value="" selected disabled>
+                                            select
+                                        </option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="dimmedFont">color</td>
+                                <td class="green">
+                                    <input
+                                        type="range"
+                                        id="mdInpColor"
+                                        min="0"
+                                        max="330"
+                                        step="30"
+                                    />
+                                </td>
+                            </tr>
+                        </table>
+                        <p class="dimmedFont">
+                            description<br />
+                            <textarea id="mdTaDescription"></textarea>
+                        </p>
+                    </form>
+                </div>
+
+                <div class="entry">
+                    <form id="frmEntry">
+                        <p class="dimmedFont small">
+                            <span id="mdSubtaskDate"></span> |
+                            <span id="mdSubtaskEditor"></span>
+                        </p>
+                        <table>
+                            <tr>
+                                <td class="dimmedFont">type</td>
+                                <td>
+                                    <select id="mdSelSubtaskType">
+                                        <option value="" selected disabled>
+                                            select
+                                        </option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="dimmedFont">state</td>
+                                <td>
+                                    <select id="mdSelSubtaskState">
+                                        <option value="" selected disabled>
+                                            select
+                                        </option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                        <p class="dimmedFont">
+                            note<br />
+                            <textarea id="mdTaNote"></textarea>
+                        </p>
+                    </form>
+                </div>
+
+                <figure id="mdBtnSaveTicket" class="mdBtn">
+                    <img src="pix/save.webp" title="save ticket" />
+                    <figcaption>save</figcaption>
+                </figure>
+                <figure id="mdBtnSaveEntry" class="mdBtn">
+                    <img src="pix/save.webp" title="save entry" />
+                    <figcaption>save</figcaption>
+                </figure>
+                <figure id="mdBtnSaveEditedTicket" class="mdBtn">
+                    <img src="pix/save.webp" title="save changes" />
+                    <figcaption>save</figcaption>
+                </figure>
+                <figure id="mdBtnDismiss" class="mdBtn">
+                    <img src="pix/cancel.webp" title="dismiss changes" />
+                    <figcaption>dismiss</figcaption>
+                </figure>
+                <figure id="mdBtnAddEntry" class="mdBtn">
+                    <img src="pix/smallPlus.webp" title="add entry" />
+                    <figcaption>add entry</figcaption>
+                </figure>
+            </div>
+
+            <div class="modalEditSubticket modal">
+                <h3>Edit entry</h3>
+                <form id="frmEditSubtask">
+                    <p class="dimmedFont small">
+                        <span id="mdEditSubtaskDate"></span> |
+                        <span id="mdEditSubtaskEditor"></span>
+                    </p>
+                    <table>
+                        <tr>
+                            <td class="dimmedFont">type</td>
+                            <td>
+                                <select id="mdSelEditSubtaskType">
+                                    <option value="" selected disabled>
+                                        select
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="dimmedFont">state</td>
+                            <td>
+                                <select id="mdSelEditSubtaskState">
+                                    <option value="" selected disabled>
+                                        select
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <p class="dimmedFont">
+                        note<br />
+                        <textarea id="mdTaEditSubtaskNote"></textarea>
+                    </p>
+
+                    <figure id="mdBtnSaveEditedSubtask" class="mdBtn">
+                        <img
+                            src="pix/save.webp"
+                            title="save changes"
+                            onclick="saveEditedSubtask()"
+                        />
+                        <figcaption>save</figcaption>
+                    </figure>
+
+                    <figure id="mdBtnDismissEditedSubtask" class="mdBtn">
+                        <img
+                            src="pix/cancel.webp"
+                            title="dismiss changes"
+                            onclick="dismissEditSubtask()"
+                        />
+                        <figcaption>dismiss</figcaption>
+                    </figure>
+                </form>
+            </div>
+
+            <div class="modalSettings modal">
+                <h3>Settings</h3>
+                <hr />
+                <h4>Appearance</h4>
+                <table>
+                    <tr>
+                        <td>
+                            <figure>
+                                <img
+                                    src="pix/sun.webp"
+                                    alt="light mode"
+                                    id="btnLightMode"
+                                    title="toggle light mode"
+                                />
+                                <figcaption>light</figcaption>
+                            </figure>
+                        </td>
+                        <td>
+                            <figure>
+                                <img
+                                    src="pix/moon.webp"
+                                    alt="dark mode"
+                                    id="btnDarkMode"
+                                    title="toggle dark mode"
+                                />
+                                <figcaption>dark</figcaption>
+                            </figure>
+                        </td>
+                    </tr>
+                </table>
+                <hr />
+                <h4>List type</h4>
+                <table>
+                    <tr>
+                        <td>
+                            <figure>
+                                <img
+                                    src="pix/list.webp"
+                                    alt="table"
+                                    id="btnTicketList"
+                                    title="display tickets as table"
+                                />
+                                <figcaption>table</figcaption>
+                            </figure>
+                        </td>
+                        <td>
+                            <figure>
+                                <img
+                                    src="pix/bubbles.webp"
+                                    alt="bubbles"
+                                    id="btnBubbleList"
+                                    title="display tickets as bubbles"
+                                />
+                                <figcaption>bubbles</figcaption>
+                            </figure>
+                        </td>
+                    </tr>
+                </table>
+                <hr />
+            </div>
+
+            <div class="modalFilter modal">
+                <select id="selFilter" style="margin: auto; max-width: 450px">
+                    <option value="" selected disabled>
+                        select filter value
+                    </option></select
+                ><br />
+                <figure>
+                    <img
+                        src="pix/cancel.webp"
+                        alt="dismiss"
+                        id="btnDismissFilter"
+                    />
+                    <figcaption>dismiss</figcaption>
+                </figure>
+            </div>
+
+            <div class="modalSearch modal">
+                <p>Search</p>
+                <form>
+                    <input
+                        type="text"
+                        id="inpSearch"
+                        style="margin-right: 0px"
+                    />
+                    <!-- style="width: calc(100% - 12px);" -->
+                    <table>
+                        <tr>
+                            <td>
+                                <figure>
+                                    <img
+                                        src="pix/cancel.webp"
+                                        alt="dismiss"
+                                        id="btnDismissSearch"
+                                    />
+                                    <figcaption>dismiss</figcaption>
+                                </figure>
+                            </td>
+                            <td>
+                                <figure>
+                                    <img
+                                        src="pix/search.webp"
+                                        alt="search"
+                                        id="btnStartSearch"
+                                    />
+                                    <figcaption>search</figcaption>
+                                </figure>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+            <div class="modalConfirmDone modal">
+                <img
+                    src="pix/warning.webp"
+                    alt="warning"
+                    class="warning"
+                /><br />
+                <p>
+                    This will mark the ticket as completed and remove it from
+                    the list.
+                </p>
+                <table>
+                    <tr>
+                        <td>
+                            <figure id="btnDismissDone">
+                                <img src="pix/cancel.webp" title="dismiss" />
+                                <figcaption>dismiss</figcaption>
+                            </figure>
+                        </td>
+                        <td>
+                            <figure id="btnConfirmDone">
+                                <img
+                                    src="pix/check.webp"
+                                    title="mark as done"
+                                />
+                                <figcaption>done</figcaption>
+                            </figure>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!-- main -->
+
+        <div id="alert"></div>
+
+        <script src="database.js"></script>
+        <!-- TO BE REMOVED IN PRODUCTION! -->
+
+        <script src="definitions.js"></script>
+        <script src="index.js"></script>
+        <script src="tickets.js"></script>
+        <script src="search.js"></script>
+        <script src="filter.js"></script>
+        <script src="sort.js"></script>
+        <script src="listeners.js"></script>
+    </body>
+</html>
