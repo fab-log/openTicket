@@ -2,7 +2,7 @@ const express = require("express");
 const fs = require("fs");
 
 const app = express();
-app.listen(22, () => console.log("listening at 22"));
+app.listen(8000, () => console.log("listening at 8000"));
 app.use(express.static("public"));
 app.use(express.json({ limit: "100mb" }));
 
