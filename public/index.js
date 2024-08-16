@@ -457,7 +457,6 @@ const displayTicket = (ticketId) => {
     mdDivDisplaySubtasks.innerHTML = "";
     if (tickets[ticketId].subtasks.length > 0) {
         tickets[ticketId].subtasks.forEach((e) => {
-            console.log(e.note.at(-1));
             mdDivDisplaySubtasks.insertAdjacentHTML(
                 "beforeend",
                 `
@@ -568,6 +567,8 @@ const renderTickets = () => {
             e.style.display = "none";
         });
         modalWelcome.style.display = "block";
+        btnStartBubbles.style.display = "none";
+        btnStartTable.style.display = "none";
     } else {
         rank(sortedTickets);
         renderList(sortedTickets);
