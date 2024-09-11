@@ -3,32 +3,36 @@ html {
 }
 
 :root {
-    --background-color: hsl(30, 0%, 12%);
-    --background-color1: hsl(30, 0%, 13%);
-    --background-color2: hsl(30, 0%, 18%);
-    --background-color3: hsl(30, 0%, 30%);
-    --color: hsl(30, 0%, 88%);
-    --color3: hsl(30, 0%, 67%);
-    --accent-turquois: hsl(180, 50%, 50%);
+    --background-color: hsl(30, 2%, 12%);
+    --background-color1: hsl(30, 2%, 13%);
+    --background-color2: hsl(30, 2%, 18%);
+    --background-color3: hsl(30, 2%, 30%);
+    --color: hsl(30, 2%, 88%);
+    --color3: hsl(30, 2%, 67%);
+    --accent-turquois: hsl(180, 25%, 50%);
     --accent-red: hsl(0, 50%, 50%);
-    --accent-yellow: hsl(56, 50%, 50%);
-    --shadow: hsl(30, 0%, 10%);
-    --shadow-dark: hsl(30, 0%, 0%);
-    --border-radius: 24px;
+    --accent-yellow: hsl(30, 25%, 50%);
+    --shadow: hsl(30, 2%, 10%);
+    --shadow-dark: hsl(30, 2%, 0%);
+    --button-filter: brightness(140%);
+    --button-filter-hover: brightness(180%);
+    --border-radius: 36px;
 }
 
 .light-mode {
-    --background-color: hsl(30, 0%, 67%);
-    --background-color1: hsl(30, 0%, 80%);
-    --background-color2: hsl(30, 0%, 85%);
-    --background-color3: hsl(30, 0%, 94%);
-    --color: hsl(30, 0%, 12%);
-    --color3: hsl(30, 0%, 33%);
+    --background-color: hsl(30, 2%, 33%);
+    --background-color1: hsl(30, 2%, 80%);
+    --background-color2: hsl(30, 2%, 85%);
+    --background-color3: hsl(30, 2%, 94%);
+    --color: hsl(30, 2%, 12%);
+    --color3: hsl(30, 2%, 33%);
     --accent-turquois: hsl(180, 75%, 25%);
     --accent-red: hsl(0, 50%, 50%);
     --accent-yellow: hsl(56, 50%, 50%);
-    --shadow: hsl(30, 0%, 50%);
-    --shadow-dark: hsl(30, 0%, 20%);
+    --shadow: hsl(30, 2%, 33%);
+    --shadow-dark: hsl(30, 2%, 20%);
+    --button-filter: brightness(67%);
+    --button-filter-hover: brightness(100%);
 }
 
 @font-face {
@@ -40,8 +44,9 @@ html {
 }
 
 body {
+    /* background-image: url("pix/bgDark.webp"); */
+    /* background: repeating-radial-gradient(var(--background-color), var(--background-color1), var(--background-color) 120px); */
     background-color: var(--background-color);
-    /* background: repeating-radial-gradient(var(--background-color), var(--background-color1) 48px); */
     color: var(--color);
     font-family: "Cantarell", sans-serif;
     font-size: 120%;
@@ -51,11 +56,25 @@ body {
 hr {
     border: none;
     border-radius: var(--border-radius);
-    border-bottom: solid 2px var(--background-color3);
+    border-bottom: solid 1px var(--background-color3);
+}
+
+.short {
+    width: 20%;
+    margin: 12px auto;
 }
 
 .hrHighlight {
     border-bottom: solid 2px var(--accent-turquois);
+}
+
+img:not(#logo, #logoStacked, .modalWelcome img, .modalIndex img) {
+    filter: var(--button-filter);
+}
+
+img:hover:not(#logo, #logoStacked, .modalWelcome img, .modalIndex img, .tdWarnPrio img, .tdWarnDue img, .iconMini img) {
+    cursor: pointer;
+    filter: var(--button-filter-hover);
 }
 
 button,
@@ -64,10 +83,19 @@ select,
 textarea {
     border: none;
     outline: none;
-    padding: 3px 12px;
-    border-radius: var(--border-radius);
+    padding: 3px 18px;
     font-family: "Cantarell", sans-serif;
     font-size: 100%;
+}
+
+button,
+input,
+select {
+    border-radius: var(--border-radius);
+}
+
+textarea {
+    border-radius: 18px;
 }
 
 .dimmedFont {
@@ -91,25 +119,43 @@ textarea:focus {
     outline: 3px solid var(--color3);
 }
 
-button,
 select,
 input {
     margin-right: 24px;
 }
 
-button,
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 select {
-    width: 240px;
+    width: 252px;
 }
 
 button {
-    background-color: var(--accent-turquois);
-    color: var(--background-color);
+    min-width: 180px;
+    margin: 12px;
+}
+
+button {
+    background-color: var(--color3);
+    color: var(--background-color1);
 }
 
 button:hover {
     cursor: pointer;
     filter: brightness(125%);
+}
+
+.btnHighLight {
+    background-color: var(--accent-turquois);
 }
 
 input {
@@ -119,7 +165,7 @@ input {
 input[type="range"] {
     appearance: none;
     -webkit-appearance: none;
-    width: 239px;
+    width: 248px;
     padding: 0;
     background: linear-gradient(90deg,
             hsl(0, 50%, 50%),
@@ -129,31 +175,6 @@ input[type="range"] {
             hsl(220, 50%, 50%),
             hsl(275, 50%, 50%),
             hsl(330, 50%, 50%));
-    /* background: linear-gradient(90deg, 
-    hsl(0, 50%, 50%),
-    hsl(0, 50%, 50%) 8.32%,
-    hsl(30, 50%, 50%) 8.33%,
-    hsl(30, 50%, 50%) 16.66%,
-    hsl(60, 50%, 50%) 16.67%,
-    hsl(60, 50%, 50%) 24.99%, 
-    hsl(90, 50%, 50%) 25%,
-    hsl(90, 50%, 50%) 33.32%,
-    hsl(120, 50%, 50%) 33.33%,
-    hsl(120, 50%, 50%) 41.66%,
-    hsl(150, 50%, 50%) 41.67%,
-    hsl(150, 50%, 50%) 49.99%, 
-    hsl(180, 50%, 50%) 50%,
-    hsl(180, 50%, 50%) 58.32%,
-    hsl(210, 50%, 50%) 58.33%,
-    hsl(210, 50%, 50%) 66.66%,
-    hsl(240, 50%, 50%) 66.67%,
-    hsl(240, 50%, 50%) 74.99%,
-    hsl(270, 50%, 50%) 75%,
-    hsl(270, 50%, 50%) 83.32%,
-    hsl(300, 50%, 50%) 83.33%,
-    hsl(300, 50%, 50%) 91.66%,
-    hsl(330, 50%, 50%) 91.67%,
-    hsl(330, 50%, 50%)); */
 }
 
 input[type="range"]::-webkit-slider-thumb,
@@ -163,15 +184,38 @@ input[type="range"]::-moz-range-thumb {
     background-color: var(--background-color2);
 }
 
+input[type="checkbox"] {
+    width: 24px;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    background-color: var(--accent-yellow);
+}
+
+input[type="checkbox"]:focus {
+    border: none;
+    outline: none;
+}
+
 textarea {
-    width: calc(100% - 24px);
+    width: calc(100% - 36px);
     min-height: 5em;
     margin-top: 12px;
     resize: none;
 }
 
-.imgInvert {
-    filter: invert(1);
+.inpOne {
+    width: 15px;
+    padding: 3px 6px;
+    text-align: center;
+}
+
+#divSafetyCode {
+    overflow: hidden;
+    transition: max-height ease-in-out 1s;
+    visibility: hidden;
+    opacity: 0;
+    max-height: 0px;
 }
 
 .normal {
@@ -193,6 +237,7 @@ textarea {
 }
 
 .header {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -206,12 +251,6 @@ textarea {
 .header img {
     width: 48px;
     padding: 12px;
-    opacity: 0.6;
-}
-
-.header img:hover:not(#logo, #logoStacked) {
-    cursor: pointer;
-    filter: contrast(0.25);
 }
 
 .colorButton {
@@ -260,37 +299,61 @@ textarea {
     margin: auto auto 12px 75px;
 }
 
-.modalWelcome {
+.modalWelcome,
+.modalRestore,
+.modalIndex {
     display: none;
     width: 50%;
     margin: auto;
     color: var(--color3);
 }
 
-.modalWelcome img {
-    margin-top: 25px;
-    margin-bottom: 25px;
+.modalWelcome img,
+.modalIndex img {
+    margin: 24px auto;
+    /* margin-top: 24px;
+    margin-bottom: 12px; */
     filter: none;
     border-radius: 3px;
+    box-shadow: none;
+}
+
+.modalWelcome img {
+    width: 90%;
+    max-width: 400px;
+}
+
+.modalRestore h2 {
+    text-align: center;
+}
+
+.modalRestore figure {
+    float: right;
+}
+
+.restorable-ticket {
+    background-color: var(--background-color2);
+    border-radius: var(--border-radius);
+    padding: 12px;
+    margin: 12px 0;
 }
 
 .otLogo {
-    margin-left: calc(50% - 75px);
-    width: 150px;
-    animation: float 6s ease-in-out infinite;
+    margin-left: calc(50% - 120px);
+    width: 240px;
 }
 
 @keyframes float {
 
     0%,
-    5%,
-    95%,
+    1%,
+    99%,
     100% {
         transform: skew(-2deg, -2deg);
     }
 
     50% {
-        transform: skew(-3deg, -4deg);
+        transform: skew(-4deg, -5deg);
     }
 }
 
@@ -400,7 +463,6 @@ textarea {
     width: 24px;
     margin: 12px 3px 0 3px;
     border-radius: 50%;
-    opacity: 0.6;
 }
 
 .ticketList {
@@ -428,18 +490,17 @@ textarea {
     float: right;
     width: 18px;
     margin: 3px;
-    opacity: 0.5;
 }
 
 .ticketList th img:hover {
     cursor: pointer;
-    filter: contrast(0.25);
+    filter: brightness(125%);
 }
 
 .ticketList td img {
     width: 18px;
     margin: 3px;
-    opacity: 0.25;
+    opacity: 0.6;
 }
 
 .ticketList td {
@@ -492,10 +553,14 @@ textarea {
 
 .modalTicket {
     display: none;
-    margin: auto;
-    width: calc(100% - 24px);
+    position: absolute;
+    top: 48px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    /* margin: auto; */
+    width: calc(100% - 48px);
     max-width: 800px;
-    padding: 12px 12px 85px 12px;
+    padding: 12px 12px 24px 12px;
     background-color: var(--background-color2);
     border-radius: var(--border-radius);
 }
@@ -507,35 +572,98 @@ textarea {
 .modalTicket figure,
 .modalEditSubticket figure {
     float: right;
-    margin: 0;
+    margin: 24px 0 0 0;
 }
 
 .modalTicket img {
     width: 48px;
     padding: 6px 6px 0px 6px;
-    opacity: 0.6;
 }
 
+.settings-grid-container {
+    display: grid;
+    grid-template-areas:
+        'appearance list-type'
+        'personal-data restore-tasks';
+    gap: 12px;
+}
+
+#logo-settings {
+    width: fit-content;
+    height: 1.25rem;
+    margin: 0 0 -6px 0;
+}
+
+#logo-settings:hover {
+    cursor: default;
+    filter: none;
+}
+
+.grid-item {
+    border: solid 1px var(--background-color3);
+    border-radius: var(--border-radius);
+}
+
+.modalSearch figure,
+.modalSettings figure,
+.modalConfirmDone figure,
+.modalSubtaskConfirmDone figure,
+.modalWarningDeleteAccount figure,
+.modalConfirmLogout figure,
+.modalConfirmDeleteOldTickets figure {
+    display: inline-block;
+}
+
+.modalIndex figure {
+    display: block;
+    margin: auto;
+    padding: 0 24px;
+}
+
+.modalIndex figure img {
+    display: block;
+    margin: auto;
+    width: 48px;
+    padding: 12px;
+}
+
+.modalIndex figure img:hover {
+    cursor: pointer;
+    filter: brightness(125%);
+}
+
+.modalIndex figcaption,
 .modalTicket figcaption,
 .modalFilter figcaption,
 .modalSearch figcaption,
 .modalConfirmDone figcaption,
+.modalSubtaskConfirmDone figcaption,
+.modalWarningDeleteAccount figcaption,
 .modalSettings figcaption,
-.modalEditSubticket figcaption {
+.modalRestore figcaption,
+.modalEditPersonalData figcaption,
+.modalEditSubticket figcaption,
+.modalCreateAccount figcaption,
+.modalLogin figcaption,
+.modalConfirmLogout figcaption,
+.modalConfirmDeleteOldTickets figcaption {
     font-size: 75%;
     text-align: center;
     color: var(--color3);
 }
 
-.modalTicket img:hover,
+/* .modalTicket img:hover,
 .modalFilter img:hover,
 .modalSearch img:hover,
 .modalConfirmDone img:hover,
+.modalSubtaskConfirmDone img:hover,
 .modalSettings img:hover,
-.modalEditSubticket img:hover {
+.modalEditSubticket img:hover,
+.modalCreateAccount img:hover,
+.modalLogin img:hover {
     cursor: pointer;
-    filter: contrast(0.25);
-}
+    filter: brightness(125%);
+} */
 
 .entry {
     display: none;
@@ -543,10 +671,6 @@ textarea {
 
 .modalSettings h4 {
     margin-bottom: 0px;
-}
-
-.modalSettings td {
-    padding: 0px;
 }
 
 .modalFilter {
@@ -557,56 +681,103 @@ textarea {
 }
 
 .modalSearch,
-.modalSettings,
 .modalConfirmDone,
-.modalEditSubticket {
+.modalSubtaskConfirmDone,
+.modalWarningDeleteAccount,
+.modalEditSubticket,
+.modalConfirmLogout,
+.modalConfirmDeleteOldTickets {
     position: fixed;
-    top: 50%;
+    top: 48px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0);
+}
+
+.modalSettings,
+.modalEditPersonalData,
+.modalCreateAccount,
+.modalLogin {
+    position: absolute;
+    top: 48px;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
 
 .modalFilter,
 .modalSearch,
 .modalConfirmDone,
+.modalSubtaskConfirmDone,
+.modalWarningDeleteAccount,
 .modalSettings,
-.modalEditSubticket {
+.modalEditPersonalData,
+.modalEditSubticket,
+.modalCreateAccount,
+.modalLogin,
+.modalConfirmLogout,
+.modalConfirmDeleteOldTickets {
     display: none;
-    max-width: 550px;
+    width: 100%;
+    min-width: 330px;
+    max-width: 600px;
     padding: 12px;
     border-radius: var(--border-radius);
-    box-shadow: 0 0 12px var(--shadow);
+    border: solid 3px var(--background-color3);
+    box-shadow: 0 0 24px var(--shadow);
     background-color: var(--background-color2);
     text-align: center;
+}
+
+.modalConfirmDone,
+.modalSubtaskConfirmDone,
+.modalWarningDeleteAccount {
+    border: solid 6px var(--accent-red);
 }
 
 .modalFilter img,
 .modalSearch img,
 .modalConfirmDone img,
+.modalSubtaskConfirmDone img,
+.modalWarningDeleteAccount img,
 .modalSettings img,
-.modalEditSubticket img {
+.modalRestore img,
+.modalEditPersonalData img,
+.modalEditSubticket img,
+.modalCreateAccount img,
+.modalLogin img,
+.modalCreateAccount img,
+.modalLogin img,
+.modalConfirmLogout img,
+.modalConfirmDeleteOldTickets img {
     margin: auto;
     width: 36px;
     padding: 6px 6px 0px 6px;
-    opacity: 0.6;
 }
 
-.modalConfirmDone table,
-.modalSearch table {
-    margin: auto;
+.modalCreateAccount input,
+.modalLogin input,
+.modalEditPersonalData input,
+.modalWarningDeleteAccount input {
+    margin: 6px 0;
 }
 
 #alert {
     display: none;
     position: fixed;
+    width: calc(100% - 200px);
+    max-width: 400px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    padding: 48px;
+    box-shadow: 0 0 48px var(--shadow-dark);
     background-color: var(--background-color2);
-    opacity: 0.95;
-    border-radius: 12px;
-    border: solid 4px var(--accent-turquois);
-    padding: 24px;
+    opacity: 0.98;
+    border-radius: 50%;
+    border-top: solid 6px var(--color3);
+    border-right: solid 24px var(--color3);
+    border-bottom: solid 6px var(--color3);
+    border-left: solid 24px var(--color3);
+    /* border: solid 4px var(--accent-red); */
     text-align: center;
 }
 
@@ -616,14 +787,10 @@ textarea {
     45%,
     55%,
     100% {
-        /* outline: 1px solid rgba(255, 91, 91, 0);
-        box-shadow: 0 0 6px rgba(255, 127, 127, 0); */
-        opacity: 0.6;
+        opacity: 0.67;
     }
 
     50% {
-        /* outline: 1px solid rgba(255, 255, 255, 0.3);
-        box-shadow: 0 0 6px rgba(255, 0, 0, 1); */
         opacity: 0.1;
     }
 }
@@ -638,8 +805,8 @@ textarea {
 
     .ticketList td:nth-child(1),
     .ticketList th:nth-child(1),
-    .ticketList td:nth-child(4),
-    .ticketList th:nth-child(4) {
+    .ticketList td:nth-child(5),
+    .ticketList th:nth-child(5) {
         display: none;
     }
 
@@ -658,6 +825,26 @@ textarea {
         float: left;
     }
 
+    .modalWelcome,
+    .modalRestore,
+    .list {
+        margin-top: 72px;
+    }
+
+    .modalTicket,
+    .modalSearch,
+    .modalSettings,
+    .modalEditPersonalData,
+    .modalConfirmDone,
+    .modalSubtaskConfirmDone,
+    .modalWarningDeleteAccount,
+    .modalEditSubticket,
+    .modalFilter,
+    .modalConfirmLogout,
+    .modalConfirmDeleteOldTickets {
+        top: 84px;
+    }
+
     #logo {
         display: block;
     }
@@ -667,12 +854,8 @@ textarea {
     }
 
     .main {
-        margin: 84px auto 12px auto;
+        margin: auto auto 12px auto;
         width: 100%;
-    }
-
-    .modalFilter {
-        top: 70px;
     }
 
     .modalBubbles {
@@ -681,6 +864,21 @@ textarea {
 }
 
 @media (max-width: 900px) {
+
+    .modalFilter,
+    .modalSearch,
+    .modalConfirmDone,
+    .modalSubtaskConfirmDone,
+    .modalWarningDeleteAccount,
+    .modalSettings,
+    .modalEditPersonalData,
+    .modalEditSubticket,
+    .modalCreateAccount,
+    .modalLogin,
+    .modalConfirmLogout,
+    .modalConfirmDeleteOldTickets {
+        width: 90%;
+    }
 
     .ticketList td:nth-child(4),
     .ticketList th:nth-child(4),
@@ -705,12 +903,24 @@ textarea {
         margin-top: 0px;
     }
 
-    .modalWelcome {
+    .modalWelcome,
+    .modalRestore,
+    .modalIndex {
         width: 90%;
     }
+
 }
 
 @media (max-width: 600px) {
+
+    .settings-grid-container {
+        grid-template-areas:
+            'appearance'
+            'list-type'
+            'personal-data'
+            'restore-tasks';
+    }
+
     .header img {
         width: 36px;
         padding: 12px 9px;
@@ -740,11 +950,14 @@ textarea {
         margin-top: 5px;
     }
 
-    .main {
+    /* .main {
         margin-top: 72px;
-    }
+    } */
 
-    /* .modalTicket td {display: table-row;} */
+    /* .modalEditPersonalData td {
+        display: table-row;
+    } */
+
     .modalTicket img {
         width: 36px;
     }

@@ -7,6 +7,14 @@ btnSettings.addEventListener("click", () => {
 	}
 });
 
+btnNewTicket.addEventListener("click", displayNewTicket);
+
+btnTicketList.addEventListener("click", displayTicketList);
+btnStartTable.addEventListener("click", displayTicketList);
+
+btnBubbleList.addEventListener("click", displayBubbleList);
+btnStartBubbles.addEventListener("click", displayBubbleList);
+
 btnFilterByDate.addEventListener("click", () => {
 	prepareSelFilter("date");
 	selFilter.addEventListener("change", fnFilterByDate);
@@ -128,24 +136,16 @@ btnResetSearch.addEventListener("click", () => {
 	resetSortAndFilterButtons();
 	sortedTickets = tickets.filter(element => element);
 	renderTickets();
-	/* renderBubbles(sortedTickets);
-	rank(sortedTickets);
-	renderList(sortedTickets);
-	if (listType === "bubbles") {
-			displayBubbleList();
-	} else if (listType === "table") {
-			displayTicketList();
-	} */
 });
 
 mdBtnSaveTicket.addEventListener("click", saveNewTicket);
 
-mdBtnSaveEntry.addEventListener("click", saveEntry);
+mdBtnSaveEntry.addEventListener("click", saveSubtask);
 
 mdBtnDismiss.addEventListener("click", () => {
-	if (listType === "bubbles") {
+	if (config.listType === "bubbles") {
 			displayBubbleList();
-	} else if (listType === "table") {
+	} else if (config.listType === "table") {
 			displayTicketList();
 	}
 });
@@ -158,12 +158,8 @@ mdBtnDone.addEventListener("click", () => {
 
 btnConfirmDone.addEventListener("click", confirmDone);
 
-btnDismissDone.addEventListener("click", () => {
-	modalConfirmDone.style.display = "none";
-});
-
 mdBtnEdit.addEventListener("click", () => {
-	editTicket(currentTicketId);
+	editTicket(currentTicket.id);
 });
 
 mdBtnSaveEditedTicket.addEventListener("click", saveEditedTicket);
@@ -173,3 +169,24 @@ document.querySelectorAll("img").forEach(e => {
 });
 logo.classList.remove("imgInvert");
 logoStacked.classList.remove("imgInvert");
+
+btnLogOut.addEventListener("click", confirmLogOut);
+
+const dismissEditedPersonalData = () => {
+	modalEditPersonalData.style.display = "none"
+}
+
+const displayWarningDeleteAccount = () => {
+	modalWarningDeleteAccount.style.display = "block";
+	mdDeleteAccountPassword.innerHTML = currentUser.email.at(-1)[2];
+}
+
+const displayConfirmDeleteOldTickets = () => {
+	let restorable = tickets.findIndex((e) => e.prio.at(-1)[2] === -1);
+    if (restorable === -1) {
+        showAlert("No tickets to delete");
+        return;
+		}
+	modalConfirmDeleteOldTickets.style.display = "block";
+}
+

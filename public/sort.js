@@ -1,24 +1,12 @@
-btnNewTicket.addEventListener("click", displayNewTicket);
-
-btnTicketList.addEventListener("click", () => {
-    listType = "table";
-    displayTicketList();
-});
-btnStartTable.addEventListener("click", displayTicketList);
-btnBubbleList.addEventListener("click", () => {
-    listType = "bubbles";
-    displayBubbleList();
-});
-btnStartBubbles.addEventListener("click", displayBubbleList);
-
 const sortTickets = (criterion, direction) => {
+    console.log("=> fn sortTickets triggered");
     sortedTickets.sort((a, b) => {
         let index = 1;
         if (direction === "down") { index = -1 };
-        if (a[criterion].at(-1)[2] < b[criterion].at(-1)[2]) {
+        if (a[criterion].at(-1)[2].toString().toLowerCase() < b[criterion].at(-1)[2].toString().toLowerCase()) {
             return -1 * index;
         }
-        if (a[criterion].at(-1)[2] > b[criterion].at(-1)[2]) {
+        if (a[criterion].at(-1)[2].toString().toLowerCase() > b[criterion].at(-1)[2].toString().toLowerCase()) {
             return 1 * index;
         }
         return 0;
@@ -27,6 +15,7 @@ const sortTickets = (criterion, direction) => {
 };
 
 const resetSortAndFilterButtons = () => {
+    console.log("=> fn resetSortAndFilterButtons triggered");
     btnSort.forEach(element => {
         element.style.display = "block";
         element.style.background = "transparent";
@@ -52,10 +41,13 @@ const resetSortAndFilterButtons = () => {
 // ### SORT BY DATE ###
 
 const sortByDate = () => {
+    console.log("=> fn sortByDate triggered");
     resetSortAndFilterButtons();
     btnSortByDate.style.display = "none";
     btnSortUpByDate.style.display = "block";
     btnSortUpByDate.style.background = "radial-gradient(circle at center, var(--accent-turquois) 0, var(--accent-turquois) 66%, transparent 67%)";
+    btnSearch.style.display = "none";
+    btnResetSearch.style.display = "block";
     sortTickets("date", "up");
 };
 
@@ -66,6 +58,8 @@ btnSortUpByDate.addEventListener("click", () => {
     btnSortByDate.style.display = "none";
     btnSortDownByDate.style.display = "block";
     btnSortDownByDate.style.background = "radial-gradient(circle at center, var(--accent-turquois) 0, var(--accent-turquois) 66%, transparent 67%)";
+    btnSearch.style.display = "none";
+    btnResetSearch.style.display = "block";
     sortTickets("date", "down");
 });
 
@@ -74,10 +68,13 @@ btnSortDownByDate.addEventListener("click", sortByDate);
 // ### SORT BY TITLE ###
 
 const sortByTitle = () => {
+    console.log("=> fn sortByTitle triggered");
     resetSortAndFilterButtons();
     btnSortByTitle.style.display = "none";
     btnSortUpByTitle.style.display = "block";
     btnSortUpByTitle.style.background = "radial-gradient(circle at center, var(--accent-turquois) 0, var(--accent-turquois) 66%, transparent 67%)";
+    btnSearch.style.display = "none";
+    btnResetSearch.style.display = "block";
     sortTickets("title", "up");
 }
 
@@ -88,6 +85,8 @@ btnSortUpByTitle.addEventListener("click", () => {
     btnSortByTitle.style.display = "none";
     btnSortDownByTitle.style.display = "block";
     btnSortDownByTitle.style.background = "radial-gradient(circle at center, var(--accent-turquois) 0, var(--accent-turquois) 66%, transparent 67%)";
+    btnSearch.style.display = "none";
+    btnResetSearch.style.display = "block";
     sortTickets("title", "down");
 });
 
@@ -96,10 +95,13 @@ btnSortDownByTitle.addEventListener("click", sortByTitle);
 // ### SORT BY DESCRIPTION ###
 
 const sortByDescription = () => {
+    console.log("=> fn sortByDescription triggered");
     resetSortAndFilterButtons();
     btnSortByDescription.style.display = "none";
     btnSortUpByDescription.style.display = "block";
     btnSortUpByDescription.style.background = "radial-gradient(circle at center, var(--accent-turquois) 0, var(--accent-turquois) 66%, transparent 67%)";
+    btnSearch.style.display = "none";
+    btnResetSearch.style.display = "block";
     sortTickets("description", "up");
 }
 
@@ -110,6 +112,8 @@ btnSortUpByDescription.addEventListener("click", () => {
     btnSortByDescription.style.display = "none";
     btnSortDownByDescription.style.display = "block";
     btnSortDownByDescription.style.background = "radial-gradient(circle at center, var(--accent-turquois) 0, var(--accent-turquois) 66%, transparent 67%)";
+    btnSearch.style.display = "none";
+    btnResetSearch.style.display = "block";
     sortTickets("description", "down");
 });
 
@@ -118,10 +122,13 @@ btnSortDownByDescription.addEventListener("click", sortByDescription);
 // ### SORT BY DUEDATE ###
 
 const sortByDueDate = () => {
+    console.log("=> fn sortByDueDate triggered");
     resetSortAndFilterButtons();
     btnSortByDueDate.style.display = "none";
     btnSortUpByDueDate.style.display = "block";
     btnSortUpByDueDate.style.background = "radial-gradient(circle at center, var(--accent-turquois) 0, var(--accent-turquois) 66%, transparent 67%)";
+    btnSearch.style.display = "none";
+    btnResetSearch.style.display = "block";
     sortTickets("dueDate", "up");
 }
 
@@ -132,6 +139,8 @@ btnSortUpByDueDate.addEventListener("click", () => {
     btnSortByDueDate.style.display = "none";
     btnSortDownByDueDate.style.display = "block";
     btnSortDownByDueDate.style.background = "radial-gradient(circle at center, var(--accent-turquois) 0, var(--accent-turquois) 66%, transparent 67%)";
+    btnSearch.style.display = "none";
+    btnResetSearch.style.display = "block";
     sortTickets("dueDate", "down");
 });
 
@@ -140,10 +149,13 @@ btnSortDownByDueDate.addEventListener("click", sortByDueDate);
 // ### SORT BY OWNER ###
 
 const sortByOwner = () => {
+    console.log("=> fn sortByOwner triggered");
     resetSortAndFilterButtons();
     btnSortByOwner.style.display = "none";
     btnSortUpByOwner.style.display = "block";
     btnSortUpByOwner.style.background = "radial-gradient(circle at center, var(--accent-turquois) 0, var(--accent-turquois) 66%, transparent 67%)";
+    btnSearch.style.display = "none";
+    btnResetSearch.style.display = "block";
     sortTickets("owner", "up");
 }
 
@@ -154,6 +166,8 @@ btnSortUpByOwner.addEventListener("click", () => {
     btnSortByOwner.style.display = "none";
     btnSortDownByOwner.style.display = "block";
     btnSortDownByOwner.style.background = "radial-gradient(circle at center, var(--accent-turquois) 0, var(--accent-turquois) 66%, transparent 67%)";
+    btnSearch.style.display = "none";
+    btnResetSearch.style.display = "block";
     sortTickets("owner", "down");
 });
 
@@ -162,10 +176,13 @@ btnSortDownByOwner.addEventListener("click", sortByOwner);
 // ### SORT BY PRIORITY ###
 
 const sortByPriority = () => {
+    console.log("=> fn sortByPriority triggered");
     resetSortAndFilterButtons();
     btnSortByPriority.style.display = "none";
     btnSortUpByPriority.style.display = "block";
     btnSortUpByPriority.style.background = "radial-gradient(circle at center, var(--accent-turquois) 0, var(--accent-turquois) 66%, transparent 67%)";
+    btnSearch.style.display = "none";
+    btnResetSearch.style.display = "block";
     sortTickets("prio", "up");
 }
 
@@ -176,5 +193,7 @@ btnSortUpByPriority.addEventListener("click", () => {
     btnSortByPriority.style.display = "none";
     btnSortDownByPriority.style.display = "block";
     btnSortDownByPriority.style.background = "radial-gradient(circle at center, var(--accent-turquois) 0, var(--accent-turquois) 66%, transparent 67%)";
+    btnSearch.style.display = "none";
+    btnResetSearch.style.display = "block";
     sortTickets("prio", "down");
 });

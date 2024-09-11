@@ -1,3 +1,6 @@
+const main = document.querySelector(".main");
+const header = document.querySelector(".header");
+const modalIndex = document.querySelector(".modalIndex");
 const modalBubbles = document.querySelector(".modalBubbles");
 const bubble = document.querySelectorAll(".bubble");
 const ticketList = document.querySelector(".ticketList");
@@ -11,6 +14,8 @@ const modals = document.querySelectorAll(".modal");
 const modalWelcome = document.querySelector(".modalWelcome");
 const modalTicket = document.querySelector(".modalTicket");
 const modalSettings = document.querySelector(".modalSettings");
+const modalRestore = document.querySelector(".modalRestore");
+const modalEditPersonalData = document.querySelector(".modalEditPersonalData");
 const modalFilter = document.querySelector(".modalFilter");
 const modalSearch = document.querySelector(".modalSearch");
 const grpArrows = document.querySelectorAll(".grpArrows");
@@ -18,17 +23,18 @@ const entry = document.querySelector(".entry");
 const mdBtn = document.querySelectorAll(".mdBtn");
 const mdDivDisplaySubtasks = document.querySelector(".mdDivDisplaySubtasks");
 const modalConfirmDone = document.querySelector(".modalConfirmDone");
+const modalSubtaskConfirmDone = document.querySelector(".modalSubtaskConfirmDone");
+const modalWarningDeleteAccount = document.querySelector(".modalWarningDeleteAccount");
 const modalEditSubticket = document.querySelector(".modalEditSubticket");
+const modalCreateAccount = document.querySelector(".modalCreateAccount");
+const modalLogin = document.querySelector(".modalLogin");
+const modalConfirmLogout = document.querySelector(".modalConfirmLogout");
+const modalConfirmDeleteOldTickets = document.querySelector(".modalConfirmDeleteOldTickets");
 
 const doQuSe = (target) => {
     const [targetString] = Object.keys({ target })
     varName = document.querySelector(targetString);
 };
-
-/* const doQuSeAll = (target) => {
-    const [targetString] = Object.keys({target})
-    varName = document.querySelector(targetString);
-}; */
 
 doQuSe(logo);
 doQuSe(logoStacked);
@@ -45,6 +51,7 @@ doQuSe(inpSearch);
 doQuSe(btnStartSearch);
 doQuSe(btnDismissSearch);
 doQuSe(btnResetSearch);
+doQuSe(btnLogOut);
 
 doQuSe(btnSortByDate);
 doQuSe(btnFilterByDate);
@@ -82,7 +89,7 @@ doQuSe(btnDismissFilter);
 doQuSe(mdTitle);
 doQuSe(mdInpTitle);
 doQuSe(mdDate);
-doQuSe(mdOwner);
+// doQuSe(mdOwner);
 doQuSe(mdInpDueDate);
 doQuSe(mdSelPrio);
 doQuSe(mdTaDescription);
@@ -97,14 +104,15 @@ doQuSe(mdBtnAddEntry);
 doQuSe(selFilter);
 
 doQuSe(mdSubtaskDate);
-doQuSe(mdSubtaskEditor);
-doQuSe(mdSelSubtaskType);
-doQuSe(mdSelSubtaskState);
+// doQuSe(mdSubtaskEditor);
+/* doQuSe(mdSelSubtaskType);
+doQuSe(mdSelSubtaskState); */
 doQuSe(mdTaNote);
 
 doQuSe(mdTdDueDate);
 doQuSe(mdTdPrio);
 doQuSe(mdSpanDescription);
+doQuSe(mdPDescription);
 doQuSe(mdDivDisplay);
 doQuSe(mdDivEdit);
 // doQuSe(mdDivDisplaySubtasks);
@@ -114,16 +122,55 @@ doQuSe(frmTicket);
 doQuSe(frmEntry);
 
 doQuSe(btnConfirmDone);
-doQuSe(btnDismissDone);
 
 doQuSe(frmEditSubtask);
 doQuSe(mdEditSubtaskDate);
 doQuSe(mdEditSubtaskEditor);
-doQuSe(mdSelEditSubtaskType);
-doQuSe(mdSelEditSubtaskState);
+// doQuSe(mdSelEditSubtaskType);
+// doQuSe(mdSelEditSubtaskState);
 doQuSe(mdTaEditSubtaskNote);
-
-
+doQuSe(inpCreateAccountFirstName);
+doQuSe(inpCreateAccountLastName);
+doQuSe(inpCreateAccountEmail);
+doQuSe(inpCreateAccountPassword);
+doQuSe(inpCreateAccountConfirmPassword);
+doQuSe(inpLoginEmail);
+doQuSe(inpLoginPassword);
+// doQuSe(loginButtons);
+doQuSe(inpCreateAccountRememberMe);
+doQuSe(inpLoginRememberMe);
+doQuSe(frmCreateAccount);
+doQuSe(frmLogin);
+doQuSe(loggedInInfo);
+doQuSe(divSafetyCode);
+doQuSe(h4SafetyCode);
+doQuSe(inpSafetyCode1);
+doQuSe(inpSafetyCode2);
+doQuSe(inpSafetyCode3);
+doQuSe(inpSafetyCode4);
+doQuSe(inpSafetyCode5);
+doQuSe(inpSafetyCode6);
+doQuSe(versionInfo);
+doQuSe(mdPDId);
+doQuSe(inpPDFirstName);
+doQuSe(inpPDLastName);
+doQuSe(inpPDEmail);
+doQuSe(inpPDOldPassword);
+doQuSe(inpPDNewPassword);
+doQuSe(inpPDConfirmPassword);
+doQuSe(divRestore);
+doQuSe(mdDeleteAccountPassword);
+doQuSe(inpDeleteAccountPassword);
+// doQuSe();
+// doQuSe();
+// doQuSe();
+// doQuSe();
+// doQuSe();
+// doQuSe();
+// doQuSe();
+// doQuSe();
+// doQuSe();
+// doQuSe();
 // doQuSe();
 // doQuSe();
 // doQuSe();

@@ -8,7 +8,9 @@ const prepareSelFilter = (type) => {
     modalFilter.style.display = "block";
     let selArray = [];
     tickets.forEach((e) => {
-        selArray.push(e[type].at(-1)[2]);
+        if (e.prio.at(-1)[2] > -1) {
+            selArray.push(e[type].at(-1)[2]);
+        }        
     });
     let filteredSelArray = selArray.filter((element, index) => {
         return selArray.indexOf(element) === index;
