@@ -9,15 +9,34 @@ app.use(express.json({ limit: "100mb" }));
 const port = 8001;
 app.listen(port, () => console.log(`listening at ${port}`));
 
-/* const cyphers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+// ENCRYPTION
+const crypto = require('crypto');
+const algorithm = 'aes-256-cbc'; //Using AES encryption
+const key = crypto.randomBytes(32);
+const iv = crypto.randomBytes(16);
 
-const randomCyphers = (length) => {
-    let randomString = "";
-    for (i = 0; i < length; i++) {
-        randomString += cyphers[Math.floor(Math.random() * cyphers.length)];
-    }
-    return randomString;
-} */
+// Encrypting text
+const encrypt = (text) => {
+   let cipher = crypto.createCipheriv('aes-256-cbc', Buffer.from(key), iv);
+   let encrypted = cipher.update(text);
+   encrypted = Buffer.concat([encrypted, cipher.final()]);
+   return { iv: iv.toString('hex'), encryptedData: encrypted.toString('hex') };
+}
+
+// Decrypting text
+const decrypt = (text) => {
+   let iv = Buffer.from(text.iv, 'hex');
+   let encryptedText = Buffer.from(text.encryptedData, 'hex');
+   let decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(key), iv);
+   let decrypted = decipher.update(encryptedText);
+   decrypted = Buffer.concat([decrypted, decipher.final()]);
+   return decrypted.toString();
+}
+
+/* // Send text to encrypt function
+let hw = encrypt("Welcome to openTicket")
+console.log(hw)
+console.log(decrypt(hw)) */
 
 app.post("/api.createAccount", (request, response) => {
     const data = request.body;
@@ -295,4 +314,4 @@ app.post("/api.deleteOldTickets", (request, response) => {
             response.json(res);
         });
     });
-})
+});
