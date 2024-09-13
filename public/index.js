@@ -279,7 +279,7 @@ const renderBubbles = (listArray) => {
             }
             let description = listArray[i].description.at(-1)[2];
             if (description.length > 30) {
-                description = description.substring(0, 25) + " ...";
+                description = description.substring(0, 20) + " ...";
             }
 
             let warningPrio = "";
@@ -335,7 +335,9 @@ const renderBubbles = (listArray) => {
         });
     } */
 
-    window.scroll(0, 0);
+    setTimeout(() => {
+        window.scroll(0, 0);
+    }, 150);
 };
 
 const insertTableString = (element) => {
@@ -363,7 +365,7 @@ const insertTableString = (element) => {
         `
     <tr class="listItem" id="${element.id}">
         <td>${dateToString(element.date.at(-1)[2])}</td>
-        <td style="border-left: 6px solid hsl(${element.bubbleHue.at(-1)[2]}, 20%, 50%" title="${element.title.at(-1)[2]}">${title}
+        <td style="border-left: 9px solid hsl(${element.bubbleHue.at(-1)[2]}, 20%, 50%" title="${element.title.at(-1)[2]}">${title}
             <div class="tdWarnPrio">${tdWarnPrioString}</div>
             <div class="tdWarnDue">${tdWarnDueString}</div>
         </td>
@@ -396,14 +398,23 @@ const renderList = (listArray) => {
             e.classList.add("btnDark");
         });
     } */
-    window.scroll(0, 0);
+    setTimeout(() => {
+        window.scroll(0, 0);
+    }, 150);
 };
 
 const showHome = () => {
     console.log("=> fn showHome triggered");
     hideAllModals();
-    modalWelcome.style.display = "block";
-    window.scroll(0, 0);
+    if (config.status === "logged out" || config.status === null || config.status === undefined) {
+        modalIndex.style.display = "block";        
+        document.body.classList.remove("light-mode");
+    } else {
+        modalWelcome.style.display = "block";
+    }
+    setTimeout(() => {
+        window.scroll(0, 0);
+    }, 150)
 }
 
 let safetyCode = "";
@@ -455,14 +466,18 @@ const displayCreateAccount = () => {
             });
         }
     })
-    window.scroll(0, 0);
+    setTimeout(() => {
+        window.scroll(0, 0);
+    }, 150);
 }
 
 const displayLogin = () => {
     console.log("=> fn displayLogin triggered");
     hideAllModals();
     modalLogin.style.display = "block";
-    window.scroll(0, 0);
+    setTimeout(() => {
+        window.scroll(0, 0);
+    }, 150);
 }
 
 const displayTicketList = () => {
@@ -471,7 +486,9 @@ const displayTicketList = () => {
     list.style.display = "block";
     btnStartBubbles.style.display = "block";
     btnStartTable.style.display = "none";
-    window.scroll(0, 0);
+    setTimeout(() => {
+        window.scroll(0, 0);
+    }, 150);
     // listType = "table";
     config.listType = "table";
     localStorage.setItem("openTicketConfig", JSON.stringify(config));
@@ -484,7 +501,9 @@ const displayBubbleList = () => {
     modalBubbles.style.display = "grid";
     btnStartBubbles.style.display = "none";
     btnStartTable.style.display = "block";
-    window.scroll(0, 0);
+    setTimeout(() => {
+        window.scroll(0, 0);
+    }, 150);
     // listType = "bubbles";
     config.listType = "bubbles";
     localStorage.setItem("openTicketConfig", JSON.stringify(config));
@@ -533,7 +552,9 @@ const displayModalTicket = () => {
         e.style.display = "none";
     });
     entry.style.display = "none";
-    window.scroll(0, 0);
+    setTimeout(() => {
+        window.scroll(0, 0);
+    }, 150);
 };
 
 const getIndex = (ticketId) => {
@@ -699,9 +720,19 @@ const displayRestorableTickets = () => {
         return;
     }
     hideAllModals();
+    if (config.listType === "bubbles") {
+        btnStartBubbles.style.display = "block";
+        btnStartTable.style.display = "none";
+    }
+    if (config.listType === "table") {
+        btnStartBubbles.style.display = "none";
+        btnStartTable.style.display = "block";
+    }
     divRestore.innerHTML = "";
     modalRestore.style.display = "block";
-    window.scroll(0, 0);
+    setTimeout(() => {
+        window.scroll(0, 0);
+    }, 150);
     tickets.sort((a, b) => a.date.at(-1)[2] - b.date.at(-1)[2]);
     tickets.forEach(e => {
         if (e.prio.at(-1)[2] === -1) {
@@ -713,7 +744,7 @@ const displayRestorableTickets = () => {
                     </figure>
                     <p class="small">created: <br>${dateAndTimeToString(e.date.at(-1)[2])}</p>
                     <p class="small">completed: <br>${dateAndTimeToString(e.prio.at(-1)[0])}</p>
-                    <h4>${e.title.at(-1)[2]}</h4>
+                    <h4 style="color: hsl(${e.bubbleHue.at(-1)[2]}, 13%, 50%)">${e.title.at(-1)[2]}</h4>
                     <p>${e.description.at(-1)[2]}</p>
                 </div>
                 `);

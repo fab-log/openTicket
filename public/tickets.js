@@ -257,9 +257,7 @@ const logout = () => {
     currentUser = {};
     hideAllModals();
     header.style.display = "none";
-    modalIndex.style.display = "block";
-    // loginButtons.style.display = "block";
-    window.scroll(0, 0);
+    showHome();
 }
 
 const deleteAccount = async () => {
@@ -290,17 +288,17 @@ const deleteAccount = async () => {
     }
     showAlert("account successfully deleted");
     console.log("delete acoount " + serverResponse.id + status);
+    currentUser = {};
+    currentTicket = {};
+    config = {};
+    localStorage.setItem("openTicketConfig", JSON.stringify(config));
     // loginButtons.style.display = "block";
     btnSearch.style.display = "none";
     btnStartBubbles.style.display = "none";
     btnStartTable.style.display = "none";
     header.style.display = "none";
-    modalIndex.style.display = "block";
-    // showHome();
-    currentUser = {};
-    currentTicket = {};
-    config = {};
-    localStorage.setItem("openTicketConfig", JSON.stringify(config));
+    // modalIndex.style.display = "block";
+    showHome();
 }
 
 const updateTicket = async () => {

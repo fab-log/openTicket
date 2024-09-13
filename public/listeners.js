@@ -1,7 +1,9 @@
 btnSettings.addEventListener("click", () => {
 	if (modalSettings.style.display === "none") {
 			modalSettings.style.display = "block";
-			// window.scroll(0, 0);
+			setTimeout(() => {
+				window.scroll(0, 0);
+			}, 150);
 	} else {
 			modalSettings.style.display = "none"
 	}

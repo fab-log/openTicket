@@ -29,7 +29,7 @@
             <img src="pix/logo_transp_bg.webp" alt="open ticket logo" class="otLogo"
                 style="width: 200px; margin-left: calc(50% - 100px);" />
             
-            <div style="border-radius: var(--border-radius); border: solid 1px var(--background-color3); background-color: var(--background-color1); padding: 15px 0 20px 0;">
+            <div style="max-width: 300px; margin: auto; padding: 15px 0 20px 0;"> <!-- border-radius: var(--border-radius); border: solid 2px hsl(180, 20%, 50%); background-color: var(--background-color2);  -->
                 <table style="margin: auto;">
                     <tr>
                         <td>
@@ -47,9 +47,32 @@
                     </tr>
                 </table>
             </div>
+
+            <hr class="hrHighLight">
+
+            <!-- <div class="bubble" style="margin: 24px auto; min-height: 150px; border: 6px solid hsl(180, 20%, 50%); border-left: 24px solid hsl(180, 20%, 50%); border-right: 24px solid hsl(180, 20%, 50%);">
+                <figure style="display: inline-block; margin-top: 30px;">
+                    <img src="pix/createAccount.webp" alt="create account" onclick="displayCreateAccount()">
+                    <figcaption>create account</figcaption>
+                </figure>
+                <figure style="display: inline-block; margin-top: 30px;">
+                    <img src="pix/logIn.webp" alt="log in" onclick="displayLogin()">
+                    <figcaption>log in</figcaption>
+                </figure>
+            </div> -->
+
+            <p style="text-align: center;"><img src="pix/logo_transp_bg.webp" alt="open ticket logo" style="height: 1.7rem; margin: 0 0 -8px -4px;"><br>helps you organize complex tasks or projects. <br>
+                Way more than just a todo app!</p>
+
+            <div class="bubble" style="margin: 48px auto; border: 6px solid hsl(300, 20%, 50%); border-left: 24px solid hsl(300, 20%, 50%); border-right: 24px solid hsl(300, 20%, 50%);">
+                <span class="iconMini"><img src="pix/alarmClock.webp" title="due"  style="animation: flash 6s ease-out infinite; filter: sepia(100%) hue-rotate(270deg) saturate(125%);"> <img src="pix/warning.webp" title="high priority" style="animation: flash 6s ease-in infinite; filter: sepia(100%) hue-rotate(270deg) saturate(125%);"></span>
+                <p class="small">today</p>
+                <h3 style="color: hsl(300, 20%, 50%);">Get your own account now</h3>
+                <p>And ease up yor life!</p>
+                <p class="small">due: now</p>
+            </div>
             
-            <p><img src="pix/logo_transp_bg.webp" alt="open ticket logo" style="height: 1.7rem; margin: 0 0 -8px -4px;">helps you organize complex tasks or projects. Way more than just a todo app!</p>
-            <img src="pix/getYourAccountBubble.webp" alt="Get your account now" style="width: 100%; max-width: 400px; display: block; margin: 0 auto;">
+            <!-- <img src="pix/getYourAccountBubble.webp" alt="Get your account now" style="width: 100%; max-width: 400px; display: block; margin: 0 auto;"> -->
             <p> Edit tasks, change coloring, add subtasks, make them urgent. Search for topics, filter by anything, and
                 get your tasks in the order you need by chosing from numerous sorting optiions.</p>
             <p>Make it yours!</p>
@@ -57,48 +80,53 @@
                 Its innovative design and automatic sorting makes it easy to focus on what's important at the moment.
             </p>
 
-            <hr />
+            <hr class="hrHighLight">
             <h3>Styles</h3>
             <h4>Bubbles or table</h4>
             <p>
                 The default style displays tasks as bubbles providing a unique and intuitive user experience.
             </p>
-            <img src="pix/screenshotBubblesDark.webp" alt="screenshot" width="100%" />
+            <img src="pix/screenshotBubblesDark.webp" alt="screenshot" width="100%" style="filter: saturate(120%);" />
             <p>
                 You can opt for an alternative style showing the tickets in a table offering sorting and filtering
                 options.
             </p>
-            <img src="pix/screenshotTableDark.webp" alt="screenshot" width="100%" />
+            <img src="pix/screenshotTableDark.webp" alt="screenshot" width="100%" style="filter: saturate(120%);" />
             <p>
                 Pick from different colors to get an individual accent for
                 each task
             </p>
             <img src="pix/coloredBubbles.webp" alt="colored bubbles"
                 style="width: 250px; margin-left: calc(50% - 125px); animation: float 6s ease-in-out infinite;" />
-            <hr />
+            <hr class="hrHighLight">
             <h4>Dark or light</h4>
             Switch to a light mode if that is your favourite.
             <img src="pix/screenshotTableLight.png" id="imgDarkLight" alt="screenshot" width="100%" />
-            <hr />
+            <hr class="hrHighLight">
             <h3>In your pocket or at the desk</h3>
             <p><img src="pix/logo_transp_bg.webp" alt="open ticket logo" style="height: 1.7rem; margin: 0 0 -8px -4px;">is a web application that runs in your browser. It's independant of the operating system and works on smart phones, tablets, laptops, and
                 personal computers.</p>
             <p>A responsive design provides a maximum of functionality on any sceen size. Yet, on large sceens you get
                 the full set of sorting and filtering options.</p>
-            <hr>
+            <hr class="hrHighLight">
         </div>
 
         <div class="modalWelcome modal">
-            <img src="pix/logo_transp_bg.webp" alt="open ticket logo" class="otLogo"
-                style="box-shadow: none; width: 200px; margin-left: calc(50% - 100px);" />
-            <hr />
 
-            <h2>Welcome to openTicket</h2>
-            <p>It's as easy as this</p>
+            <h3 style="color: var(--color3)">
+                Welcome to<br>
+                <img src="pix/logo_transp_bg.webp" alt="open ticket logo" class="otLogo"
+                style="box-shadow: none; width: 200px;" />
+            </h3>
+            
+            <hr class="hrHighLight" />
+
+            <p>Start by adding your first task.</p>
+            <p>It's as easy as this.</p>
             <img src="pix/manual.webp" alt="short manual"><br>
             <p>In some situations you will see a reset button</p>
             <img src="pix/manual_reset.webp" alt="manual - reset button">
-            <hr />
+            <hr class="hrHighLight" />
         </div>
 
         <div class="list modal">
@@ -116,7 +144,7 @@
                             class="btnUndoFilter grpArrows" />
                     </th>
                     <th style="
-                                border-left: 6px solid var(--background-color2);
+                                border-left: 9px solid var(--background-color2);
                             ">
                         title
                         <img src="pix/arrowUp.webp" alt="sort descending" title="sort descending" id="btnSortUpByTitle"
@@ -476,7 +504,7 @@
 
         <div class="modalRestore modal">
             <h2>Restore tasks</h2>
-            <hr />
+            <hr class="hrHighLight"/>
             <div id="divRestore"></div>
         </div>
 

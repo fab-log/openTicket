@@ -26,10 +26,5 @@ const checkLocalStorage = async () => {
     }    
 }
 
-const resetLocalStorage = () => {
-    config = {};
-    localStorage.setItem("openTicketConfig", JSON.stringify(config));
-}
-
 hideAllModals();
 checkLocalStorage();

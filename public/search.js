@@ -47,7 +47,9 @@ const search = () => {
 				e.classList.add("imgInvert")
 			});
 		}; */
-		window.scroll(0, 0);
+		setTimeout(() => {
+			window.scroll(0, 0);
+	}, 150);
 		renderBubbles(filteredResult);
 		if (config.listType === "bubbles") {
 			displayBubbleList();
