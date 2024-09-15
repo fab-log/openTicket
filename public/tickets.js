@@ -115,15 +115,16 @@ const createAccount = async (event) => {
         inpSafetyCode4.value = "";
         inpSafetyCode5.value = "";
         inpSafetyCode6.value = "";
-        showAlert(status);
         hideAllModals();
         btnSearch.style.display = "none";
         btnStartBubbles.style.display = "none";
         btnStartTable.style.display = "none";
         header.style.display = "block";
         modalWelcome.style.display = "block";
-        // loginButtons.style.display = "none";
         loggedInInfo.innerHTML = currentUser.email.at(-1)[2];
+        setTimeout(() => {
+            window.scroll(0, 0);
+        }, 150);
     }
 }
 
@@ -164,17 +165,19 @@ const login = async (event) => {
         if (inpLoginRememberMe.checked) {
             config.id = currentUser.id;
             config.status = "logged in";
-            if (localStorage.getItem("openTicketConfig") === null) {
+            if (localStorage.getItem("openTicketConfig") === null) {                    // if localStoage does not exist
                 localStorage.setItem("openTicketConfig", JSON.stringify(config));
                 console.log({ config });
             } else {
                 tempConfig = JSON.parse(localStorage.getItem("openTicketConfig"));
-                if (tempConfig.id === currentUser.id) {
+                if (tempConfig.id === currentUser.id) {                                 // if localStorage exists and id matches
                     config = tempConfig;
                     config.status = "logged in";
                     localStorage.setItem("openTicketConfig", JSON.stringify(config));
                     console.log({ config });
-                } else {
+                    tempConfig.listType === "table" ? config.listType = "table" : config.listType = "bubbles";
+                    tempConfig.mode === "light" ? toggleMode("light") : toggleMode("dark");
+                } else {                                                                // if localStorage exists but id does not match
                     config.id = currentUser.id;
                     config.status = "logged in";
                     config.mode = "dark";
@@ -187,10 +190,8 @@ const login = async (event) => {
         frmLogin.reset();
         hideAllModals();
         header.style.display = "block";
-        // loginButtons.style.display = "none";
         loggedInInfo.innerHTML = currentUser.email.at(-1)[2];
         await getTickets(currentUser.id);
-        // renderTickets();
     }
 }
 
@@ -218,10 +219,8 @@ const quickLogin = async (id) => {
     } else {
         hideAllModals();
         header.style.display = "block";
-        // loginButtons.style.display = "none";
         loggedInInfo.innerHTML = currentUser.email.at(-1)[2];
         await getTickets(currentUser.id);
-        // renderTickets();
     }
 }
 
@@ -231,7 +230,6 @@ const confirmLogOut = () => {
     } else {
         modalConfirmLogout.style.display = "none"
     }
-
 }
 
 const dismissLogout = () => {
@@ -292,12 +290,10 @@ const deleteAccount = async () => {
     currentTicket = {};
     config = {};
     localStorage.setItem("openTicketConfig", JSON.stringify(config));
-    // loginButtons.style.display = "block";
     btnSearch.style.display = "none";
     btnStartBubbles.style.display = "none";
     btnStartTable.style.display = "none";
     header.style.display = "none";
-    // modalIndex.style.display = "block";
     showHome();
 }
 
@@ -396,7 +392,6 @@ const saveSubtask = async () => {
     };
     currentTicket.subtasks.push(newSubtask);
     await updateTicket();
-    // await getTickets(currentUser.id);
     displayTicket(currentTicket.id);
 };
 
@@ -405,11 +400,9 @@ const confirmDone = async () => {
     let newPrio = [Date.now(), currentUser.id, -1];
     currentTicket.prio.push(newPrio);
     hideAllModals();
+    resetSortAndFilterButtons();
     await updateTicket();
     currentTicket = {};
-    // await getTickets(currentUser.id);
-    // sortedTickets = tickets.filter((element) => element);
-    // renderTickets();
 }
 
 const editTicket = () => {
@@ -479,14 +472,12 @@ const saveEditedTicket = async () => {
         return;
     }
     resetModalTicketInputs();
+    resetSortAndFilterButtons();
     hideAllModals();
     btnResetSearch.style.display = "none";
     btnSearch.style.display = "block";
     await updateTicket();
-    // await getTickets(currentUser.id);
     currentTicket = {};
-    // renderTickets();
-    // sortedTickets = tickets.filter((element) => element);
 };
 
 const saveEditedSubtask = async () => {
@@ -501,7 +492,6 @@ const saveEditedSubtask = async () => {
     let subtaskNote = [Date.now(), currentUser.id, mdTaEditSubtaskNote.value];
     currentTicket.subtasks[index].note.push(subtaskNote);
     await updateTicket();
-    // await getTickets(currentUser.id);
     modalEditSubticket.style.display = "none";
     frmEditSubtask.reset();
     displayTicket(currentTicket.id);
@@ -520,8 +510,6 @@ const subtaskConfirmDone = async () => {
     let subtaskState = [Date.now(), currentUser.id, -1];
     currentTicket.subtasks[index].state.push(subtaskState);
     await updateTicket();
-    // await getTickets(currentUser.id);
-    // hideAllModals();
     displayTicket(currentTicket.id);
 }
 
@@ -535,7 +523,6 @@ const restoreTicket = async (id) => {
         currentTicket.prio.push([Date.now(), currentUser.id, 0]);
     }
     await updateTicket();
-    // renderTickets();
     currentTicket = {};
 }
 

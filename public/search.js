@@ -6,12 +6,13 @@ const search = () => {
 		showAlert("please enter search phrase");
 		return;
 	};
+	searchSortingOrFiltersActive = true;
 	tickets.forEach(e => {
 		let matches = 0;
-		// if (dateToString(e.date.at(-1)[2]).search(string) >= 0) { matches += 1 };
+		if (dateToString(e.date.at(-1)[2]).search(string) >= 0) { matches += 1 };
 		if (e.title.at(-1)[2].toLowerCase().search(string) >= 0) { matches += 1 };
 		if (e.description.at(-1)[2].toLowerCase().search(string) >= 0) { matches += 1 };
-		// if (e.dueDate.at(-1)[2].search(string) >= 0) { matches += 1 };
+		if (e.dueDate.at(-1)[2].search(string) >= 0) { matches += 1 };
 		// if (e.owner.at(-1)[2].toLowerCase().search(string) >= 0) { matches += 1 };
 		// if ((e.prio.at(-1)[2]).toString().search(string) >= 0) { matches += 1 };
 		e.subtasks.forEach(el => {
@@ -60,5 +61,6 @@ const search = () => {
 		modalSearch.style.display = "none";
 		btnSearch.style.display = "none";
 		btnResetSearch.style.display = "block";
+		searchSortingOrFiltersActive = false;
 	};
 };

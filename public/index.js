@@ -2,9 +2,10 @@ tickets = [];
 currentUser = {};
 currentTicket = {};
 currentSubId = -1;
-// listType = "bubbles";
-let version = "0.0.1";
+searchSortingOrFiltersActive = false;
+let version = "1.0.0";
 versionInfo.innerHTML = version;
+
 if (JSON.parse(localStorage.getItem("openTicketConfig"))) {
     config = JSON.parse(localStorage.getItem("openTicketConfig"));
 } else {
@@ -101,33 +102,41 @@ const showAlert = (text) => {
     }, 3000);
 };
 
-const showModalWelcome = () => {
+const showWelcomeScreen = () => {
+    if (modalWelcome.style.display === "block") {
+        modalSettings.style.display = "none";
+        return;
+    }
+    hideAllModals();
+    modalWelcome.style.display = "block";
+    welcomeName.innerHTML = currentUser.firstName.at(-1)[2];
+    if (config.listType === "bubbles") {
+        btnStartBubbles.style.display = "block";
+        btnStartTable.style.display = "none";
+    }
+    if (config.listType === "table") {
+        btnStartBubbles.style.display = "none";
+        btnStartTable.style.display = "block";
+    }
+}
+
+/* const showModalWelcome = () => {
     console.log("=> fn showModalWelcome triggered");
     if (window.innerWidth < 1200 && header.style.display === "block") {
         modalWelcome.style.marginTop = "84px";
     }
     modalWelcome.style.marginTop = "0px";
     modalWelcome.style.display = "block";
-}
-
-let btnDark = 1;
+} */
 
 const toggleMode = (value) => {
     console.log("=> fn toggleMode triggered");
     if (value === "dark") {
         document.body.classList.remove("light-mode");
-        /* document.querySelectorAll("img").forEach((e) => {
-            e.classList.add("btnDark");
-        });
-        logo.classList.remove("btnDark");
-        logoStacked.classList.remove("btnDark"); */
         modalSettings.style.display = "none";
     }
     if (value === "light") {
         document.body.classList.add("light-mode");
-        /* document.querySelectorAll("img").forEach((e) => {
-            e.classList.remove("btnDark");
-        }); */
         modalSettings.style.display = "none";
     }
     config.mode = value;
@@ -324,17 +333,6 @@ const renderBubbles = (listArray) => {
         }
     }
 
-    /* let modalBubblesImg = document.querySelectorAll(".modalBubbles img");
-    if (document.body.classList.contains("light-mode")) {
-        modalBubblesImg.forEach((e) => {
-            e.classList.remove("btnDark");
-        });
-    } else {
-        modalBubblesImg.forEach((e) => {
-            e.classList.add("btnDark");
-        });
-    } */
-
     setTimeout(() => {
         window.scroll(0, 0);
     }, 150);
@@ -345,9 +343,6 @@ const insertTableString = (element) => {
     let randomTime = Math.random() * 4 + 6;
     let correctedHue = element.bubbleHue.at(-1)[2] - 30;
     let title = element.title.at(-1)[2];
-    /* if (title.length > 20) {
-        title = title.substring(0, 18) + "...";
-    } */
     let description = element.description.at(-1)[2];
     let tdWarnPrioString = "";
     let tdWarnDueString = "";
@@ -387,17 +382,14 @@ const renderList = (listArray) => {
         ticketList.rows[i].remove();
         ticketList.tBodies[i].remove();
     }
-    // rank(listArray);
+    if (searchSortingOrFiltersActive === false) {
+        resetSortAndFilterButtons();
+    }
     listArray.forEach((element) => {
         if (element.prio.at(-1)[2] != -1) {
             insertTableString(element);
         }
     });
-    /* if (document.body.classList.contains("light-mode") === false) {
-        document.querySelectorAll(".list img").forEach((e) => {
-            e.classList.add("btnDark");
-        });
-    } */
     setTimeout(() => {
         window.scroll(0, 0);
     }, 150);
@@ -411,6 +403,7 @@ const showHome = () => {
         document.body.classList.remove("light-mode");
     } else {
         modalWelcome.style.display = "block";
+        welcomeName.innerHTML = currentUser.firstName.at(-1)[2];
     }
     setTimeout(() => {
         window.scroll(0, 0);
@@ -428,13 +421,10 @@ const displayCreateAccount = () => {
             safetyCode = randomNumbers(6);
             h4SafetyCode.innerHTML = safetyCode;
             frmCreateAccount.blur();
-            // divSafetyCode.style.display = "block";
             divSafetyCode.style.maxHeight = "500px";
-            // divSafetyCode.style.transition = "all ease-in-out 1s";
             divSafetyCode.style.visibility = "visible";
             divSafetyCode.style.opacity = "1";
             setTimeout(() => {
-                // inpCreateAccountRememberMe.scrollIntoView();
                 inpSafetyCode1.focus();
                 let bottomElement = modalCreateAccount.lastElementChild;
                 bottomElement.scrollIntoView();
@@ -489,7 +479,6 @@ const displayTicketList = () => {
     setTimeout(() => {
         window.scroll(0, 0);
     }, 150);
-    // listType = "table";
     config.listType = "table";
     localStorage.setItem("openTicketConfig", JSON.stringify(config));
     console.log({ config });
@@ -504,7 +493,6 @@ const displayBubbleList = () => {
     setTimeout(() => {
         window.scroll(0, 0);
     }, 150);
-    // listType = "bubbles";
     config.listType = "bubbles";
     localStorage.setItem("openTicketConfig", JSON.stringify(config));
     console.log({ config });
@@ -579,7 +567,6 @@ const displayTicket = (ticketId) => {
     mdBtnAddEntry.style.display = "block";
     mdBtnDone.style.display = "block";
     mdDate.innerHTML = dateAndTimeToString(currentTicket.date.at(-1)[2]);
-    // mdOwner.innerHTML = currentTicket.owner.at(-1)[2];
     mdTitle.innerHTML = currentTicket.title.at(-1)[2];
     mdTitle.style.color = `hsl(${currentTicket.bubbleHue.at(-1)[2]
         }, 20%, 50%)`;
@@ -638,12 +625,6 @@ const displayTicket = (ticketId) => {
                 <hr>
                 `
             );
-            /* if (!document.body.classList.contains("light-mode")) {
-                document.querySelectorAll(".subtaskMdBtn").forEach(e => {
-                    e.classList.add("btnDark")
-                })
-                // document.querySelector(`#${currentTicket.id}_${e.subId}`).classList.add("btnDark");
-            } */
         });
     }
 };
@@ -661,7 +642,6 @@ const displayNewTicket = () => {
     mdBtnAddEntry.style.display = "block";
     mdBtnDismiss.style.display = "block";
     mdDate.innerHTML = `${dateToString(Date.now())}`;
-    // mdOwner.innerHTML = currentUser.firstName.at(-1)[2];
     mdSelPrio.innerHTML = "";
     priority.forEach((e) => {
         mdSelPrio.insertAdjacentHTML(
@@ -762,7 +742,8 @@ const renderTickets = () => {
     });
     if (visibleTickets.length === 0) {
         hideAllModals();
-        modalWelcome.style.display = "block";
+        showHome();
+        // modalWelcome.style.display = "block";
         btnSearch.style.display = "none";
         btnStartBubbles.style.display = "none";
         btnStartTable.style.display = "none";
@@ -842,7 +823,3 @@ const saveEditedPersonalData = async () => {
     modalEditPersonalData.style.display = "none";
     modalSettings.style.display = "none";
 }
-
-// hideAllModals();
-
-// getTickets();

@@ -1,4 +1,5 @@
 const sortTickets = (criterion, direction) => {
+    searchSortingOrFiltersActive = true;
     console.log("=> fn sortTickets triggered");
     sortedTickets.sort((a, b) => {
         let index = 1;
@@ -12,6 +13,7 @@ const sortTickets = (criterion, direction) => {
         return 0;
     });
     renderList(sortedTickets);
+    searchSortingOrFiltersActive = false;
 };
 
 const resetSortAndFilterButtons = () => {

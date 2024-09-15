@@ -7,6 +7,11 @@
     <title>openTicket</title>
     <link rel="stylesheet" type="text/css" href="index.css" />
     <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.png" />
+    <meta property="og:url" content="https://www.app.fablog.eu/openTicket/">
+    <meta property="og:type" content="app">
+    <meta property="og:title" content="openTicket - way more than just a todo app">
+    <meta property="og:description" content="openTicket helps you organize complex tasks or projects offering an innovative design as well as numerous filtering and sorting options">
+    <meta property="og:image" content="https://www.app.fablog.eu/openTicket/public/pix/screenshotApp.webp">
 </head>
 
 <body>
@@ -14,7 +19,7 @@
         <img src="pix/logoStacked.webp" alt="openTicket logo" id="logoStacked" />
         <img src="pix/bubbles.webp" alt="start screen" id="btnStartBubbles" title="start screen" />
         <img src="pix/list.webp" alt="start screen" id="btnStartTable" title="start screen" />
-        <img src="pix/cancel.webp" alt=" reset search and sorting" id="btnResetSearch"
+        <img src="pix/cancel.webp" alt="reset search and sorting" id="btnResetSearch"
             title="reset search and sorting" />
         <img src="pix/search.webp" alt="search" id="btnSearch" title="search" />
         <img src="pix/settings.webp" alt="settings" id="btnSettings" title="settings" />
@@ -48,7 +53,7 @@
                 </table>
             </div>
 
-            <hr class="hrHighLight">
+            <hr>
 
             <!-- <div class="bubble" style="margin: 24px auto; min-height: 150px; border: 6px solid hsl(180, 20%, 50%); border-left: 24px solid hsl(180, 20%, 50%); border-right: 24px solid hsl(180, 20%, 50%);">
                 <figure style="display: inline-block; margin-top: 30px;">
@@ -61,26 +66,25 @@
                 </figure>
             </div> -->
 
-            <p style="text-align: center;"><img src="pix/logo_transp_bg.webp" alt="open ticket logo" style="height: 1.7rem; margin: 0 0 -8px -4px;"><br>helps you organize complex tasks or projects. <br>
-                Way more than just a todo app!</p>
+            <p><img src="pix/logo_transp_bg.webp" alt="open ticket logo" style="height: 1.7rem; margin: 0 0 -8px -4px;">helps you organize complex tasks or projects. <br>
+                It's way more than just a todo app!</p>
 
             <div class="bubble" style="margin: 48px auto; border: 6px solid hsl(300, 20%, 50%); border-left: 24px solid hsl(300, 20%, 50%); border-right: 24px solid hsl(300, 20%, 50%);">
                 <span class="iconMini"><img src="pix/alarmClock.webp" title="due"  style="animation: flash 6s ease-out infinite; filter: sepia(100%) hue-rotate(270deg) saturate(125%);"> <img src="pix/warning.webp" title="high priority" style="animation: flash 6s ease-in infinite; filter: sepia(100%) hue-rotate(270deg) saturate(125%);"></span>
                 <p class="small">today</p>
                 <h3 style="color: hsl(300, 20%, 50%);">Get your own account now</h3>
                 <p>And ease up yor life!</p>
-                <p class="small">due: now</p>
             </div>
             
             <!-- <img src="pix/getYourAccountBubble.webp" alt="Get your account now" style="width: 100%; max-width: 400px; display: block; margin: 0 auto;"> -->
             <p> Edit tasks, change coloring, add subtasks, make them urgent. Search for topics, filter by anything, and
-                get your tasks in the order you need by chosing from numerous sorting optiions.</p>
+                get your tasks in the order you need by chosing from numerous sorting options.</p>
             <p>Make it yours!</p>
             <p>
                 Its innovative design and automatic sorting makes it easy to focus on what's important at the moment.
             </p>
 
-            <hr class="hrHighLight">
+            <hr>
             <h3>Styles</h3>
             <h4>Bubbles or table</h4>
             <p>
@@ -98,35 +102,63 @@
             </p>
             <img src="pix/coloredBubbles.webp" alt="colored bubbles"
                 style="width: 250px; margin-left: calc(50% - 125px); animation: float 6s ease-in-out infinite;" />
-            <hr class="hrHighLight">
+            <hr>
             <h4>Dark or light</h4>
             Switch to a light mode if that is your favourite.
-            <img src="pix/screenshotTableLight.png" id="imgDarkLight" alt="screenshot" width="100%" />
-            <hr class="hrHighLight">
+            <img src="pix/screenshotTicketLight.png" id="imgDarkLight" alt="screenshot" width="100%" />
+            <hr>
             <h3>In your pocket or at the desk</h3>
-            <p><img src="pix/logo_transp_bg.webp" alt="open ticket logo" style="height: 1.7rem; margin: 0 0 -8px -4px;">is a web application that runs in your browser. It's independant of the operating system and works on smart phones, tablets, laptops, and
+            <p><img src="pix/logo_transp_bg.webp" alt="open ticket logo" style="height: 1.7rem; margin: 0 0 -8px -4px;">is a web application that runs in your browser. It's independent of the operating system and works on smart phones, tablets, laptops, and
                 personal computers.</p>
             <p>A responsive design provides a maximum of functionality on any sceen size. Yet, on large sceens you get
                 the full set of sorting and filtering options.</p>
-            <hr class="hrHighLight">
+            <hr>
         </div>
 
         <div class="modalWelcome modal">
 
             <h3 style="color: var(--color3)">
-                Welcome to<br>
                 <img src="pix/logo_transp_bg.webp" alt="open ticket logo" class="otLogo"
                 style="box-shadow: none; width: 200px;" />
-            </h3>
-            
+            </h3>            
             <hr class="hrHighLight" />
-
+            <h3>Hello <span id="welcomeName"></span></h3>
             <p>Start by adding your first task.</p>
             <p>It's as easy as this.</p>
             <img src="pix/manual.webp" alt="short manual"><br>
-            <p>In some situations you will see a reset button</p>
-            <img src="pix/manual_reset.webp" alt="manual - reset button">
-            <hr class="hrHighLight" />
+
+            <div class="text-align-left">
+                <p>You won't see all these options at the same time. Unnecessary buttons are hidden when not needed.</p>
+                <p>To get back to this page, go to settings and pick <i>"welcome screen"</i>.</p>
+                <hr>
+                <h3>In app navigation</h3>
+                <p>To navigate within the app, click or tap the menu buttons only. Don't use the browser's "go back" function or any gestures to move back and forth, as they will make you leave the app.</p>
+                <hr>
+                <h3>Beta</h3>
+                <p>This software is in beta stage. There may be bugs or errors. If you encounter an error, feel free to report it on <a href="https://github.com/fab-log/openTicket/issues">github</a> or <a href="https://t.me/fablog_openTicket">telegram</a>. Try to include as much information as possible, also mentioning the steps you executed before the error occured.</p>
+                
+                <hr>
+                
+                <h3>Imprint</h3>
+                <p>Responsible person for this site:<br>
+                Fabian Ruin</p>    
+                <p>contact:<br>
+                fruin[at]vivaldi.net</p>    
+                
+                <hr>
+                
+                <h3>Privacy<h3>    
+                <h4>Very simple.</h4>
+                <ul>
+                    <li>No advertising.</li>
+                    <li>No trackers.</li>
+                    <li>No preconnect. <small>(download of third party content)</small></li>
+                </ul>    
+                <p>Data you provide will be stored in a database on the server. The connection to the server is secured using the HTTPS protocol. In its current beta state, the provided data is not encrypted on the server. Therefore, anyone with access to the server can read your data and your tasks (encryption will be available in the near future). No data is stored in another location, nor will any data be transferred to other parties.<br>
+                To delete your data, you can use the corresponding built-in feature, which can be found in the settings menu of this application.</p>
+            </div>
+            <hr>
+            
         </div>
 
         <div class="list modal">
@@ -339,9 +371,7 @@
 
         <div class="modalSettings modal">
             <h3>Settings</h3>
-            <hr />
-            <p class="small" id="loggedInInfo"></p>
-            <hr /><br />
+            <hr class="hrHighLight" /><br />
             <div class="settings-grid-container">
                 <div class="appearance grid-item">
                     <h4>Appearance</h4>
@@ -400,27 +430,30 @@
 
             </div> <!-- settings-grid-container -->
             <br />
-            <hr />
+            <p class="small"><a href="#" onclick="showWelcomeScreen()">show welcome screen</a></p>
+            <hr class="hrHighLight" />
+            <p class="small">logged in as: <span id="loggedInInfo"></span></p>
+            <hr class="hrHighLight" />
             <p class="small"><img src="pix/logo_transp_bg.webp" alt="open ticket logo" id="logo-settings">version <span id="versionInfo"></span></p>
         </div>
 
         <div class="modalEditPersonalData modal">
             <h3>Edit your personal data</h3>
-            <hr />
+            <hr class="hrHighLight" />
             <p class="small">Your user id:<br><span id="mdPDId"></span></p>
             <input type="text" id="inpPDFirstName" placeholder="first name"><br>
             <input type="text" id="inpPDLastName" placeholder="last name"><br>
             <input type="text" id="inpPDEmail" placeholder="email">
-            <hr />
+            <hr class="hrHighLight" />
             <p>Change password</p>
             <input type="password" id="inpPDOldPassword" placeholder="current password">
             <hr class="short">
             <input type="password" id="inpPDNewPassword" placeholder="new password"><br>
             <input type="password" id="inpPDConfirmPassword" placeholder="confirm password">
-            <hr>
+            <hr class="hrHighLight" />
             <p class="small">Note that changing your email address will require that you use the new email address for
                 logging in.</p>
-            <hr />
+            <hr class="hrHighLight" />
             <button type="submit" onclick="dismissEditedPersonalData()">dismiss</button>
             <button type="submit" onclick="saveEditedPersonalData()">save changes</button>
         </div>
@@ -439,6 +472,7 @@
 
         <div class="modalSearch modal">
             <p>Search</p>
+            <hr class="hrHighLight">
             <form>
                 <input type="text" id="inpSearch" style="margin-right: 0px" />
                 <br />
@@ -451,6 +485,8 @@
                     <figcaption>search</figcaption>
                 </figure>
             </form>
+            <hr class="hrHighLight" style="margin-top: 0;">
+            <p class="small">Search includes completed tasks. <br>To search for a date, use this format: 2024-12-31</p>
         </div>
 
         <div class="modalConfirmDone modal">
@@ -472,11 +508,11 @@
 
         <div class="modalConfirmDeleteOldTickets modal">
             <h3>Delete old tasks</h3>
-            <hr>
+            <hr class="hrHighLight" />
             <p>Deleting old tasks will free up disk space and make the app faster, especially if you have many completed
                 tasks.</p>
             <p>Note that your completed tasks will be permanently removed without the ability to restore them.</p>
-            <hr>
+            <hr class="hrHighLight" />
             <figure onclick="dismissDone()">
                 <img src="pix/cancel.webp" title="dismiss" />
                 <figcaption>dismiss</figcaption>
@@ -528,11 +564,11 @@
 
         <div class="modalCreateAccount modal">
             <img src="pix/logo_transp_bg.webp" alt="open ticket logo" style="width: 150px;">
-            <hr>
+            <hr class="hrHighLight" />
             <br>
             <img src="pix/createAccount.webp" alt="Create account">
             <h3>Create an account</h3>
-            <hr>
+            <hr class="hrHighLight" />
             <form id="frmCreateAccount">
                 <input type="text" placeholder="first name" id="inpCreateAccountFirstName"><br>
                 <input type="text" placeholder="last name" id="inpCreateAccountLastName"><br>
@@ -540,10 +576,10 @@
                 <input type="password" placeholder="password" id="inpCreateAccountPassword"><br>
                 <input type="password" placeholder="confirm password" id="inpCreateAccountConfirmPassword">
             </form>
-            <hr>
+            <hr class="hrHighLight" />
             <p class="small">Your email adress helps us verify that there is no existing account using the same email
                 address. You won't get any mails.</p>
-            <hr>
+            <hr class="hrHighLight" />
             <div id="divSafetyCode">
                 <p>Verification code</p>
                 <h3 id="h4SafetyCode"></h3>
@@ -554,24 +590,24 @@
                 <input class="inpOne" type="number" id="inpSafetyCode4" maxlength="1" autocomplete="off">
                 <input class="inpOne" type="number" id="inpSafetyCode5" maxlength="1" autocomplete="off">
                 <input class="inpOne" type="number" id="inpSafetyCode6" maxlength="1" autocomplete="off">
-                <hr>
+                <hr class="hrHighLight" />
             </div>
             <p class="small">
                 <input type="checkbox" id="inpCreateAccountRememberMe">
                 <label for="inpCreateAccountRememberMe">Remember me on this device</label>
             </p>
-            <hr>
-            <button type="submit" onclick="showHome(event)">cancel</button>
+            <hr class="hrHighLight" />
+            <button type="button" onclick="showHome(event)">cancel</button>
             <button type="submit" onclick="createAccount(event)">create account</button>
         </div>
 
         <div class="modalLogin modal">
             <img src="pix/logo_transp_bg.webp" alt="open ticket logo" style="width: 150px;">
-            <hr>
+            <hr class="hrHighLight" />
             <br>
             <img src="pix/logIn.webp" alt="log in">
             <h3>Log in</h3>
-            <hr>
+            <hr class="hrHighLight" />
             <form id="frmLogin">
                 <input type="email" placeholder="email" id="inpLoginEmail"><br>
                 <input type="password" placeholder="password" id="inpLoginPassword"><br>
@@ -579,15 +615,15 @@
                     <input type="checkbox" id="inpLoginRememberMe">
                     <label for="inpLoginRememberMe">Remember me on this device</label>
                 </p>
-                <hr>
-                <button type="submit" onclick="showHome(event)">cancel</button>
+                <hr class="hrHighLight" />
+                <button type="button" onclick="showHome(event)">cancel</button>
                 <button type="submit" onclick="login(event)">login</button>
             </form>
         </div>
 
         <div class="modalConfirmLogout modal">
             <h3>Log out</h3>
-            <hr>
+            <hr class="hrHighLight" />
             <p>Are you sure you want to log out?</p>
             <figure onclick="dismissLogout()">
                 <img src="pix/cancel.webp" title="dismiss" />

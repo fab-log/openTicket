@@ -20,7 +20,7 @@ html {
 }
 
 .light-mode {
-    --background-color: hsl(30, 2%, 24%);
+    --background-color: hsl(30, 2%, 75%);
     --background-color1: hsl(30, 2%, 80%);
     --background-color2: hsl(30, 2%, 85%);
     --background-color3: hsl(30, 2%, 94%);
@@ -53,11 +53,20 @@ body {
     line-height: 1.25;
 }
 
+a, a:visited {
+    color: var(--accent-turquois);
+    text-decoration: underline;
+}
+
+a:hover {
+    color: var(--color);
+}
+
 hr {
     border: none;
     border-radius: var(--border-radius);
     border-bottom: solid 1px var(--background-color3);
-    margin: 12px 25%;
+    margin: 12px 0;
 }
 
 .short {
@@ -67,7 +76,7 @@ hr {
 
 .hrHighLight {
     border-bottom: solid 1px var(--background-color3);
-    margin: 36px 25%;
+    margin: 24px 25%;
 }
 
 img:not(#logo, #logoStacked, .modalWelcome img, .modalIndex img) {
@@ -238,6 +247,10 @@ textarea {
     font-size: 80%;
 }
 
+.text-align-left {
+    text-align: left;
+}
+
 .header {
     display: none;
     position: fixed;
@@ -336,13 +349,12 @@ textarea {
 }
 
 .modalWelcome img {
-    width: 90%;
-    max-width: 400px;
+    width: 100%;
+    max-width: 500px;
 }
 
 .modalWelcome,
 .modalRestore {
-    background-color: var(--background-color1);
     color: var(--color);
     text-align: center;
     padding: 24px;
@@ -452,7 +464,7 @@ textarea {
 }
 
 .grid-element {
-    height: 300px;
+    height: 270px;
 }
 
 .bubble {
@@ -588,6 +600,7 @@ textarea {
     padding: 12px 12px 24px 12px;
     background-color: var(--background-color2);
     border-radius: var(--border-radius);
+    box-shadow: 0 0 12px var(--shadow);
 }
 
 .modalTicket td {
@@ -786,10 +799,10 @@ textarea {
     background-color: var(--background-color2);
     opacity: 0.98;
     border-radius: 50%;
-    border-top: solid 6px var(--color3);
-    border-right: solid 24px var(--color3);
-    border-bottom: solid 6px var(--color3);
-    border-left: solid 24px var(--color3);
+    border-top: solid 6px var(--accent-turquois);
+    border-right: solid 24px var(--accent-turquois);
+    border-bottom: solid 6px var(--accent-turquois);
+    border-left: solid 24px var(--accent-turquois);
     /* border: solid 4px var(--accent-red); */
     text-align: center;
 }
@@ -970,6 +983,12 @@ textarea {
     #logo {
         width: 60px;
         margin-top: 5px;
+    }
+
+    .modalWelcome,
+    .modalRestore,
+    .list {
+        margin-top: 60px;
     }
 
     /* .main {
