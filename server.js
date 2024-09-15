@@ -73,8 +73,7 @@ app.post("/api.createAccount", (request, response) => {
                     console.log(res.status);
                     throw err;
                 }
-                res.status = `Account successfully created for ${data.firstName.at(-1)[2]} ${data.lastName.at(-1)[2]}<br />
-                    You are now logged in as ${data.email.at(-1)[2]}`;
+                res.status = "OK";
                 delete data.password;
                 res.data = data;
                 response.json(res);
@@ -269,8 +268,8 @@ app.post("/api.updateTicket", (request, response) => {
             return;
         }
         let ticketsArray = JSON.parse(tickets);
-        console.log("user id: " + data.userId);
-        console.log("ticket id: " + data.ticketId);
+        // console.log("user id: " + data.userId);
+        // console.log("ticket id: " + data.ticketId);
         let index = ticketsArray.findIndex((e) => e.id === data.ticketId);
         console.log({ index });
         ticketsArray.splice(index, 1, data.ticket);
