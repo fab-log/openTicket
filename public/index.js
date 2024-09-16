@@ -3,7 +3,7 @@ currentUser = {};
 currentTicket = {};
 currentSubId = -1;
 searchSortingOrFiltersActive = false;
-let version = "1.0.0";
+let version = "1.0.1 (beta)";
 versionInfo.innerHTML = version;
 
 if (JSON.parse(localStorage.getItem("openTicketConfig"))) {
@@ -398,7 +398,7 @@ const renderList = (listArray) => {
 const showHome = () => {
     console.log("=> fn showHome triggered");
     hideAllModals();
-    if (config.status === "logged out" || config.status === null || config.status === undefined) {
+    if (config.status === null || config.status === undefined || Object.keys(currentUser).length === 0) {
         modalIndex.style.display = "block";        
         document.body.classList.remove("light-mode");
     } else {
@@ -822,4 +822,20 @@ const saveEditedPersonalData = async () => {
     inpPDConfirmPassword.value = "";
     modalEditPersonalData.style.display = "none";
     modalSettings.style.display = "none";
+}
+
+const closeModal = (target) => {
+    target.style.display = "none";
+}
+
+const moveTop = () => {
+    window.scroll(0, 0);
+}
+
+const toggleScrollToTopButton = () => {
+    if (document.body.scrollHeight > window.innerHeight) {
+        btnMoveTop.style.display = 'block'; // Show button
+    } else {
+        btnMoveTop.style.display = 'none'; // Hide button
+    }
 }

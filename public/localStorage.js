@@ -8,7 +8,7 @@ const checkLocalStorage = async () => {
         config.mode = "dark";
         localStorage.setItem("openTicketConfig", JSON.stringify(config));
         return;
-    } else {    // IF openTicketConfig exists
+    } else {                                        // if openTicketConfig exists
         tempConfig = JSON.parse(localStorage.getItem("openTicketConfig"));
         console.log({ tempConfig });
         if (tempConfig.status != "logged in") {     // if user is not logged in

@@ -144,13 +144,21 @@ mdBtnSaveTicket.addEventListener("click", saveNewTicket);
 
 mdBtnSaveEntry.addEventListener("click", saveSubtask);
 
-mdBtnDismiss.addEventListener("click", () => {
+/* mdBtnDismiss.addEventListener("click", () => {
 	if (config.listType === "bubbles") {
 			displayBubbleList();
 	} else if (config.listType === "table") {
 			displayTicketList();
 	}
-});
+}); */
+
+const closeModalTicket = () => {
+	if (config.listType === "bubbles") {
+		displayBubbleList();
+	} else if (config.listType === "table") {
+			displayTicketList();
+	}
+}
 
 mdBtnAddEntry.addEventListener("click", displayNewSubtask);
 
@@ -192,3 +200,6 @@ const displayConfirmDeleteOldTickets = () => {
 	modalConfirmDeleteOldTickets.style.display = "block";
 }
 
+window.addEventListener('scroll', toggleScrollToTopButton);
+
+window.addEventListener('load', toggleScrollToTopButton);

@@ -121,6 +121,7 @@ const createAccount = async (event) => {
         btnStartTable.style.display = "none";
         header.style.display = "block";
         modalWelcome.style.display = "block";
+        welcomeName.innerHTML = currentUser.firstName.at(-1)[2];
         loggedInInfo.innerHTML = currentUser.email.at(-1)[2];
         setTimeout(() => {
             window.scroll(0, 0);

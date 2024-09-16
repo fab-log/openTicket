@@ -239,6 +239,7 @@
         <div class="modalBubbles modal"></div>
 
         <div class="modalTicket modal">
+            <img src="pix/cancel.webp" alt="close settings menu" title="close settings menu" class="btnCloseModal" onclick="closeModalTicket()">
             <p class="dimmedFont small">
                 <br /><span id="mdDate"></span><!--  | <span id="mdOwner"></span> -->
             </p>
@@ -336,7 +337,7 @@
                 <figcaption>save</figcaption>
             </figure>
             <figure id="mdBtnDismiss" class="mdBtn">
-                <img src="pix/cancel.webp" title="dismiss changes" />
+                <img src="pix/cancel.webp" title="dismiss changes" onclick="closeModalTicket()" />
                 <figcaption>dismiss</figcaption>
             </figure>
             <figure id="mdBtnAddEntry" class="mdBtn">
@@ -370,6 +371,7 @@
         </div>
 
         <div class="modalSettings modal">
+            <img src="pix/cancel.webp" alt="close settings menu" title="close settings menu" class="btnCloseModal" onclick="closeModal(modalSettings)">
             <h3>Settings</h3>
             <hr class="hrHighLight" /><br />
             <div class="settings-grid-container">
@@ -632,7 +634,10 @@
             <figure onclick="logout()">
                 <img src="pix/power.webp" title="delete account" />
                 <figcaption>log out</figcaption>
+            </figure>
         </div>
+
+        <img src="pix/arrowUp.webp" alt="move to top" title="move to top" class="btnMoveTop" id="btnMoveTop" onclick="moveTop()">
 
     </div><!-- main -->
 

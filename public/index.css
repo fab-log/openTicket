@@ -1,5 +1,6 @@
 html {
     scroll-behavior: smooth;
+    transition: all 0.25s ease-in-out;
 }
 
 :root {
@@ -81,6 +82,7 @@ hr {
 
 img:not(#logo, #logoStacked, .modalWelcome img, .modalIndex img) {
     filter: var(--button-filter);
+    transition: filter 0.1s ease-in-out;
 }
 
 img:hover:not(#logo, #logoStacked, .modalWelcome img, .modalIndex img, .tdWarnPrio img, .tdWarnDue img, .iconMini img) {
@@ -312,6 +314,19 @@ textarea {
 .main {
     width: calc(100% - 78px);
     margin: auto auto 12px 78px;
+}
+
+.btnMoveTop {
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
+    width: 30px;
+    opacity: 0.5;
+}
+
+.btnMoveTop:hover {
+    cursor: pointer;
+    filter: brightness(125%);
 }
 
 .modalWelcome,
@@ -776,6 +791,12 @@ textarea {
     margin: auto;
     width: 36px;
     padding: 6px 6px 0px 6px;
+}
+
+.btnCloseModal {
+    position: absolute;
+    right: 12px;
+    width: 24px !important;
 }
 
 .modalCreateAccount input,
