@@ -245,7 +245,11 @@ app.post("/api.newTicket", (request, response) => {
     let fileName = `./tickets_${data.id}.json`;
     let res = {};
     fs.readFile(fileName, "utf8", (err, tickets) => {
-        if (err) throw err;
+        if (err) {
+            res.status = err;
+            response.json(res);
+            throw err;
+        } 
         let ticketsArray = JSON.parse(tickets);
         ticketsArray.push(data.ticket);
         let ticketsString = JSON.stringify(ticketsArray);
