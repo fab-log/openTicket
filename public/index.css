@@ -828,6 +828,41 @@ textarea {
     text-align: center;
 }
 
+#loader {
+    display: none;
+    z-index: 14;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    text-align: center;
+    font-size: 0.75rem;
+}
+
+#loader-text {
+    z-index: 15;
+    position: absolute;
+    top:33%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#loader img {
+    width: 150px;
+    opacity: 0.95;
+    animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+    0% {
+        rotate: 0deg;
+    }
+    100% {
+        rotate: 360deg;
+    }
+}
+
 @keyframes flash {
 
     0%,

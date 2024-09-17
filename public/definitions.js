@@ -162,7 +162,7 @@ doQuSe(mdDeleteAccountPassword);
 doQuSe(inpDeleteAccountPassword);
 doQuSe(welcomeName);
 doQuSe(btnMoveTop);
-// doQuSe();
+doQuSe(loader);
 // doQuSe();
 // doQuSe();
 // doQuSe();

@@ -65,6 +65,7 @@ const createAccount = async (event) => {
         inpSafetyCode1.focus();
         return;
     }
+    startLoader();
     let id = `user_${Date.now()}_${randomCyphers(10)}`;
     let data = {
         id,
@@ -83,13 +84,14 @@ const createAccount = async (event) => {
     const response = await fetch("/api.createAccount", options);
     let serverResponse = await response.json();
     let status = serverResponse.status;
-    currentUser = serverResponse.data;
     console.log({ status });
-    console.log({ currentUser });
     if (serverResponse.data === undefined) {
+        stopLoader();
         showAlert(status);
         return;
     } else {
+        currentUser = serverResponse.data;
+        console.log({ currentUser });
         if (inpCreateAccountRememberMe.checked) {
             config.id = currentUser.id;
             config.status = "logged in";
@@ -115,6 +117,7 @@ const createAccount = async (event) => {
         inpSafetyCode4.value = "";
         inpSafetyCode5.value = "";
         inpSafetyCode6.value = "";
+        stopLoader();
         hideAllModals();
         btnSearch.style.display = "none";
         btnStartBubbles.style.display = "none";
@@ -140,6 +143,7 @@ const login = async (event) => {
         showAlert("please fill all fields");
         return;
     }
+    startLoader();
     let data = {
         email: inpLoginEmail.value,
         password: inpLoginPassword.value
@@ -154,15 +158,16 @@ const login = async (event) => {
     const response = await fetch("/api.login", options);
     let serverResponse = await response.json();
     let status = serverResponse.status;
-    currentUser = serverResponse.data;
     console.log({ status });
-    console.log({ currentUser });
+    stopLoader();
     if (serverResponse.data === undefined) {
         inpLoginEmail.value = "";
         inpLoginPassword.value = "";
         showAlert(status);
         return;
     } else {
+        currentUser = serverResponse.data;
+        console.log({ currentUser });
         if (inpLoginRememberMe.checked) {
             config.id = currentUser.id;
             config.status = "logged in";
@@ -198,6 +203,7 @@ const login = async (event) => {
 
 const quickLogin = async (id) => {
     console.log("=> fn quickLogin triggered");
+    startLoader();
     let data = {
         id
     }
@@ -211,13 +217,14 @@ const quickLogin = async (id) => {
     const response = await fetch("/api.quickLogin", options);
     let serverResponse = await response.json();
     let status = serverResponse.status;
-    currentUser = serverResponse.data;
     console.log({ status });
-    console.log({ currentUser });
+    stopLoader();
     if (serverResponse.data === undefined) {
         showAlert(status);
         return;
     } else {
+        currentUser = serverResponse.data;
+        console.log({ currentUser });
         hideAllModals();
         header.style.display = "block";
         loggedInInfo.innerHTML = currentUser.email.at(-1)[2];
@@ -259,12 +266,65 @@ const logout = () => {
     showHome();
 }
 
+const saveEditedPersonalData = async () => {
+    console.log("=> fn saveEditedPersonalData triggered");
+    if (inpPDFirstName.value === currentUser.firstName.at(-1)[2] && inpPDLastName.value === currentUser.lastName.at(-1)[2] && inpPDEmail.value === currentUser.email.at(-1)[2] && inpPDOldPassword.value === "") {
+        showAlert("No changes made!");
+        modalEditPersonalData.style.display = "none";
+        return;
+    }
+    startLoader();
+    let data = {
+        id: currentUser.id
+    };
+    if (inpPDFirstName.value != currentUser.firstName.at(-1)[2]) { data.firstName = inpPDFirstName.value };
+    if (inpPDLastName.value != currentUser.lastName.at(-1)[2]) { data.lastName = inpPDLastName.value };
+    if (inpPDEmail.value != currentUser.email.at(-1)[2]) { data.email = inpPDEmail.value };
+    if (inpPDOldPassword.value != "") {
+        if (inpPDNewPassword.value.length < 8) {
+            inpPDNewPassword.value = "";
+            showAlert("password must have a minimum length of 8 characters");
+            return;
+        };
+        if (inpPDNewPassword.value != inpPDConfirmPassword.value) {
+            inpPDNewPassword.value = "";
+            inpPDConfirmPassword.value = "";
+            showAlert("passwords do not match");
+            return;
+        }
+        data.oldPassword = inpPDOldPassword.value;
+        data.newPassword = inpPDNewPassword.value;
+    }
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    };
+    const response = await fetch("/api.editPersonalData", options);
+    const serverResponse = await response.json();
+    stopLoader();
+    if (serverResponse.status != "OK") {
+        showAlert(serverResponse.status);
+        return;
+    }
+    if (serverResponse.alert) { showAlert(serverResponse.alert) };
+    currentUser = serverResponse.data;
+    inpPDOldPassword.value = "";
+    inpPDNewPassword.value = "";
+    inpPDConfirmPassword.value = "";
+    modalEditPersonalData.style.display = "none";
+    modalSettings.style.display = "none";
+}
+
 const deleteAccount = async () => {
     console.log("=> fn deleteAccount triggered");
     if (inpDeleteAccountPassword.value === "") {
         showAlert("please enter your password");
         return;
     }
+    startLoader();
     let data = {
         id: currentUser.id,
         password: inpDeleteAccountPassword.value
@@ -280,6 +340,7 @@ const deleteAccount = async () => {
     const response = await fetch("/api.deleteAccount", options);
     let serverResponse = await response.json();
     let status = serverResponse.status;
+    stopLoader();
     if (status != "OK") {
         inpDeleteAccountPassword.value = "";
         showAlert(status + "<br />Please try again");
@@ -300,6 +361,7 @@ const deleteAccount = async () => {
 
 const updateTicket = async () => {
     console.log("=> fn updateTicket triggered");
+    startLoader();
     let data = {
         userId: currentUser.id,
         ticketId: currentTicket.id,
@@ -314,6 +376,11 @@ const updateTicket = async () => {
     };
     const response = await fetch("/api.updateTicket", options);
     const serverResponse = await response.json();
+    stopLoader();
+    if (serverResponse.status != "OK") {
+        showAlert(`Error!<br>${serverResponse.status}<br>Please try again`);
+        return;
+    }
     console.log("Update ticket. Status: " + serverResponse.status);
     tickets = serverResponse.tickets;
     sortedTickets = tickets.filter((element) => element);
@@ -333,6 +400,7 @@ const saveNewTicket = async () => {
         showAlert("Due date is in the past");
         return;
     }
+    startLoader();
     let newTicket = {
         id: `ticket_${Date.now()}_${randomCyphers(10)}`,
         bubbleHue: [[Date.now(), currentUser.id, Number(mdInpColor.value)]],
@@ -368,6 +436,11 @@ const saveNewTicket = async () => {
     const response = await fetch("/api.newTicket", options);
     const serverResponse = await response.json();
     console.log("Save new ticket. Status: " + serverResponse.status);
+    stopLoader();
+    if (serverResponse.status != "OK") {
+        showAlert(`Error!<br>${serverResponse.status}<br>Please try again`);
+        return;
+    }
     tickets = serverResponse.tickets;
     modalTicket.style.display = "none";
     btnResetSearch.style.display = "none";
@@ -537,6 +610,7 @@ const dismissDone = () => {
 
 const deleteOldTickets = async () => {
     console.log("=> fn deleteOldTickets triggered");
+    startLoader();
     let data = {
         userId: currentUser.id
     }
@@ -550,6 +624,7 @@ const deleteOldTickets = async () => {
     const response = await fetch("/api.deleteOldTickets", options);
     const serverResponse = await response.json();
     console.log("Delete old tickets. Status: " + serverResponse.status);
+    stopLoader();
     if (serverResponse.status != "OK") {
         showAlert(serverResponse.status);
         return;

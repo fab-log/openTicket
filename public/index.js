@@ -17,6 +17,7 @@ if (JSON.parse(localStorage.getItem("openTicketConfig"))) {
 
 const getTickets = async (userID) => {
     console.log(`=> fn getTickets(${userID}) triggered`);
+    startLoader();
     let data = {
         id: userID
     };
@@ -29,6 +30,7 @@ const getTickets = async (userID) => {
     };
     const response = await fetch("/api.getTickets", options);
     let serverResponse = await response.json();
+    stopLoader();
     if (serverResponse.status != "OK") {
         showAlert(serverResponse.status);
         return;
@@ -774,62 +776,20 @@ const displayEditPersonalData = () => {
     }
 }
 
-const saveEditedPersonalData = async () => {
-    console.log("=> fn saveEditedPersonalData triggered");
-    if (inpPDFirstName.value === currentUser.firstName.at(-1)[2] && inpPDLastName.value === currentUser.lastName.at(-1)[2] && inpPDEmail.value === currentUser.email.at(-1)[2] && inpPDOldPassword.value === "") {
-        showAlert("No changes made!");
-        modalEditPersonalData.style.display = "none";
-        return;
-    }
-    let data = {
-        id: currentUser.id
-    };
-    if (inpPDFirstName.value != currentUser.firstName.at(-1)[2]) { data.firstName = inpPDFirstName.value };
-    if (inpPDLastName.value != currentUser.lastName.at(-1)[2]) { data.lastName = inpPDLastName.value };
-    if (inpPDEmail.value != currentUser.email.at(-1)[2]) { data.email = inpPDEmail.value };
-    if (inpPDOldPassword.value != "") {
-        if (inpPDNewPassword.value.length < 8) {
-            inpPDNewPassword.value = "";
-            showAlert("password must have a minimum length of 8 characters");
-            return;
-        };
-        if (inpPDNewPassword.value != inpPDConfirmPassword.value) {
-            inpPDNewPassword.value = "";
-            inpPDConfirmPassword.value = "";
-            showAlert("passwords do not match");
-            return;
-        }
-        data.oldPassword = inpPDOldPassword.value;
-        data.newPassword = inpPDNewPassword.value;
-    }
-    const options = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-    };
-    const response = await fetch("/api.editPersonalData", options);
-    const serverResponse = await response.json();
-    if (serverResponse.status != "OK") {
-        showAlert(serverResponse.status);
-        return;
-    }
-    if (serverResponse.alert) { showAlert(serverResponse.alert) };
-    currentUser = serverResponse.data;
-    inpPDOldPassword.value = "";
-    inpPDNewPassword.value = "";
-    inpPDConfirmPassword.value = "";
-    modalEditPersonalData.style.display = "none";
-    modalSettings.style.display = "none";
-}
-
 const closeModal = (target) => {
     target.style.display = "none";
 }
 
 const moveTop = () => {
     window.scroll(0, 0);
+}
+
+const startLoader = () => {
+    loader.style.display = "block";
+}
+
+const stopLoader = () => {
+    loader.style.display = "none";
 }
 
 const toggleScrollToTopButton = () => {
