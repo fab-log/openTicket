@@ -11,7 +11,7 @@
     <meta property="og:type" content="app">
     <meta property="og:title" content="openTicket - way more than just a todo app">
     <meta property="og:description" content="openTicket helps you organize complex tasks or projects offering an innovative design as well as numerous filtering and sorting options">
-    <meta property="og:image" content="https://www.app.fablog.eu/openTicket/public/pix/screenshotApp.webp">
+    <meta property="og:image" content="https://www.app.fablog.eu/openTicket/public/pix/screenshotApp.png">
 </head>
 
 <body>
@@ -250,7 +250,7 @@
                     <figcaption>done</figcaption>
                 </figure>
                 <figure id="mdBtnEdit" class="mdBtn">
-                    <img src="pix/pencil.webp" alt="edit" title="edit ticket" />
+                    <img src="pix/pencil.webp" alt="edit" title="edit task" />
                     <figcaption>edit</figcaption>
                 </figure>
 
@@ -275,6 +275,9 @@
                 <hr class="hrHighlight" id="mdHr" />
 
                 <div class="mdDivDisplaySubtasks"></div>
+                <button type="button" onclick="showCompletedSubtasks()" class="btnSubtasks" id="btnShowCompletedSubtasks">show completed subtasks</button>
+                <button type="button" onclick="hideCompletedSubtasks()" class="btnSubtasks" id="btnHideCompletedSubtasks">hide completed subtasks</button>
+                <div class="mdDivDisplayCompletedSubtasks"></div>
             </div>
 
             <div id="mdDivEdit">

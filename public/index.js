@@ -568,6 +568,8 @@ const displayTicket = (ticketId) => {
     mdBtnEdit.style.display = "block";
     mdBtnAddEntry.style.display = "block";
     mdBtnDone.style.display = "block";
+    btnShowCompletedSubtasks.style.display = "none";
+    btnHideCompletedSubtasks.style.display = "none";
     mdDate.innerHTML = dateAndTimeToString(currentTicket.date.at(-1)[2]);
     mdTitle.innerHTML = currentTicket.title.at(-1)[2];
     mdTitle.style.color = `hsl(${currentTicket.bubbleHue.at(-1)[2]
@@ -591,7 +593,8 @@ const displayTicket = (ticketId) => {
     mdHr.style.borderBottom = `6px solid hsl(${currentTicket.bubbleHue.at(-1)[2]
         }, 20%, 50%)`;
     mdDivDisplaySubtasks.innerHTML = "";
-    if (currentTicket.subtasks.length > 0) {
+    mdDivDisplayCompletedSubtasks.innerHTML = "";
+    if (currentTicket.subtasks.length > 0) {       
         currentTicket.subtasks.sort((a, b) => a.subId - b.subId);
         currentTicket.subtasks.sort((a, b) => b.state.at(-1)[2] - a.state.at(-1)[2]);
         currentTicket.subtasks.forEach((e) => {
@@ -613,23 +616,51 @@ const displayTicket = (ticketId) => {
                         <figcaption>done</figcaption>
                     </figure>
                     <figure class="mdBtn" onclick="editSubtask(${e.subId})">
-                        <img src="pix/pencil.webp" alt="edit" class="subtaskMdBtn" title="edit entry" style="width: 36px;">
+                        <img src="pix/pencil.webp" alt="edit" class="subtaskMdBtn" title="edit subtask" style="width: 36px;">
                         <figcaption>edit</figcaption>
                     </figure>
+                    <p class="dimmedFont small">subtask n° ${e.subId + 1}</p>
+                    ${dateString}
+                    <p style="${color} ${textDecoration}"><b>${e.note.at(-1)[2]}</b></p>
+                    <hr>
                     `);
-            }
-            mdDivDisplaySubtasks.insertAdjacentHTML(
+            } else if (e.state.at(-1)[2] === -1) {
+                mdDivDisplayCompletedSubtasks.insertAdjacentHTML(
                 "beforeend",
                 `
-                <p class="dimmedFont small">subtask ${e.subId + 1}</p>
+                <figure class="mdBtn" onclick="restoreSubtask(${e.subId})">
+                    <img src="pix/restore.webp" alt="restore" class="subtaskMdBtn" title="restore subtask" style="width: 36px;">
+                    <figcaption>restore</figcaption>
+                </figure>
+                <p class="dimmedFont small">subtask n° ${e.subId + 1}</p>
                 ${dateString}
                 <p style="${color} ${textDecoration}"><b>${e.note.at(-1)[2]}</b></p>
                 <hr>
                 `
             );
+            }            
+        if (mdDivDisplayCompletedSubtasks.innerHTML != "") {
+            btnShowCompletedSubtasks.style.display = "block";
+        } 
         });
     }
 };
+
+const showCompletedSubtasks = () => {
+    mdDivDisplayCompletedSubtasks.style.display = "block";
+    mdBtnAddEntry.style.display = "none";
+    btnShowCompletedSubtasks.style.display = "none";
+    btnHideCompletedSubtasks.style.display = "block";
+    mdDivDisplayCompletedSubtasks.scrollIntoView();
+}
+
+const hideCompletedSubtasks = () => {
+    mdDivDisplayCompletedSubtasks.style.display = "none";
+    mdBtnAddEntry.style.display = "block";
+    btnShowCompletedSubtasks.style.display = "block";
+    btnHideCompletedSubtasks.style.display = "none";
+    window.scroll(0, 0);
+}
 
 const displayNewTicket = () => {
     console.log("=> fn displayNewTicket triggered");

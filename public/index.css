@@ -618,6 +618,18 @@ textarea {
     box-shadow: 0 0 12px var(--shadow);
 }
 
+.btnSubtasks {
+    display: none;
+    margin: auto;
+    background-color: var(--background-color3);
+    color: var(--color3);
+    font-size: 0.85rem;
+}
+
+.mdDivDisplayCompletedSubtasks {
+    display: none;
+}
+
 .modalTicket td {
     padding: 3px 6px 3px 0px;
 }

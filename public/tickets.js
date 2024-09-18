@@ -87,6 +87,7 @@ const createAccount = async (event) => {
     console.log({ status });
     if (serverResponse.data === undefined) {
         stopLoader();
+        showHome();
         showAlert(status);
         return;
     } else {
@@ -164,6 +165,7 @@ const login = async (event) => {
         inpLoginEmail.value = "";
         inpLoginPassword.value = "";
         showAlert(status);
+        showHome();
         return;
     } else {
         currentUser = serverResponse.data;
@@ -221,6 +223,7 @@ const quickLogin = async (id) => {
     stopLoader();
     if (serverResponse.data === undefined) {
         showAlert(status);
+        showHome();
         return;
     } else {
         currentUser = serverResponse.data;
@@ -568,6 +571,17 @@ const saveEditedSubtask = async () => {
     await updateTicket();
     modalEditSubticket.style.display = "none";
     frmEditSubtask.reset();
+    displayTicket(currentTicket.id);
+};
+
+const restoreSubtask = async (subId) => {
+    console.log("=> fn restoreSubtask triggered");
+    let index = currentTicket.subtasks.findIndex((e) => e.subId === subId);
+    let subtaskState = [Date.now(), currentUser.id, 0];
+    currentTicket.subtasks[index].state.push(subtaskState);
+    await updateTicket();
+    mdDivDisplayCompletedSubtasks.style.display = "none";
+    mdBtnAddEntry.style.display = "block";
     displayTicket(currentTicket.id);
 };
 
