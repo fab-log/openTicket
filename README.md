@@ -15,7 +15,7 @@ Note that the application is in beta stage, bugs or errors should be expected.
 
 ## Installation (local)
 
-Prequisites: node.js needs to be installed on your device.
+Prerequisites: node.js needs to be installed on your device.
 
 1. Copy or clone this repository to your machine.
 2. Decompress, if necessary.
