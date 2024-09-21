@@ -208,7 +208,8 @@ In case a property changes an additional array `[timestamp, editor, value]` is p
 ```
 {
         firstName: [
-                [1725820680651, user_1725820680651_Dj4N4PRfXX, "John"], [1725820689876, user_1725820680651_Dj4N4PRfXX, "Johnny"]
+                [1725820680651, user_1725820680651_Dj4N4PRfXX, "John"],
+                [1725820689876, user_1725820680651_Dj4N4PRfXX, "Johnny"]
         ]
 }
 ```
