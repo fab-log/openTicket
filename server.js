@@ -48,7 +48,6 @@ app.post("/api.createAccount", (request, response) => {
         let emails = [];
         usersArray.forEach(e => {
             emails.push(e.email.at(-1)[2]);
-            console.log("found email: " + e.email.at(-1)[2]);
         });
         if (emails.find((element) => element === data.email.at(-1)[2])) {
             response.json({ status: "Email already exists." });
@@ -272,12 +271,8 @@ app.post("/api.updateTicket", (request, response) => {
             return;
         }
         let ticketsArray = JSON.parse(tickets);
-        // console.log("user id: " + data.userId);
-        // console.log("ticket id: " + data.ticketId);
         let index = ticketsArray.findIndex((e) => e.id === data.ticketId);
-        console.log({ index });
         ticketsArray.splice(index, 1, data.ticket);
-        // ticketsArray.push(data);
         let ticketsString = JSON.stringify(ticketsArray);
         fs.writeFile(fileName, ticketsString, (err) => {
             if (err) {
