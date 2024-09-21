@@ -38,7 +38,7 @@ ___
 ### api.createAccount
 
 POST
-```
+```Javascript
 data = {
         id,
         firstName,
@@ -56,7 +56,7 @@ ___
 ### api.login
 
 POST
-```
+```Javascript
 data = {
         email,
         password
@@ -73,7 +73,7 @@ ___
 Applies if a user has checked the checkbox for *remember me on this device* and if the ID is stored in the browser's localStorage.
 
 POST
-```
+```Javascript
 data = {
         id
     }
@@ -87,7 +87,7 @@ ___
 ### api.editPersonalData
 
 POST
-```
+```Javascript
 data = {
         id
     }
@@ -101,7 +101,7 @@ ___
 ### api.deleteAccount
 
 POST
-```
+```Javascript
 data = {
         id
     }
@@ -115,7 +115,7 @@ ___
 ### api.getTickets
 
 POST
-```
+```Javascript
 data = {
         id
     }
@@ -131,7 +131,7 @@ ___
 Used for creating a new task.
 
 POST
-```
+```Javascript
 data = {
         id,
         ticket
@@ -148,7 +148,7 @@ ___
 Used to aplly changes to an existing task.
 
 POST
-```
+```Javascript
 data = {
         id,
         ticket
@@ -165,7 +165,7 @@ ___
 Used to permanently remove tasks that have been marked as completed.
 
 POST
-```
+```Javascript
 data = {
         id
     }
@@ -186,7 +186,7 @@ To read and write data from/to the collections the (asynchronous) node.js **fs m
 
 Every single data set (except ids) contains all historic information. To achive this and to be able to entirely rebuild a former state, each data set has a defined structure.
 
-```
+```Javascript
 {
         property: [
                 [timestamp, editor, value]
@@ -196,7 +196,7 @@ Every single data set (except ids) contains all historic information. To achive 
 
 Example
 
-```
+```Javascript
 {
         firstName: [
                 [1725820680651, user_1725820680651_Dj4N4PRfXX, "John"]
@@ -205,7 +205,7 @@ Example
 ```
 
 In case a property changes an additional array `[timestamp, editor, value]` is pushed to the property array conserving all former data as well as the time and the author of the modification. The current value is always to be found in the last array. For example
-```
+```Javascript
 {
         firstName: [
                 [1725820680651, user_1725820680651_Dj4N4PRfXX, "John"],
