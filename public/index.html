@@ -33,7 +33,7 @@
         <div class="modalIndex modal">
             <img src="pix/logo_transp_bg.webp" alt="open ticket logo" class="otLogo"
                 style="width: 200px; margin-left: calc(50% - 100px);" />
-            
+            <hr>
             <div style="max-width: 300px; margin: auto; padding: 15px 0 20px 0;"> <!-- border-radius: var(--border-radius); border: solid 2px hsl(180, 20%, 50%); background-color: var(--background-color2);  -->
                 <table style="margin: auto;">
                     <tr>
@@ -101,8 +101,7 @@
                 each task
             </p>
             <img src="pix/coloredBubbles.webp" alt="colored bubbles"
-                style="width: 250px; margin-left: calc(50% - 125px); animation: float 6s ease-in-out infinite;" />
-            <hr>
+                style="width: 200px; margin-left: calc(50% - 100px); animation: float 6s ease-in-out infinite;" />
             <h4>Dark or light</h4>
             Switch to a light mode if that is your favourite.
             <img src="pix/screenshotTicketLight.png" id="imgDarkLight" alt="screenshot" width="100%" />
@@ -113,6 +112,31 @@
             <p>A responsive design provides a maximum of functionality on any sceen size. Yet, on large sceens you get
                 the full set of sorting and filtering options.</p>
             <hr>
+            <h3>Beta</h3>
+            <p>This software is in beta stage. There may be bugs or errors. If you encounter an error, feel free to report it on <a href="https://github.com/fab-log/openTicket/issues">github</a> or <a href="https://t.me/fablog_openTicket">telegram</a>. Try to include as much information as possible, also mentioning the steps you executed before the error occured.</p>
+            
+            <hr>
+            
+            <h3>Imprint</h3>
+            <p>Responsible person for this site:<br>
+            Fabian Ruin</p>    
+            <p>contact:<br>
+            fruin[æ]vivaldi.net</p>    
+            
+            <hr>
+            
+            <h3>Privacy<h3>    
+            <h4>Very simple.</h4>
+            <ul>
+                <li>No advertising.</li>
+                <li>No trackers.</li>
+                <li>No preconnect. <small>(download of third party content)</small></li>
+            </ul>    
+            <p>Data you provide will be stored in a database on the server. The connection to the server is secured using the HTTPS protocol. In its current beta state, the provided data is not encrypted on the server. Therefore, anyone with access to the server can read your data and your tasks (encryption will be available in the near future). No data is stored in another location, nor will any data be transferred to other parties.<br>
+            To delete your data, you can use the corresponding built-in feature, which can be found in the settings menu of this application.</p>
+
+            <hr class="hrHighLight">
+
         </div>
 
         <div class="modalWelcome modal">
@@ -133,6 +157,7 @@
                 <hr>
                 <h3>In app navigation</h3>
                 <p>To navigate within the app, click or tap the menu buttons only. Don't use the browser's "go back" function or any gestures to move back and forth, as they will make you leave the app.</p>
+                <p>Reloading the page triggers a logout unless you checked the 'remember me' checkbox.</p>
                 <hr>
                 <h3>Beta</h3>
                 <p>This software is in beta stage. There may be bugs or errors. If you encounter an error, feel free to report it on <a href="https://github.com/fab-log/openTicket/issues">github</a> or <a href="https://t.me/fablog_openTicket">telegram</a>. Try to include as much information as possible, also mentioning the steps you executed before the error occured.</p>
@@ -143,7 +168,7 @@
                 <p>Responsible person for this site:<br>
                 Fabian Ruin</p>    
                 <p>contact:<br>
-                fruin[at]vivaldi.net</p>    
+                fruin[æ]vivaldi.net</p>    
                 
                 <hr>
                 
@@ -496,6 +521,7 @@
 
         <div class="modalConfirmDone modal">
             <img src="pix/warning.webp" alt="warning" class="warning" /><br />
+            <hr class="hrHighLight">
             <p>
                 Marking a task as completed will remove it from
                 the list.<br>
@@ -528,8 +554,9 @@
             </figure>
         </div>
 
-        <div class="modalSubtaskConfirmDone modal">
+        <!-- <div class="modalSubtaskConfirmDone modal">
             <img src="pix/warning.webp" alt="warning" class="warning" /><br />
+            <hr class="hrHighLight">
             <p>
                 This will mark the subtask as completed.
             </p>
@@ -541,7 +568,7 @@
                 <img src="pix/check.webp" title="mark as done" />
                 <figcaption>done</figcaption>
             </figure>
-        </div>
+        </div> -->
 
         <div class="modalRestore modal">
             <h2>Restore tasks</h2>
@@ -551,6 +578,7 @@
 
         <div class="modalWarningDeleteAccount modal">
             <img src="pix/warning.webp" alt="warning" class="warning" /><br />
+            <hr>
             <p>
                 This will entirely and permanently delete your account including all your tasks.<br>
                 In case you want to proceed please enter the password for<br>

@@ -96,20 +96,7 @@ const createAccount = async (event) => {
         if (inpCreateAccountRememberMe.checked) {
             config.id = currentUser.id;
             config.status = "logged in";
-            if (localStorage.getItem("openTicketConfig") === null) {
-                localStorage.setItem("openTicketConfig", JSON.stringify(config));
-                console.log({ config });
-            } else {
-                tempConfig = JSON.parse(localStorage.getItem("openTicketConfig"));
-                if (tempConfig.id === currentUser.id) {
-                    tempConfig.status = "logged in";
-                    localStorage.setItem("openTicketConfig", JSON.stringify(tempConfig));
-                    console.log({ config });
-                } else {
-                    localStorage.setItem("openTicketConfig", JSON.stringify(config));
-                    console.log({ config });
-                }
-            }
+            localStorage.setItem("openTicketConfig", JSON.stringify(config));
         }
         frmCreateAccount.reset();
         inpSafetyCode1.value = "";
@@ -173,34 +160,24 @@ const login = async (event) => {
         if (inpLoginRememberMe.checked) {
             config.id = currentUser.id;
             config.status = "logged in";
-            if (localStorage.getItem("openTicketConfig") === null) {                    // if localStoage does not exist
-                localStorage.setItem("openTicketConfig", JSON.stringify(config));
+            if (config.id === currentUser.id) {
+                console.log("login: localStoage exists and id matches");
                 console.log({ config });
             } else {
-                tempConfig = JSON.parse(localStorage.getItem("openTicketConfig"));
-                if (tempConfig.id === currentUser.id) {                                 // if localStorage exists and id matches
-                    config = tempConfig;
-                    config.status = "logged in";
-                    localStorage.setItem("openTicketConfig", JSON.stringify(config));
-                    console.log({ config });
-                    tempConfig.listType === "table" ? config.listType = "table" : config.listType = "bubbles";
-                    tempConfig.mode === "light" ? toggleMode("light") : toggleMode("dark");
-                } else {                                                                // if localStorage exists but id does not match
-                    config.id = currentUser.id;
-                    config.status = "logged in";
-                    config.mode = "dark";
-                    config.listType = "bubbles";
-                    localStorage.setItem("openTicketConfig", JSON.stringify(config));
-                    console.log({ config });
-                }
+                console.log("login: localStorage exists but ids do not match");
+                console.log({ config });
+                config.mode = "dark";
+                config.listType = "bubbles";
             }
+        }
+        localStorage.setItem("openTicketConfig", JSON.stringify(config));
         }
         frmLogin.reset();
         hideAllModals();
         header.style.display = "block";
         loggedInInfo.innerHTML = currentUser.email.at(-1)[2];
+        config.mode === "light" && toggleMode("light")
         await getTickets(currentUser.id);
-    }
 }
 
 const quickLogin = async (id) => {
@@ -231,6 +208,7 @@ const quickLogin = async (id) => {
         hideAllModals();
         header.style.display = "block";
         loggedInInfo.innerHTML = currentUser.email.at(-1)[2];
+        config.mode === "light" && toggleMode("light")
         await getTickets(currentUser.id);
     }
 }
@@ -249,20 +227,8 @@ const dismissLogout = () => {
 
 const logout = () => {
     console.log("=> fn logout triggered");
-    if (localStorage.getItem("openTicketConfig") === null) {
-        console.log("Log out. No local storage file")
-    } else {
-        tempConfig = JSON.parse(localStorage.getItem("openTicketConfig"));
-        if (tempConfig.id === currentUser.id) {
-            config.status = "logged out";
-            localStorage.setItem("openTicketConfig", JSON.stringify(config));
-            console.log({ config });
-        } else {
-            config = {};
-            localStorage.setItem("openTicketConfig", JSON.stringify(config));
-            console.log({ config });
-        }
-    }
+    config.status = "logged out";
+    localStorage.setItem("openTicketConfig", JSON.stringify(config));
     currentUser = {};
     hideAllModals();
     header.style.display = "none";
@@ -355,6 +321,7 @@ const deleteAccount = async () => {
     currentTicket = {};
     config = {};
     localStorage.setItem("openTicketConfig", JSON.stringify(config));
+    inpDeleteAccountPassword.value = "";
     btnSearch.style.display = "none";
     btnStartBubbles.style.display = "none";
     btnStartTable.style.display = "none";
@@ -583,22 +550,24 @@ const restoreSubtask = async (subId) => {
     mdDivDisplayCompletedSubtasks.style.display = "none";
     mdBtnAddEntry.style.display = "block";
     displayTicket(currentTicket.id);
+    setTimeout(() => {
+        window.scroll(0, 0);
+    }, 150);
 };
 
-const markDoneSubtask = (subId) => {
+const markDoneSubtask = async (subId) => {
     console.log("=> fn markDoneSubtask triggered");
-    currentSubId = subId;
-    modalSubtaskConfirmDone.style.display = "block";
-    console.log({ currentSubId });
-}
-
-const subtaskConfirmDone = async () => {
-    console.log("=> fn subtaskConfirmDone triggered");
-    let index = currentTicket.subtasks.findIndex((e) => e.subId === currentSubId);
+    let index = currentTicket.subtasks.findIndex((e) => e.subId === subId);
     let subtaskState = [Date.now(), currentUser.id, -1];
     currentTicket.subtasks[index].state.push(subtaskState);
+    console.log("currentTicket.title: " + currentTicket.title.at(-1)[2]);
+    console.log("subtask.title: " + currentTicket.subtasks[subId].note.at(-1)[2]);
     await updateTicket();
+    showAlert("subtask marked as completed");
     displayTicket(currentTicket.id);
+    setTimeout(() => {
+        window.scroll(0, 0);
+    }, 150);
 }
 
 const restoreTicket = async (id) => {

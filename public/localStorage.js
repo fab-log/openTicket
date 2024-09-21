@@ -1,29 +1,23 @@
 const checkLocalStorage = async () => {
     console.log("=> fn checkLocalStorage triggered");
-    if (localStorage.getItem("openTicketConfig") === null || localStorage.getItem("openTicketConfig") === undefined || localStorage.getItem("openTicketConfig") === "{}") {     // if openTicketConfig does not exist
-        // showHome();
+    if (!config.status) {
+        console.log("cLS: config.status is undefined");
         modalIndex.style.display = "block";
-        config = {};
-        config.listType = "bubbles";
-        config.mode = "dark";
+        header.style.display = "none";
         localStorage.setItem("openTicketConfig", JSON.stringify(config));
         return;
-    } else {                                        // if openTicketConfig exists
-        tempConfig = JSON.parse(localStorage.getItem("openTicketConfig"));
-        console.log({ tempConfig });
-        if (tempConfig.status != "logged in") {     // if user is not logged in
-            modalIndex.style.display = "block";
-            return;
-        }
-        if (tempConfig.status === "logged in") {    // if user is logged in
-            // await getTickets(tempConfig.id);
-            await quickLogin(tempConfig.id);
-            tempConfig.listType === "table" ? config.listType = "table" : config.listType = "bubbles";
-            tempConfig.mode === "light" ? toggleMode("light") : toggleMode("dark");
-            config = tempConfig;
-            console.log({ config });
-        }
-    }    
+    }
+    if (config.status === "logged out") {
+        console.log("config.status: " + config.status);
+        showHome();
+        return;
+    }
+    if (config.status === "logged in") {
+        console.log("config.status: " + config.status);
+        console.log("cLS: openTicketConfig exists and user is logged in");
+        await quickLogin(config.id);
+    }
+    config.mode === "light" && toggleMode("light");
 }
 
 hideAllModals();

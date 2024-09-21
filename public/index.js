@@ -6,13 +6,12 @@ searchSortingOrFiltersActive = false;
 let version = "1.0.1 (beta)";
 versionInfo.innerHTML = version;
 
-if (JSON.parse(localStorage.getItem("openTicketConfig"))) {
+let config = {
+    mode: "dark",
+    listType: "bubbles"
+};
+if (localStorage.getItem("openTicketConfig")) {
     config = JSON.parse(localStorage.getItem("openTicketConfig"));
-} else {
-    config = {
-        mode: "dark",
-        listType: "bubbles"
-    };
 }
 
 const getTickets = async (userID) => {
@@ -121,15 +120,6 @@ const showWelcomeScreen = () => {
         btnStartTable.style.display = "block";
     }
 }
-
-/* const showModalWelcome = () => {
-    console.log("=> fn showModalWelcome triggered");
-    if (window.innerWidth < 1200 && header.style.display === "block") {
-        modalWelcome.style.marginTop = "84px";
-    }
-    modalWelcome.style.marginTop = "0px";
-    modalWelcome.style.display = "block";
-} */
 
 const toggleMode = (value) => {
     console.log("=> fn toggleMode triggered");
@@ -265,7 +255,7 @@ const renderBubbles = (listArray) => {
     modalBubbles.style.display = "block";
     const offsetWidth = modalBubbles.offsetWidth;
 
-    rank(listArray);
+    // rank(listArray);
 
     modalBubbles.innerHTML = "";
     for (i = 0; i < listArray.length; i++) {
@@ -400,12 +390,14 @@ const renderList = (listArray) => {
 const showHome = () => {
     console.log("=> fn showHome triggered");
     hideAllModals();
-    if (config.status === null || config.status === undefined || Object.keys(currentUser).length === 0) {
-        modalIndex.style.display = "block";        
-        document.body.classList.remove("light-mode");
-    } else {
+    if (currentUser.id) {
         modalWelcome.style.display = "block";
+        header.style.display = "block";
         welcomeName.innerHTML = currentUser.firstName.at(-1)[2];
+    } else {
+        modalIndex.style.display = "block";
+        header.style.display = "none";
+        document.body.classList.remove("light-mode");
     }
     setTimeout(() => {
         window.scroll(0, 0);
@@ -418,6 +410,7 @@ const displayCreateAccount = () => {
     console.log("=> fn displayCreateAccount triggered");
     hideAllModals();
     modalCreateAccount.style.display = "block";
+    inpCreateAccountFirstName.focus();
     frmCreateAccount.addEventListener("input", () => {
         if (emailRegex.test(inpCreateAccountEmail.value) === true && inpCreateAccountPassword.value.length >= 8 && inpCreateAccountPassword.value === inpCreateAccountConfirmPassword.value) {
             safetyCode = randomNumbers(6);
@@ -517,6 +510,7 @@ const editSubtask = (subId) => {
     mdEditSubtaskEditor.innerHTML = currentTicket.subtasks[index].editor.at(-1)[2];
     mdTaEditSubtaskNote.value =
         currentTicket.subtasks[index].note.at(-1)[2];
+    mdTaEditSubtaskNote.focus();
 };
 
 const dismissEditSubtask = () => {
@@ -600,16 +594,11 @@ const displayTicket = (ticketId) => {
         currentTicket.subtasks.forEach((e) => {
             let color = `color: hsl(${currentTicket.bubbleHue.at(-1)[2]}, 20%, 50%)`;
             let textDecoration = "";
-            let dateString = `<p class="dimmedFont small">${dateAndTimeToString(e.date.at(-1)[2])}</p>`;
+            let dateString = `<p class="dimmedFont small">${dateAndTimeToString(e.note.at(-1)[0])}</p>`;
 
-            if (e.state.at(-1)[2] === -1) {
-                color = "color: hsl(0, 0%, 50%)";
-                textDecoration = `; text-decoration: line-through;`;
-                dateString = `<p class="dimmedFont small">completed: ${dateAndTimeToString(e.state.at(-1)[0])}</p>`;
-            }
             if (e.state.at(-1)[2] != -1) {
                 mdDivDisplaySubtasks.insertAdjacentHTML(
-                    "beforeend",
+                    "afterbegin",
                     `
                     <figure class="mdBtn" onclick="markDoneSubtask(${e.subId})">
                         <img src="pix/check.webp" alt="edit" class="subtaskMdBtn" title="mark subtask as done" style="width: 36px;">
@@ -625,8 +614,11 @@ const displayTicket = (ticketId) => {
                     <hr>
                     `);
             } else if (e.state.at(-1)[2] === -1) {
+                color = "color: hsl(0, 0%, 50%)";
+                textDecoration = `; text-decoration: line-through;`;
+                dateString = `<p class="dimmedFont small">completed: ${dateAndTimeToString(e.state.at(-1)[0])}</p>`;
                 mdDivDisplayCompletedSubtasks.insertAdjacentHTML(
-                "beforeend",
+                "afterbegin",
                 `
                 <figure class="mdBtn" onclick="restoreSubtask(${e.subId})">
                     <img src="pix/restore.webp" alt="restore" class="subtaskMdBtn" title="restore subtask" style="width: 36px;">
@@ -768,7 +760,7 @@ const displayRestorableTickets = () => {
 const renderTickets = () => {
     console.log("=> fn renderTickets triggered");
     let visibleTickets = [];
-    tickets.forEach((e) => {                      // formerly: sortedTickets
+    tickets.forEach((e) => {
         if (e.prio.at(-1)[2] >= 0) {
             visibleTickets.push(e);
         }
@@ -776,20 +768,21 @@ const renderTickets = () => {
     if (visibleTickets.length === 0) {
         hideAllModals();
         showHome();
-        // modalWelcome.style.display = "block";
         btnSearch.style.display = "none";
         btnStartBubbles.style.display = "none";
         btnStartTable.style.display = "none";
     } else {
         btnSearch.style.display = "block";
         btnResetSearch.style.display = "none";
-        rank(tickets);                            // formerly: sortedTickets
-        renderList(tickets);                      // formerly: sortedTickets
-        renderBubbles(tickets);                   // formerly: sortedTickets
+        rank(tickets);
+        renderList(tickets);
+        renderBubbles(tickets);
         if (config.listType === "bubbles") {
             displayBubbleList();
+            // btnStartBubbles.style.display = "none";
         } else if (config.listType === "table") {
             displayTicketList();
+            // btnStartTable.style.display = "none";
         }
     }
 };
