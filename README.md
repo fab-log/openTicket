@@ -11,9 +11,9 @@ To navigate within the app, use the in app buttons only as the browser's 'back b
 
 Note that the application is in beta stage, bugs or errors should be expected.
 
-## Documentation
+# Documentation
 
-#### Installation (local)
+## Installation (local)
 
 Prequisites: node.js needs to be installed on your device.
 
@@ -25,3 +25,153 @@ Prequisites: node.js needs to be installed on your device.
 6. Run `npm i` to install dependencies (only *express* is required).
 7. Run `node server.js` to start the application. If you prefer a developer context you can run `nodemon start` instead. In that case an installation of *nodemon* is required.
 8. Open a browser window an type `localhost:8001/` to the address bar.
+
+___
+
+## API
+
+The API uses the *json* middleware. Most of the transmitted data is provided as an object including a status and a data key.
+Common expected errors are handled specifically, further errors are passed on from the server to the client and displayed in the console as well as to the user (timed pop up information).
+
+___
+
+### api.createAccount
+
+POST
+```
+data = {
+        id,
+        firstName,
+        lastName,
+        email,
+        password
+    }
+```
+
+Response:\
+status, userdata (except password) of the newly created user
+
+___
+
+### api.login
+
+POST
+```
+data = {
+        email,
+        password
+    }
+```
+
+Response:\
+status, userdata (except password) with matching email
+
+___
+
+### api.quickLogin
+
+Applies if a user has checked the checkbox for *remember me on this device* and if the ID is stored in the browser's localStorage.
+
+POST
+```
+data = {
+        id
+    }
+```
+
+Response:\
+status, userdata (except password) with matching id
+
+___
+
+### api.editPersonalData
+
+POST
+```
+data = {
+        id
+    }
+```
+
+Response:\
+status, updated userdata (except password) with matching id
+
+___
+
+### api.deleteAccount
+
+POST
+```
+data = {
+        id
+    }
+```
+
+Response:\
+status
+
+___
+
+### api.getTickets
+
+POST
+```
+data = {
+        id
+    }
+```
+
+Response:\
+status, array of tickets (=tasks) associated with the sent user id
+
+___
+
+### api.newTicket
+
+Used for creating a new task.
+
+POST
+```
+data = {
+        id,
+        ticket
+    }
+```
+
+Response:\
+status, updated array of tickets (=tasks) associated with the sent user id, including the new ticket
+
+___
+
+### api.updateTicket
+
+Used to aplly changes to an existing task.
+
+POST
+```
+data = {
+        id,
+        ticket
+    }
+```
+
+Response:\
+status, updated array of tickets (=tasks) associated with the sent user id, including the modified ticket
+
+___
+
+### api.deleteOldTickets
+
+Used to permanently remove tasks that have been marked as completed.
+
+POST
+```
+data = {
+        id
+    }
+```
+
+Response:\
+status, updated array of tickets (=tasks) associated with the sent user id, cleared of any tasks with a current status of *-1* (='done')
+
+___
