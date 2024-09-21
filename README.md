@@ -175,3 +175,33 @@ Response:\
 status, updated array of tickets (=tasks) associated with the sent user id, cleared of any tasks with a current status of *-1* (='done')
 
 ___
+
+## Database
+
+The database consits of a data collection for the user data (user.json) and one collection for each user containing the associated tasks. The naming for these files follows this scheme:\
+`tickets_user_` `a javascript timestamp` `_` `ten random characters` `.json`\
+Example: `tickets_user_1725820680651_Dj4N4PRfXX.json`
+
+To read and write data from/to the collections the (asynchronous) node.js **fs module** is used.
+
+Every single data set (except ids) contains all historic information. To achive this and to be able to entirely rebuild a former state, each data set has a defined structure.
+
+```
+{
+        property: [
+                [timestamp, editor, value]
+        ]
+}
+```
+
+Example
+
+```
+{
+        firstName: [
+                [Date.now(), currentUser.id, "John"]
+        ]
+}
+```
+
+In case a property changes an additional array `[timestamp, editor, value]` is pushed to the property array conserving all former data as well as the time and the author of the modification.
