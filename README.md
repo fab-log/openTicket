@@ -15,7 +15,7 @@ Note that the application is in beta stage, bugs or errors should be expected.
 
 ## Installation (local)
 
-Prerequisites: node.js needs to be installed on your device.
+Prerequisites: **node.js** needs to be installed on your device.
 
 1. Copy or clone this repository to your machine.
 2. Decompress, if necessary.
@@ -30,7 +30,7 @@ ___
 
 ## API
 
-The API uses the *json* middleware. Most of the transmitted data is provided as an object including a status and a data key.
+The API uses the *json* middleware. Most of the transmitted data is provided as an object including a *status* and a *data* key.
 Common expected errors are handled specifically, further errors are passed on from the server to the client and displayed in the console as well as to the user (timed pop up information).
 
 ___
@@ -199,9 +199,18 @@ Example
 ```
 {
         firstName: [
-                [Date.now(), currentUser.id, "John"]
+                [1725820680651, user_1725820680651_Dj4N4PRfXX, "John"]
         ]
 }
 ```
 
-In case a property changes an additional array `[timestamp, editor, value]` is pushed to the property array conserving all former data as well as the time and the author of the modification.
+In case a property changes an additional array `[timestamp, editor, value]` is pushed to the property array conserving all former data as well as the time and the author of the modification. The current value is always to be found in the last array. For example
+```
+{
+        firstName: [
+                [1725820680651, user_1725820680651_Dj4N4PRfXX, "John"], [1725820689876, user_1725820680651_Dj4N4PRfXX, "Johnny"]
+        ]
+}
+```
+will print *'Johnny'* as first name.
+
