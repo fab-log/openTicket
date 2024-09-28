@@ -178,6 +178,40 @@ const dateAndTimeToString = (jsTimestamp) => {
     }
 };
 
+ const urlRegex = /^(?:(?:https?|ftp):\/\/)?(?:www\.)?[a-z0-9-]+(?:\.[a-z0-9-]+)+[^\s]*$/i;
+// const urlRegex = /^(?:(?:https?|ftp):\/\/)?(?:www\.)?[a-z0-9-]+(?:\.[a-z0-9-]+)+[^\s.]*[^\s]$|^(?:(?:https?|ftp):\/\/)?(?:www\.)?[a-z0-9-]+(?:\.[a-z0-9-]+)+[^\s]*$/i;
+// const urlRegex = /^(?:(?:https?|ftp):\/\/)?(?:www\.)?[a-z0-9-]+(?:\.[a-z0-9-]+)+[^.\s]*[^\s]$/i;
+// const urlRegex = /^(?:(?:https?|ftp):\/\/)?(?:www\.)?[a-z0-9-]+(?:\.[a-z0-9-]+)+[^.\s]*[^.\s]$/;
+// const urlRegex = /^(?:(?:https?|ftp):\/\/)?(?:www\.)?[a-z0-9-]+(?:\.[a-z0-9-]+)+\.([a-z]{1,3})[^.\s]*[^.\s]$/i;
+// const urlRegex = /^(?:(?:https?|ftp):\/\/)?(?:www\.)?[a-z0-9-]+(?:\.[a-z0-9-]+)+\.([a-z]+)[^\s]*[^.\s]$/i;
+
+const phoneRegex = /^(?:\+?\d{1,3})?\d{5,}$/;
+
+const checkForLinks = (string) => {
+    let wordsArray = string.split(" ");
+    let output = "";
+    wordsArray.forEach(e => {
+        if (emailRegex.test(e) === true) {
+            output += `<a href="mailto:${e}">${e}</a> `;
+            return;
+        }
+        if (urlRegex.test(e) === true) {
+            let link = e;
+            if (e.substring(0, 4) != "http") {
+                link = "https://" + e;
+            }
+            output += `<a href="${link}" target="_blank" rel="noopener noreferrer">${e}</a> `;
+            return;
+        }
+        if (phoneRegex.test(e) === true) {
+            output += `<a href="tel:${e}">${e}</a> `;
+            return;
+        }
+        output += `${e} `;
+    });
+    return output;
+}
+
 const hideAllModals = () => {
     console.log("=> fn hideAllModals triggered");
     modals.forEach((element) => {
@@ -580,7 +614,7 @@ const displayTicket = (ticketId) => {
     if (currentTicket.description.at(-1)[2] === "") {
         mdPDescription.style.display = "none";
     } else {
-        mdSpanDescription.innerHTML = currentTicket.description.at(-1)[2];
+        mdSpanDescription.innerHTML = checkForLinks(currentTicket.description.at(-1)[2]);
         mdSpanDescription.style.color = `hsl(${currentTicket.bubbleHue.at(-1)[2]
             }, 20%, 50%)`;
     }
@@ -610,7 +644,7 @@ const displayTicket = (ticketId) => {
                     </figure>
                     <p class="dimmedFont small">subtask n° ${e.subId + 1}</p>
                     ${dateString}
-                    <p style="${color} ${textDecoration}"><b>${e.note.at(-1)[2]}</b></p>
+                    <p style="${color} ${textDecoration}"><b>${checkForLinks(e.note.at(-1)[2])}</b></p>
                     <hr>
                     `);
             } else if (e.state.at(-1)[2] === -1) {
@@ -626,7 +660,7 @@ const displayTicket = (ticketId) => {
                 </figure>
                 <p class="dimmedFont small">subtask n° ${e.subId + 1}</p>
                 ${dateString}
-                <p style="${color} ${textDecoration}"><b>${e.note.at(-1)[2]}</b></p>
+                <p style="${color} ${textDecoration}"><b>${checkForLinks(e.note.at(-1)[2])}</b></p>
                 <hr>
                 `
             );
