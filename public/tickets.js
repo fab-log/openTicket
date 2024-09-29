@@ -586,7 +586,7 @@ const restoreTicket = async (id) => {
 const dismissDone = () => {
     console.log("=> fn dismissDone triggered");
     modalConfirmDone.style.display = "none";
-    modalSubtaskConfirmDone.style.display = "none";
+    // modalSubtaskConfirmDone.style.display = "none";
     modalWarningDeleteAccount.style.display = "none";
     modalConfirmDeleteOldTickets.style.display = "none";
 }
