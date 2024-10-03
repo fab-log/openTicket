@@ -843,14 +843,6 @@ const moveTop = () => {
     window.scroll(0, 0);
 }
 
-const startLoader = () => {
-    loader.style.display = "block";
-}
-
-const stopLoader = () => {
-    loader.style.display = "none";
-}
-
 const toggleScrollToTopButton = () => {
     if (document.body.scrollHeight > window.innerHeight) {
         btnMoveTop.style.display = 'block'; // Show button
