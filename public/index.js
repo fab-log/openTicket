@@ -186,6 +186,7 @@ const dateAndTimeToString = (jsTimestamp) => {
 // const urlRegex = /^(?:(?:https?|ftp):\/\/)?(?:www\.)?[a-z0-9-]+(?:\.[a-z0-9-]+)+\.([a-z]+)[^\s]*[^.\s]$/i;
 
 const phoneRegex = /^(?:\+?\d{1,3})?\d{5,}$/;
+const twoDotsRegex = /\..*\..*/;
 
 const checkForLinks = (string) => {
     let wordsArray = string.split(" ");
@@ -195,7 +196,7 @@ const checkForLinks = (string) => {
             output += `<a href="mailto:${e}">${e}</a> `;
             return;
         }
-        if (urlRegex.test(e) === true) {
+        if ((twoDotsRegex.test(e) === false && e.includes(".") && isNaN(e)) || (e.substring(0, 4) === "http")) {
             let link = e;
             if (e.substring(0, 4) != "http") {
                 link = "https://" + e;
