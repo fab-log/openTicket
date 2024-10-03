@@ -471,6 +471,11 @@ textarea {
     border-radius: 50%;
 }
 
+.modal,
+.header {
+    display: none;
+}
+
 .modalBubbles {
     /* margin-top: 120px; */
     display: grid;
