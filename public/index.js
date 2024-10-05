@@ -196,7 +196,7 @@ const checkForLinks = (string) => {
             output += `<a href="mailto:${e}">${e}</a> `;
             return;
         }
-        if ((twoDotsRegex.test(e) === false && e.includes(".") && isNaN(e) && !e.endsWith(".")) || (e.substring(0, 4) === "http")) {
+        if ((twoDotsRegex.test(e) === false && e.includes(".") && isNaN(e) && !e.endsWith(".")) || (e.substring(0, 4) === "http") || (e.substring(0, 4) === "www.") {
             let link = e;
             if (e.substring(0, 4) != "http") {
                 link = "https://" + e;
