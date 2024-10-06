@@ -29,7 +29,7 @@ const prepareSelFilter = (type) => {
             selFilter.insertAdjacentHTML(
                 "beforeend",
                 `
-							<option value="${dateToString(e)}">${dateToString(e)}</option>
+							<option value="${dateAndTimeToString(e)}">${dateAndTimeToString(e)}</option>
 					`
             );
         } else {
@@ -48,9 +48,10 @@ const prepareSelFilter = (type) => {
 // ######################
 
 const fnFilterByDate = () => {
+    console.log("=> fn fnFilterByDate triggered");
     let filterValue = selFilter.value;
     filteredTickets = sortedTickets.filter((element) => {
-        return dateToString(element.date.at(-1)[2]) === filterValue;
+        return dateAndTimeToString(element.date.at(-1)[2]) === filterValue;
     });
     modalFilter.style.display = "none";
     resetSortAndFilterButtons();
@@ -61,10 +62,12 @@ const fnFilterByDate = () => {
     btnUndoFilterByDate.style.background =
         "radial-gradient(circle at center, var(--accent-red) 0, var(--accent-red) 66%, transparent 67%)";
     selFilter.innerHTML = `<option value="" selected disabled>select filter value</option>`;
+    searchSortingOrFiltersActive = true;
     renderList(filteredTickets);
 };
 
 const fnFilterByTitle = () => {
+    console.log("=> fn fnFilterByTitle triggered");
     let filterValue = selFilter.value;
     filteredTickets = sortedTickets.filter((element) => {
         return element.title.at(-1)[2].toString() === filterValue;
@@ -78,10 +81,12 @@ const fnFilterByTitle = () => {
     btnUndoFilterByTitle.style.background =
         "radial-gradient(circle at center, var(--accent-red) 0, var(--accent-red) 66%, transparent 67%)";
     selFilter.innerHTML = `<option value="" selected disabled>select filter value</option>`;
+    searchSortingOrFiltersActive = true;
     renderList(filteredTickets);
 };
 
 const fnFilterByDescription = () => {
+    console.log("=> fn fnFilterByDescription triggered");
     let filterValue = selFilter.value;
     filteredTickets = sortedTickets.filter((element) => {
         return element.description.at(-1)[2].toString() === filterValue;
@@ -95,10 +100,12 @@ const fnFilterByDescription = () => {
     btnUndoFilterByDescription.style.background =
         "radial-gradient(circle at center, var(--accent-red) 0, var(--accent-red) 66%, transparent 67%)";
     selFilter.innerHTML = `<option value="" selected disabled>select filter value</option>`;
+    searchSortingOrFiltersActive = true;
     renderList(filteredTickets);
 };
 
 const fnFilterByDueDate = () => {
+    console.log("=> fn fnFilterByDueDate triggered");
     let filterValue = selFilter.value;
     filteredTickets = sortedTickets.filter((element) => {
         return element.dueDate.at(-1)[2] === filterValue;
@@ -112,10 +119,12 @@ const fnFilterByDueDate = () => {
     btnUndoFilterByDueDate.style.background =
         "radial-gradient(circle at center, var(--accent-red) 0, var(--accent-red) 66%, transparent 67%)";
     selFilter.innerHTML = `<option value="" selected disabled>select filter value</option>`;
+    searchSortingOrFiltersActive = true;
     renderList(filteredTickets);
 };
 
 const fnFilterByOwner = () => {
+    console.log("=> fn fnFilterByOwner triggered");
     let filterValue = selFilter.value;
     filteredTickets = sortedTickets.filter((element) => {
         return element.owner.at(-1)[2].toString() === filterValue;
@@ -129,10 +138,12 @@ const fnFilterByOwner = () => {
     btnUndoFilterByOwner.style.background =
         "radial-gradient(circle at center, var(--accent-red) 0, var(--accent-red) 66%, transparent 67%)";
     selFilter.innerHTML = `<option value="" selected disabled>select filter value</option>`;
+    searchSortingOrFiltersActive = true;
     renderList(filteredTickets);
 };
 
 const fnFilterByPriority = () => {
+    console.log("=> fn fnFilterByPriority triggered");
     let filterValue = selFilter.value;
     filteredTickets = sortedTickets.filter((element) => {
         return element.prio.at(-1)[2].toString() === filterValue;
@@ -146,5 +157,6 @@ const fnFilterByPriority = () => {
     btnUndoFilterByPriority.style.background =
         "radial-gradient(circle at center, var(--accent-red) 0, var(--accent-red) 66%, transparent 67%)";
     selFilter.innerHTML = `<option value="" selected disabled>select filter value</option>`;
+    searchSortingOrFiltersActive = true;
     renderList(filteredTickets);
 };
