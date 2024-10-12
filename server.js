@@ -105,7 +105,7 @@ app.post('/api.login', (request, response) => {
         } else if (parsedUserData[index].password.at(-1)[2] != data.password) {
             res.status = "password incorrect";
             response.json(res);
-        } else if (parsedUserData[index].email.at(-1)[2] === data.email && parsedUserData[index].password.at(-1)[2] === data.password) {
+        } else if (parsedUserData[index].email.at(-1)[2].toLowerCase() === data.email.toLowerCase() && parsedUserData[index].password.at(-1)[2] === data.password) {
             res.status = "OK";
             delete parsedUserData[index].password;
             res.data = parsedUserData[index];
