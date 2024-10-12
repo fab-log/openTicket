@@ -94,9 +94,9 @@ app.post('/api.login', (request, response) => {
         let parsedUserData = JSON.parse(users);
         let emails = [];
         parsedUserData.forEach(e => {
-            emails.push(e.email.at(-1)[2]);
+            emails.push(e.email.at(-1)[2].toLowerCase());
         });
-        let index = emails.indexOf(data.email);
+        let index = emails.indexOf(data.email.toLowerCase());
         // let index = parsedUserData.findIndex(e => e.email === data.email);
         let res = {};
         if (index === -1) {
