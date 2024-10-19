@@ -189,6 +189,7 @@ const phoneRegex = /^(?:\+?\d{1,3})?\d{5,}$/;
 const twoDotsRegex = /\..*\..*/;
 
 const checkForLinks = (string) => {
+    string = string.replace(/(?:\r\n|\r|\n)/g, " <br>");
     let wordsArray = string.split(" ");
     let output = "";
     wordsArray.forEach(e => {
@@ -210,6 +211,7 @@ const checkForLinks = (string) => {
         }
         output += `${e} `;
     });
+    output = output.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\*(.*?)\*/g, '<i>$1</i>')
     return output;
 }
 
