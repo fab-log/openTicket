@@ -617,6 +617,7 @@ const displayTicket = (ticketId) => {
     if (currentTicket.description.at(-1)[2] === "") {
         mdPDescription.style.display = "none";
     } else {
+        mdPDescription.style.display = "block";
         mdSpanDescription.innerHTML = checkForLinks(currentTicket.description.at(-1)[2]);
         mdSpanDescription.style.color = `hsl(${currentTicket.bubbleHue.at(-1)[2]
             }, 20%, 50%)`;
@@ -647,7 +648,7 @@ const displayTicket = (ticketId) => {
                     </figure>
                     <p class="dimmedFont small">subtask n° ${e.subId + 1}</p>
                     ${dateString}
-                    <p style="${color} ${textDecoration}"><b>${checkForLinks(e.note.at(-1)[2])}</b></p>
+                    <p style="${color} ${textDecoration}">${checkForLinks(e.note.at(-1)[2])}</p>
                     <hr>
                     `);
             } else if (e.state.at(-1)[2] === -1) {
@@ -663,7 +664,7 @@ const displayTicket = (ticketId) => {
                 </figure>
                 <p class="dimmedFont small">subtask n° ${e.subId + 1}</p>
                 ${dateString}
-                <p style="${color} ${textDecoration}"><b>${checkForLinks(e.note.at(-1)[2])}</b></p>
+                <p style="${color} ${textDecoration}">${checkForLinks(e.note.at(-1)[2])}</p>
                 <hr>
                 `
             );
