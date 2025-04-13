@@ -1,5 +1,8 @@
-# openTicket
+![app screenshot](https://github.com/fab-log/openTicket/blob/5fa10f0c770169fe12120c2c00348b4b5927312d/public/pix/logo_transp_bg.webp)
+
 ### Way more than just a todo app
+
+-----------
 
 ![app screenshot](https://github.com/fab-log/openTicket/blob/5fa10f0c770169fe12120c2c00348b4b5927312d/public/pix/screenshotApp.webp)
 
