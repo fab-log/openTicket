@@ -1,0 +1,22 @@
+{
+  "name": "openticket",
+  "version": "0.5.0",
+  "description": "web based to do application",
+  "main": "oTServer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "to",
+    "do",
+    "notes",
+    "checklists"
+  ],
+  "author": "Fabian Ruin",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "nodemailer": "^7.0.5"
+  }
+}
