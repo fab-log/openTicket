@@ -1,0 +1,1299 @@
+html {
+    scroll-behavior: smooth;
+    transition: all 0.25s ease-in-out;
+}
+
+:root {
+    --background-color: hsl(30, 2%, 8%);
+    /* 12 */
+    --background-color1: hsl(30, 2%, 12%);
+    /* 13 */
+    --background-color2: hsl(30, 2%, 15%);
+    /* 18 */
+    --background-color3: hsl(30, 2%, 24%);
+    /* 30 */
+    --color: hsl(30, 2%, 84%);
+    --color3: hsl(30, 2%, 67%);
+    --accent-turquois: hsl(180, 25%, 50%);
+    --accent-red: hsl(0, 50%, 50%);
+    --accent-yellow: hsl(30, 25%, 50%);
+    --grey: hsl(0, 0%, 50%);
+    --shadow: hsl(30, 2%, 10%);
+    --shadow-dark: hsl(30, 2%, 0%);
+    --button-filter: brightness(140%);
+    --button-filter-hover: brightness(180%);
+    --border-radius: 36px;
+    --border-radius-less: 24px;
+}
+
+.light-mode {
+    --background-color: hsl(30, 2%, 87%);
+    /* 70 */
+    --background-color1: hsl(30, 2%, 92%);
+    /* 80 */
+    --background-color2: hsl(30, 2%, 96%);
+    /* 85 */
+    --background-color3: hsl(30, 2%, 100%);
+    /* 94 */
+    --color: hsl(30, 2%, 20%);
+    --color3: hsl(30, 2%, 33%);
+    --accent-turquois: hsl(180, 75%, 25%);
+    --accent-red: hsl(0, 50%, 50%);
+    --accent-yellow: hsl(56, 50%, 50%);
+    --grey: hsl(0, 0%, 50%);
+    --shadow: hsl(30, 2%, 50%);
+    --shadow-dark: hsl(30, 2%, 10%);
+    --button-filter: brightness(67%);
+    --button-filter-hover: brightness(100%);
+}
+
+@font-face {
+    font-display: swap;
+    font-family: "Cantarell";
+    font-style: normal;
+    font-weight: 400;
+    src: url("assets/cantarell-v17-latin/cantarell-v17-latin-regular.woff2") format("woff2");
+}
+
+body {
+    /* background-image: url("assets/bgDark.webp"); */
+    /* background: repeating-radial-gradient(var(--background-color), var(--background-color1), var(--background-color) 120px); */
+    background-color: var(--background-color);
+    color: var(--color);
+    font-family: "Cantarell", sans-serif;
+    font-size: 120%;
+    line-height: 1.25;
+}
+
+a,
+a:visited {
+    color: var(--accent-turquois);
+    text-decoration: underline;
+}
+
+a:hover {
+    color: var(--color);
+}
+
+hr {
+    border: none;
+    border-radius: var(--border-radius);
+    border-bottom: solid 1px var(--background-color3);
+    margin: 24px 0;
+}
+
+.short {
+    width: 20%;
+    margin: 12px auto;
+}
+
+.hrHighLight {
+    border-bottom: solid 1px var(--background-color3);
+    margin: 24px 25%;
+}
+
+img:not(#logo, #logoStacked, .modalWelcome img, .modalIndex img) {
+    filter: var(--button-filter);
+    transition: filter 0.1s ease-in-out;
+}
+
+img:hover:not(#logo, #logoStacked, .modalWelcome img, .modalIndex img, .tdWarnPrio img, .tdWarnDue img, .iconMini img) {
+    cursor: pointer;
+    filter: var(--button-filter-hover);
+}
+
+button,
+input,
+select,
+textarea {
+    border: none;
+    outline: none;
+    padding: 3px 18px;
+    font-family: "Cantarell", sans-serif;
+    font-size: 100%;
+}
+
+button,
+input,
+select {
+    border-radius: var(--border-radius);
+}
+
+textarea {
+    border-radius: 18px;
+}
+
+.dimmedFont {
+    color: var(--color3);
+}
+
+/* table {
+    display: table;
+} */
+
+select,
+input,
+textarea {
+    background-color: var(--background-color3);
+    color: var(--color);
+}
+
+select:focus,
+input:focus,
+textarea:focus {
+    outline: 3px solid var(--color3);
+}
+
+select,
+input {
+    margin-right: 24px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+select {
+    width: 252px;
+}
+
+button {
+    min-width: 180px;
+    margin: 12px;
+}
+
+button {
+    background-color: var(--color3);
+    color: var(--background-color1);
+}
+
+button:hover {
+    cursor: pointer;
+    filter: brightness(125%);
+}
+
+.btnHighLight {
+    background-color: var(--accent-turquois);
+}
+
+input {
+    width: 215px;
+}
+
+input[type="range"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 248px;
+    padding: 0;
+    background: linear-gradient(90deg,
+            hsl(0, 50%, 50%),
+            hsl(55, 50%, 50%),
+            hsl(110, 50%, 50%),
+            hsl(165, 50%, 50%),
+            hsl(220, 50%, 50%),
+            hsl(275, 50%, 50%),
+            hsl(330, 50%, 50%));
+}
+
+input[type="range"]::-webkit-slider-thumb,
+input[type="range"]::-moz-range-thumb {
+    -webkit-appearance: none;
+    border: none;
+    background-color: var(--background-color2);
+}
+
+input[type="checkbox"] {
+    width: 24px;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    background-color: var(--accent-yellow);
+}
+
+input[type="checkbox"]:focus {
+    border: none;
+    outline: none;
+}
+
+th {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background-color: var(--background-color2);
+}
+
+.toggleLanguageOnIndex {
+    float: right;
+}
+
+.toggleLanguageOnIndex:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.mdTableChecklistItems {
+    max-width: 600px;
+}
+
+.invisible {
+    display: none;
+}
+
+.mdTableChecklistItems td {
+    border-collapse: collapse;
+    border-bottom: 1px solid var(--background-color3);
+}
+
+.mdTableChecklistItems td:first-child {
+    min-width: 252px;
+    max-width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mdTableChecklistItems td input {
+    margin: 0 3px;
+}
+
+textarea {
+    width: calc(100% - 36px);
+    min-height: 5em;
+    margin-top: 12px;
+    resize: none;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.inpOne {
+    width: 15px;
+    padding: 3px 6px;
+    text-align: center;
+}
+
+#divSafetyCode {
+    overflow: hidden;
+    transition: max-height ease-in-out 1s;
+    visibility: hidden;
+    opacity: 0;
+    max-height: 0px;
+}
+
+.normal {
+    font-size: 120%;
+    color: var(--color);
+}
+
+.medium {
+    font-size: 100%;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.green {
+    color: var(--accent-turquois);
+}
+
+.small {
+    font-size: 80%;
+}
+
+.text-align-left {
+    text-align: left;
+}
+
+.header {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 72px;
+    height: 100%;
+    z-index: 5;
+    background-color: var(--background-color2);
+    box-shadow: 0 0 6px var(--shadow);
+}
+
+.header img {
+    width: 48px;
+    padding: 12px;
+}
+
+.colorButton {
+    float: right;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    background-color: var(--accent-turquois);
+}
+
+#logo,
+#logoStacked {
+    padding: 12px;
+    opacity: 1;
+}
+
+#logo {
+    width: 92px;
+    /* margin-top: 12px; */
+    display: none;
+    float: right;
+}
+
+#logoStacked {
+    margin-top: 2px;
+    width: 48px;
+}
+
+#btnResetSearch {
+    display: none;
+    background: radial-gradient(circle at center,
+            var(--accent-red) 0,
+            var(--accent-red) 43%,
+            transparent 43%);
+}
+
+.warning {
+    background: radial-gradient(circle at center,
+            var(--accent-red) 0,
+            var(--accent-red) 43%,
+            transparent 43%);
+}
+
+.main {
+    width: calc(100% - 78px);
+    margin: auto auto 12px 78px;
+}
+
+.btnMoveTop {
+    display: none;
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
+    width: 30px;
+    opacity: 0.5;
+}
+
+.btnMoveTop:hover {
+    cursor: pointer;
+    filter: brightness(125%);
+}
+
+.modalWelcome,
+.modalIndex {
+    z-index: 0;
+    display: none;
+    width: 700px;
+    color: var(--color3);
+}
+
+.modalWelcome {
+    margin: auto;
+}
+
+.modalIndex {
+    margin-left: calc(50% - 389px);
+    /* calc(25% - 39px); */
+}
+
+.modalWelcome img,
+.modalIndex img {
+    margin: 24px auto;
+    /* margin-top: 24px;
+    margin-bottom: 12px; */
+    filter: none;
+    border-radius: 3px;
+    box-shadow: none;
+}
+
+.modalIndex .bubble:hover {
+    filter: none;
+    cursor: default;
+    box-shadow: none;
+}
+
+.modalWelcome img {
+    width: 100%;
+    max-width: 500px;
+}
+
+.modalWelcome {
+    color: var(--color);
+    text-align: center;
+    padding: 24px;
+    border-radius: var(--border-radius);
+}
+
+.divRestore figure {
+    float: right;
+}
+
+.pop-up {
+    display: none;
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    width: calc(96% - 48px);
+    max-width: 700px;
+    transform: translate(-50%, 0%);
+    overflow-y: auto;
+    padding: 24px;
+    border-radius: var(--border-radius);
+    background-color: var(--background-color1);
+    color: var(--color);
+    text-align: center;
+    border: solid 3px var(--background-color3);
+    box-shadow: 0 0 48px var(--shadow-dark);
+    z-index: 7;
+}
+
+.pop-up input {
+    margin: 12px 0;
+}
+
+.pop-up img {
+    width: 48px;
+}
+
+.pop-up figure {
+    display: inline-block;
+}
+
+.new-element-pop-up {
+    z-index: 7;
+    display: none;
+    position: absolute;
+    top: 200px;
+    left: 85px;
+    width: 150px;
+    padding: 12px 24px;
+    border: 3px solid var(--background-color3);
+    border-radius: var(--border-radius-less);
+    box-shadow: 0 3px 24px var(--shadow);
+    background-color: var(--background-color1);
+    text-align: center;
+}
+
+.new-element-pop-up figure img {
+    width: 36px;
+    margin: 12px auto 0 auto;
+}
+
+.new-element-pop-up figure img:hover {
+    cursor: pointer;
+    filter: brightness(125%);
+}
+
+.restorable-ticket {
+    padding: 12px;
+    margin: 12px auto;
+    width: 90%;
+    max-width: 800px;
+    background-color: var(--background-color2);
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 6px var(--shadow);
+    text-align: left;
+}
+
+.otLogo {
+    margin-left: calc(50% - 120px);
+    width: 240px;
+}
+
+@keyframes float {
+
+    0%,
+    1%,
+    99%,
+    100% {
+        transform: skew(-2deg, -2deg);
+    }
+
+    50% {
+        transform: skew(-4deg, -5deg);
+    }
+}
+
+#imgDarkLight {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 500px;
+    animation: toggleImg 10s ease-in-out infinite;
+}
+
+@keyframes toggleImg {
+    0% {
+        content: url("assets/screenshotTicketDark.png");
+        opacity: 0;
+    }
+
+    5%,
+    45% {
+        content: url("assets/screenshotTicketDark.png");
+        opacity: 1;
+    }
+
+    49.99% {
+        content: url("assets/screenshotTicketDark.png");
+        opacity: 0;
+    }
+
+    50% {
+        content: url("assets/screenshotTicketLight.png");
+        opacity: 0;
+    }
+
+    55%,
+    95% {
+        content: url("assets/screenshotTicketLight.png");
+        opacity: 1;
+    }
+
+    99.99% {
+        content: url("assets/screenshotTicketLight.png");
+        opacity: 0;
+    }
+
+    100% {
+        content: url("assets/screenshotTicketDark.png");
+        opacity: 0;
+    }
+}
+
+.miniBubbles {
+    display: grid;
+    grid-template-columns: 7.25% 7.25% 7.25% 7.25% 7.25% 7.25% 7.25% 7.25% 7.25% 7.25% 7.25% 7.25%;
+    column-gap: 1%;
+    justify-content: center;
+}
+
+.miniBubble {
+    /* float: left;
+    width: 6.33%;
+    margin: 6px 1%; */
+    height: 20px;
+    border-radius: 50%;
+}
+
+.modal,
+.header {
+    display: none;
+}
+
+.modalBubbles {
+    /* margin-top: 120px; */
+    display: grid;
+    grid-template-columns: 33% 34% 33%;
+    justify-content: center;
+}
+
+.grid-element {
+    height: 240px;
+}
+
+.bubble {
+    /* margin-top: -80px; */
+    min-width: 200px;
+    max-width: 300px;
+    min-height: 150px;
+    border-radius: 50%;
+    padding: 12px;
+    box-shadow: 0 3px 6px var(--shadow);
+    /* background-color: var(--background-color2); */
+    background: linear-gradient(var(--background-color2), var(--background-color1));
+    color: var(--color);
+    line-height: 0.9;
+    text-align: center;
+    transition: all 0.25s ease-in-out;
+}
+
+/* .brightBubble {
+    filter: brightness(250%);
+} */
+
+.flash {
+    animation: flash 6s infinite ease-in-out;
+}
+
+.bubble:hover {
+    cursor: pointer;
+    /* background-color: var(--background-color3); */
+    filter: brightness(112%);
+    box-shadow: 0 3px 9px var(--shadow);
+    transition: all 0.1s ease-in-out;
+}
+
+.iconMini img {
+    width: 24px;
+    margin: 12px 3px 0 3px;
+    border-radius: 50%;
+}
+
+.ticketList {
+    width: 100%;
+}
+
+.ticketList tr {
+    background-color: var(--background-color2);
+    transition: all 0.2s ease-in-out;
+}
+
+.ticketList tr:hover:not(:first-child) {
+    background-color: var(--background-color3);
+    transition: all 0.05s ease-in-out;
+}
+
+.ticketList th {
+    text-align: left;
+    font-weight: normal;
+    font-style: italic;
+    color: var(--accent-turquois);
+}
+
+.ticketList th img {
+    float: right;
+    width: 18px;
+    margin: 3px 3px 3px 6px;
+}
+
+.ticketList th img:hover {
+    cursor: pointer;
+    filter: brightness(125%);
+}
+
+.ticketList td img {
+    width: 18px;
+    margin: 3px;
+    opacity: 0.6;
+}
+
+.ticketList td {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.ticketList th,
+.ticketList td {
+    padding: 9px 12px;
+    max-width: 200px;
+    text-overflow: ellipsis;
+}
+
+.ticketList td:first-child,
+.ticketList th:first-child {
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.ticketList td:last-child,
+.ticketList th:last-child {
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+}
+
+.titleColumn {
+    display: grid;
+    grid-template-columns: 24px calc(100% - 81px) 24px 24px;
+    column-gap: 3px;
+}
+
+.titleGridElement {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.listItem:hover {
+    background-color: var(--background-color3);
+    cursor: pointer;
+}
+
+.btnSortUp,
+.btnSortDown,
+.btnUndoFilter {
+    display: none;
+}
+
+#prio1 {
+    border-right: solid 6px var(--accent-red);
+}
+
+#prio2 {
+    border-right: solid 6px var(--accent-yellow);
+}
+
+/* .tdWarnPrio,
+.tdWarnDue {
+    float: right;
+}
+
+.tdType {
+    float: left;
+    margin-right: 6px;
+} */
+
+.modalTicket {
+    display: none;
+    position: absolute;
+    top: 48px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    /* margin: auto; */
+    width: calc(100% - 36px);
+    max-width: 800px;
+    padding: 12px 12px 24px 12px;
+    /* background-color: var(--background-color2); */
+    background: linear-gradient(var(--background-color2), var(--background-color1));
+    border-radius: var(--border-radius);
+    box-shadow: 0 3px 12px var(--shadow);
+}
+
+.btnSubtasksContainer {
+    text-align: center;
+}
+
+.btnSubtasks {
+    display: none;
+    margin: 24px auto 12px auto;
+    background-color: var(--background-color3);
+    color: var(--color3);
+    font-size: 0.85rem;
+}
+
+.mdDivDisplay {
+    grid-template-columns: auto auto;
+}
+
+.mdDivDisplayCompletedSubtasks {
+    display: none;
+}
+
+.modalTicket td {
+    padding: 12px 6px 12px 0px;
+}
+
+.modalTicket figure,
+.modalEditSubticket figure {
+    padding: 0 6px;
+}
+
+.modalTicket figure {
+    margin: 0 0 12px 0;
+}
+
+.modalEditSubticket figure {
+    margin: 24px 0 0 0;
+}
+
+.mdTopGrid,
+.divSubtask {
+    display: grid;
+    grid-template-columns: auto 125px;
+}
+
+.mdBtn img {
+    display: block;
+    margin: auto;
+}
+
+/* .modalEditSubticket figure,
+.mdDivDisplaySubtasks figure {
+    float: right;
+} */
+
+.modalTicket img {
+    width: 48px;
+    padding: 6px;   /* 6px 6px 0px 6px; */
+}
+
+.modalTicket a {
+    color: inherit;
+}
+
+.modalTicket a:hover {
+    color: var(--color);
+}
+
+.settings-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        'appearance list-type'
+        'personal-data restore-tasks';
+    gap: 12px;
+}
+
+#logo-settings {
+    width: fit-content;
+    height: 1.25rem;
+    margin: 0 0 -6px 0;
+}
+
+#logo-settings:hover {
+    cursor: default;
+    filter: none;
+}
+
+.grid-item {
+    border: solid 1px var(--background-color3);
+    border-radius: var(--border-radius-less);
+}
+
+.modalSearch figure,
+.modalSettings figure,
+.modalConfirmDone figure,
+.modalSubtaskConfirmDone figure,
+.modalWarningDeleteAccount figure,
+.modalConfirmLogout figure,
+.modalConfirmDeleteOldTickets figure {
+    display: inline-block;
+}
+
+.modalIndex figure {
+    display: block;
+    margin: auto;
+    padding: 0 24px;
+}
+
+.modalIndex figure img {
+    display: block;
+    margin: auto;
+    width: 48px;
+    padding: 12px;
+}
+
+.modalIndex figure img:hover {
+    cursor: pointer;
+    filter: brightness(125%);
+}
+
+figcaption {
+    font-size: 75%;
+    text-align: center;
+    color: var(--color3);
+}
+
+.entry {
+    display: none;
+}
+
+.entry figure {
+    display: inline-block;
+}
+
+.newSubtaskButtons {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+}
+
+.modalSettings h4 {
+    margin-bottom: 0px;
+}
+
+.modalFilter {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 25%);
+}
+
+.modalSearch,
+.modalConfirmDone,
+.modalSubtaskConfirmDone,
+.modalWarningDeleteAccount,
+.modalEditSubticket,
+.modalConfirmLogout,
+.modalConfirmDeleteOldTickets {
+    position: fixed;
+    top: 48px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.modalSettings,
+.modalEditPersonalData,
+.modalCreateAccount,
+.modalLogin {
+    position: absolute;
+    top: 48px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.modalFilter,
+.modalSearch,
+.modalConfirmDone,
+.modalSubtaskConfirmDone,
+.modalWarningDeleteAccount,
+.modalSettings,
+.modalEditPersonalData,
+.modalEditSubticket,
+.modalCreateAccount,
+.modalLogin,
+.modalConfirmLogout,
+.modalConfirmDeleteOldTickets {
+    display: none;
+    z-index: 5;
+    width: 100%;
+    min-width: 330px;
+    max-width: 600px;
+    padding: 12px;
+    border-radius: var(--border-radius);
+    border: solid 3px var(--background-color3);
+    box-shadow: 0 0 24px var(--shadow);
+    background-color: var(--background-color2);
+    text-align: center;
+}
+
+.modalConfirmDeleteOldTickets,
+.modalWarningDeleteAccount {
+    border: solid 6px var(--accent-red);
+}
+
+.modalFilter img,
+.modalSearch img,
+.modalConfirmDone img,
+.modalSubtaskConfirmDone img,
+.modalWarningDeleteAccount img,
+.modalSettings img,
+.divRestore img,
+.modalEditPersonalData img,
+.modalEditSubticket img,
+.modalCreateAccount img,
+.modalLogin img,
+.modalCreateAccount img,
+.modalLogin img,
+.modalConfirmLogout img,
+.modalConfirmDeleteOldTickets img {
+    margin: auto;
+    width: 36px;
+    padding: 6px 6px 0px 6px;
+}
+
+.btnCloseModal {
+    position: absolute;
+    right: 12px;
+    width: 24px !important;
+}
+
+.btnTicketSettings {
+    display: none;
+    position: absolute;
+    right: 54px;
+    width: 24px !important;
+}
+
+.modalCreateAccount input,
+.modalLogin input,
+.modalEditPersonalData input,
+.modalWarningDeleteAccount input {
+    margin: 6px 0;
+}
+
+#alert {
+    display: none;
+    z-index: 10;
+    position: fixed;
+    width: calc(100% - 200px);
+    max-width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 48px;
+    box-shadow: 0 0 48px var(--shadow-dark);
+    background-color: var(--background-color2);
+    opacity: 0.98;
+    border-radius: 50%;
+    border-top: solid 6px var(--grey);
+    border-right: solid 24px var(--grey);
+    border-bottom: solid 6px var(--grey);
+    border-left: solid 24px var(--grey);
+    /* border: solid 4px var(--accent-red); */
+    text-align: center;
+}
+
+#loader {
+    display: none;
+    z-index: 15;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    text-align: center;
+    font-size: 0.75rem;
+}
+
+#loader-text {
+    z-index: 15;
+    position: absolute;
+    top: 33%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--color);
+}
+
+#loader img {
+    width: 150px;
+    opacity: 0.95;
+    filter: grayscale(1);
+    animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+    0% {
+        rotate: 0deg;
+    }
+
+    100% {
+        rotate: 360deg;
+    }
+}
+
+@keyframes flash {
+
+    0%,
+    45%,
+    55%,
+    100% {
+        opacity: 0.67;
+    }
+
+    50% {
+        opacity: 0.1;
+    }
+}
+
+@media (max-width: 1600px) {
+    .modalBubbles {
+        grid-template-columns: 50% 50%;
+    }
+}
+
+@media (max-width: 1200px) {
+
+    .ticketList td:nth-child(1),
+    .ticketList th:nth-child(1),
+    .ticketList td:nth-child(5),
+    .ticketList th:nth-child(5) {
+        display: none;
+    }
+
+    .ticketList td:nth-child(2),
+    .ticketList th:nth-child(2) {
+        border-top-left-radius: var(--border-radius);
+        border-bottom-left-radius: var(--border-radius);
+    }
+
+    .header {
+        width: 100%;
+        height: max-content;
+    }
+
+    .header img {
+        float: left;
+    }
+
+    .modalWelcome {
+        margin-top: 84px;
+    }
+
+    .modalTicket,
+    .modalSearch,
+    .modalSettings,
+    .modalEditPersonalData,
+    .modalConfirmDone,
+    .modalSubtaskConfirmDone,
+    .modalWarningDeleteAccount,
+    .modalEditSubticket,
+    .modalFilter,
+    .modalConfirmLogout,
+    .modalConfirmDeleteOldTickets {
+        top: 84px;
+    }
+
+    th {
+        top: 72px;
+    }
+
+    #logo {
+        display: block;
+    }
+
+    #logoStacked {
+        display: none;
+    }
+
+    .main {
+        margin: 84px 0 12px 0;
+        width: 100%;
+    }
+
+    .modalBubbles {
+        margin-top: 90px;
+    }
+
+    .new-element-pop-up {
+        top: 84px;
+        left: 50%;
+        transform: translate(-50%, 0%);
+    }
+}
+
+@media (max-width: 900px) {
+
+    .toggleLanguageOnIndex {
+        margin-top: -36px;
+    }
+
+    .modalFilter,
+    .modalSearch,
+    .modalConfirmDone,
+    .modalSubtaskConfirmDone,
+    .modalWarningDeleteAccount,
+    .modalSettings,
+    .modalEditPersonalData,
+    .modalEditSubticket,
+    .modalCreateAccount,
+    .modalLogin,
+    .modalConfirmLogout,
+    .modalConfirmDeleteOldTickets {
+        width: 90%;
+    }
+
+    .ticketList td:nth-child(4),
+    .ticketList th:nth-child(4),
+    .ticketList td:nth-child(5),
+    .ticketList th:nth-child(5),
+    .ticketList td:nth-child(6),
+    .ticketList th:nth-child(6) {
+        display: none;
+    }
+
+    .ticketList td:nth-child(3),
+    .ticketList th:nth-child(3) {
+        border-top-right-radius: var(--border-radius);
+        border-bottom-right-radius: var(--border-radius);
+    }
+
+    .modalBubbles {
+        grid-template-columns: 100%;
+    }
+
+    .bubble {
+        margin-top: 0px;
+    }
+
+    .modalWelcome {
+        width: 100%;
+        padding: 24px 0;
+    }
+
+    .modalIndex,
+    .restorable-ticket {
+        width: calc(100% - 24px);
+    }
+
+    .modalIndex {
+        margin: auto;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .settings-grid-container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            'appearance'
+            'list-type'
+            'personal-data'
+            'restore-tasks';
+    }
+
+    .header img {
+        width: 36px;
+        padding: 12px 9px;
+    }
+
+    /* .bubble {max-width: 300px;} */
+    .ticketList td:nth-child(1),
+    .ticketList th:nth-child(1),
+    .ticketList td:nth-child(3),
+    .ticketList th:nth-child(3),
+    .ticketList td:nth-child(4),
+    .ticketList th:nth-child(4),
+    .ticketList td:nth-child(5),
+    .ticketList th:nth-child(5),
+    .ticketList td:nth-child(6),
+    .ticketList th:nth-child(6) {
+        display: none;
+    }
+
+    .ticketList td:nth-child(2),
+    .ticketList th:nth-child(2) {
+        border-radius: var(--border-radius);
+    }
+
+    #logo {
+        width: 60px;
+        margin-top: 5px;
+    }
+
+    th {
+        top: 60px;
+    }
+
+    .main,
+    .modalWelcome {
+        margin-top: 72px;
+    }
+
+    /* .modalEditPersonalData td {
+        display: table-row;
+    } */
+
+    .modalTicket img {
+        width: 36px;
+    }
+
+    .modalTicket figcaption {
+        font-size: 67%;
+    }
+
+    .mdTopGrid,
+    .divSubtask {
+        grid-template-columns: auto;        
+    }
+
+    .mdBtn {
+        float: right;
+    }
+
+    .colorButton {
+        float: inline-end;
+    }
+    
+    .mdTableChecklistItems {
+        max-width: 400px;
+    }
+
+    .mdTableChecklistItems td:first-child,
+    .mdTableChecklistItems form {
+        min-width: 142px;
+        max-width: 200px;
+    }
+
+    .mdTableChecklistItems input {
+        max-width: 150px;
+    }
+}
