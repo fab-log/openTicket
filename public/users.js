@@ -74,6 +74,7 @@ const confirmAccount = async (email, input, config) => {
 		currentUser = serverResponse.data;
 		closePopUp();
 		applyConfig();
+        showHome();
 	} catch (error) {
 		showAlert(lang("An error occurred during login", "Bei der Anmeldung ist ein Fehler aufgetreten"));
 		console.error("Fetch error: ", error);
@@ -438,6 +439,7 @@ const quickLogin = async (id) => {
         getTickets(currentUser.id);
 	} catch (error) {
 		showAlert(lang("An error occurred", "Es ist ein Fehler aufgetreten"));
+        showHome();
 		console.error("Fetch error: ", error);
 		return;
 	} finally {
