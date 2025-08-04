@@ -6,9 +6,21 @@
 
 ![app screenshot](https://github.com/fab-log/openTicket/blob/5fa10f0c770169fe12120c2c00348b4b5927312d/public/pix/screenshotApp.webp)
 
-**openTicket** runs as a browser based web application. It includes user management, creating and editing tasks, adding subtasks and much more. Its innovative design displaying tasks as bubbles provides a unique look and feel. Due do a highly responsive layout it works on any screen size. Some filtering and sorting options are only available on large screens, though.
+**openTicket** runs as a browser based web application. It includes user management, creating and editing tasks, checklists, and notes. Its innovative design displaying tasks as bubbles combined with intelligent sorting provides a unique look and feel. Due do a highly responsive layout it works on any screen size. Some filtering and sorting options are only available on large screens, though.
 
-To navigate within the app, use the in app buttons only as the browser's 'back button' or similar gestures will make you leave the app. Reloading the page triggers a logout unless you checked the 'remember me' checkbox.
+### Features
+
+- Tasks
+- Checklists
+- Notes
+- Table or bubble mode
+- Customisable due date, priority, and color
+- Elements can be converted, e.g. a task can be converted into a checklist
+- Intelligent sorting based on priority an due date
+- Filtering and sorting options (in table mode)
+- Integrated search
+- UI available in English and German
+- Dark and light mode
 
 ### Beta
 
@@ -27,7 +39,7 @@ Prerequisites: **node.js** needs to be installed on your device.
 5. Run `npm init` to initialize the project.
 6. Run `npm i` to install dependencies (only *express* is required).
 7. Run `node server.js` to start the application. If you prefer a developer context you can run `nodemon start` instead. In that case an installation of *nodemon* is required.
-8. Open a browser window an type `localhost:8001/` to the address bar.
+8. Open a browser window an type `localhost:8005/` to the address bar.
 
 ___
 
@@ -38,7 +50,7 @@ Common expected errors are handled specifically, further errors are passed on fr
 
 ___
 
-### api.createAccount
+### openTicket.createAccount
 
 POST
 ```Javascript
@@ -47,7 +59,13 @@ data = {
         firstName,
         lastName,
         email,
-        password
+        password,
+        config: {
+                mode,
+                listType,
+                language,
+                rememberMe
+        }
     }
 ```
 
@@ -56,7 +74,7 @@ status, userdata (except password) of the newly created user
 
 ___
 
-### api.login
+### openTicket.login
 
 POST
 ```Javascript
@@ -71,7 +89,7 @@ status, userdata (except password) with matching email
 
 ___
 
-### api.quickLogin
+### openTicket.quickLogin
 
 Applies if a user has checked the checkbox for *remember me on this device* and if the ID is stored in the browser's localStorage.
 
@@ -87,12 +105,21 @@ status, userdata (except password) with matching id
 
 ___
 
-### api.editPersonalData
+### openTicket.updateUserSilent
 
 POST
 ```Javascript
 data = {
-        id
+        id,
+        firstName,
+        lastName,
+        email,
+        config: {
+                mode,
+                listType,
+                language,
+                rememberMe
+        }
     }
 ```
 
@@ -101,7 +128,44 @@ status, updated userdata (except password) with matching id
 
 ___
 
-### api.deleteAccount
+### openTicket.editPersonalData
+
+POST
+```Javascript
+data = {
+        id,
+        firstName,
+        lastName,
+        email,
+        config: {
+                mode,
+                listType,
+                language,
+                rememberMe
+        }
+    }
+```
+
+Response:\
+status, updated userdata (except password) with matching id
+
+___
+
+### openTicket.forgotPassword
+
+POST
+```Javascript
+data = {
+        email
+    }
+```
+
+Response:\
+status
+
+___
+
+### openTicket.deleteAccount
 
 POST
 ```Javascript
@@ -115,7 +179,7 @@ status
 
 ___
 
-### api.getTickets
+### openTicket.getTickets
 
 POST
 ```Javascript
@@ -129,7 +193,7 @@ status, array of tickets (=tasks) associated with the sent user id
 
 ___
 
-### api.newTicket
+### openTicket.newTicket
 
 Used for creating a new task.
 
@@ -146,7 +210,7 @@ status, updated array of tickets (=tasks) associated with the sent user id, incl
 
 ___
 
-### api.updateTicket
+### openTicket.updateTicket
 
 Used to aplly changes to an existing task.
 
@@ -163,7 +227,7 @@ status, updated array of tickets (=tasks) associated with the sent user id, incl
 
 ___
 
-### api.deleteOldTickets
+### openTicket.deleteOldTickets
 
 Used to permanently remove tasks that have been marked as completed.
 
