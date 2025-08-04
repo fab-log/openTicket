@@ -4,9 +4,23 @@
 
 -----------
 
-![app screenshot](https://github.com/fab-log/openTicket/blob/5fa10f0c770169fe12120c2c00348b4b5927312d/public/pix/screenshotApp.webp)
-
 **openTicket** runs as a browser based web application. It includes user management, creating and editing tasks, checklists, and notes. Its innovative design displaying tasks as bubbles combined with intelligent sorting provides a unique look and feel. Due do a highly responsive layout it works on any screen size. Some filtering and sorting options are only available on large screens, though.
+
+<img src="https://github.com/fab-log/openTicket/blob/main/public/assets/screenshotBubblesEn.png" alt="app screenshot" width="800">
+app screenshot showing bubble mode
+
+-----------
+
+<img src="https://github.com/fab-log/openTicket/blob/main/public/assets/screenshotTableEn.png" alt="app screenshot" width="800">
+app screenshot showing table mode
+
+-----------
+
+<img src="https://github.com/fab-log/openTicket/blob/main/public/assets/screenshot_task_en.png" alt="app screenshot" width="600">
+app screenshot showing a single task
+
+-----------
+
 
 ### Features
 
